@@ -1274,7 +1274,7 @@ Transform:
   m_GameObject: {fileID: 384555174}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3561,18 +3561,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34dd9a58e8b51345b3af0b0c652815f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  nodeTwoRoot: {fileID: 384555175}
+  nodeTwo: {fileID: 1526258778}
   mainCam: {fileID: 119212170}
   nodeOne: {fileID: 2054695435}
-  container: {fileID: 384555175}
-  nodeTwo: {fileID: 1526258778}
-  testItem: {fileID: 2030469070}
+  itemRoot: {fileID: 1106176729}
+  item: {fileID: 2030469070}
+  nodeContainer: {fileID: 384555175}
   smoothTime: 0.1
   maxSpeed: Infinity
-  deadzone: 0.16
   baseRotationSpeed: 4
   maxRotationSpeed: 50
   maxDistance: 3
-  maxTilt: 90
+  deadzone: 0.16
+  maxRoll: 90
+  rollSensitivity: 3
+--- !u!1 &1106176728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1106176729}
+  m_Layer: 0
+  m_Name: SwordParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1106176729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106176728}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1121822312
 Mesh:
   m_ObjectHideFlags: 0
@@ -5914,7 +5948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030469069}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6447,4 +6481,5 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 841781652}
   - {fileID: 1996512410}
+  - {fileID: 1106176729}
   - {fileID: 2030469070}

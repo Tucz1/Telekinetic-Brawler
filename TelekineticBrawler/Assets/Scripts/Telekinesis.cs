@@ -2,74 +2,82 @@ using UnityEngine;
 
 public class Telekinesis : MonoBehaviour
 {
-    [SerializeField] Camera mainCam;
-	[SerializeField] Transform nodeOne;
-    [SerializeField] Transform container;
-	[SerializeField] Transform nodeTwo;
-    [SerializeField] Transform testItem;
-    Vector3 screenCenter;
-    Vector3 holdPosition;
+    [Header("References")]
+    public Transform nodeTwoRoot;      
+    public Transform nodeTwo;          
+    public Camera mainCam;
+    [SerializeField] Transform nodeOne;
+    [SerializeField] Transform itemRoot;
+    [SerializeField] Transform item;
+    [SerializeField] Transform nodeContainer;
 
-    public float smoothTime = 0.25f;
-    public float maxSpeed = Mathf.Infinity;
-    public float deadzone = 0.1f;
-    public float baseRotationSpeed = 4f;
-    public float maxRotationSpeed = 50f;
+    [Header("Movement Settings")]
+    public float smoothTime = 0.05f; 
+    public float maxSpeed = 20f;     
+    public float baseRotationSpeed = 720f;
+    public float maxRotationSpeed = 1440f;
     public float maxDistance = 5f;
+    public float deadzone = 0.1f;
 
-    Vector3 velocity;
+    [Header("Tilt Settings")]
+    public float maxRoll = 90f;     
+    public float rollSensitivity = 20f; 
+
+    private Vector3 velocity;
+    private Vector3 lastTargetPos;
+
+    void Start()
+    {
+        if (mainCam == null) mainCam = Camera.main;
+        lastTargetPos = nodeTwoRoot.position;
+    }
 
     void Update()
     {
-        var diff = transform.position - container.position;
-        container.position += diff;
-
-        screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 2);
-	    holdPosition = mainCam.ScreenToWorldPoint(screenCenter);
+        
+        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 2f);
+        Vector3 holdPosition = mainCam.ScreenToWorldPoint(screenCenter);
         nodeOne.position = holdPosition;
 
-        Vector3 current = nodeTwo.position;
-        Vector3 targetPos = nodeOne.position;
+        nodeTwoRoot.position = Vector3.SmoothDamp(
+            nodeTwoRoot.position,
+            nodeOne.position,
+            ref velocity,
+            smoothTime,
+            maxSpeed
+        );
 
-        nodeTwo.position = Vector3.SmoothDamp(
-        nodeTwo.position,
-        nodeOne.position,
-        ref velocity,
-        smoothTime,
-        maxSpeed);
-
-        nodeTwo.position = nodeTwo.position;
-        
-        // Node 3 could just be node 2?
-
-        Vector3 direction = nodeOne.position - nodeTwo.position;
-
-        // if (direction.sqrMagnitude < 0.0001f) return;
-        
+        Vector3 direction = nodeOne.position - nodeTwoRoot.position;
         float distance = direction.magnitude;
-
         float normalized = Mathf.Clamp01(distance / maxDistance);
 
-        Quaternion desiredRotation;
-
+        Quaternion baseRotation;
         if (distance > deadzone)
-        {
-            // look at cursor
-            desiredRotation = Quaternion.LookRotation(direction);
-        }
+            baseRotation = Quaternion.LookRotation(direction);
         else
-        {
-            // Forward stance
-            desiredRotation = Quaternion.LookRotation(nodeOne.forward);
-        }
+            baseRotation = Quaternion.LookRotation(mainCam.transform.forward); // guard stance
+
+        Vector3 screenPos = mainCam.WorldToScreenPoint(nodeOne.position);
+        Vector3 lastScreenPos = mainCam.WorldToScreenPoint(lastTargetPos);
+
+        Vector3 delta = screenPos - lastScreenPos; 
+
+        float rollAmount = Mathf.Clamp(-delta.x * rollSensitivity, -maxRoll, maxRoll);
+
+        nodeTwo.localRotation = Quaternion.Euler(0f, 0f, -rollAmount);
 
         float dynamicSpeed = Mathf.Lerp(baseRotationSpeed, maxRotationSpeed, normalized);
-
-        nodeTwo.rotation = Quaternion.Slerp(
-            nodeTwo.rotation,
-            desiredRotation,
+        nodeTwoRoot.rotation = Quaternion.Slerp(
+            nodeTwoRoot.rotation,
+            baseRotation,
             dynamicSpeed * Time.deltaTime
         );
+
+        lastTargetPos = nodeOne.position;
+
+        item.SetParent(nodeTwo);
+        item.localPosition = Vector3.zero;
+        item.localRotation = Quaternion.identity;
 
     }
 }
