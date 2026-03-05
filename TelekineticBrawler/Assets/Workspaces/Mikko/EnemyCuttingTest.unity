@@ -208,12 +208,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1.5}
-  m_Center: {x: 0, y: 0.4, z: 0.59}
+  m_Center: {x: 0, y: 0.4, z: 1.36}
 --- !u!1 &643676438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,6 +1290,14 @@ PrefabInstance:
     - target: {fileID: 480632467442192269, guid: 89be683c04e48094eabc490cddae1143, type: 3}
       propertyPath: m_Name
       value: BasicEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815965458652065030, guid: 89be683c04e48094eabc490cddae1143, type: 3}
+      propertyPath: m_AutoBraking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815965458652065030, guid: 89be683c04e48094eabc490cddae1143, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7628026900284696693, guid: 89be683c04e48094eabc490cddae1143, type: 3}
       propertyPath: m_LocalPosition.x
