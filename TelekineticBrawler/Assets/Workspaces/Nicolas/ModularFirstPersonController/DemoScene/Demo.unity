@@ -1405,7 +1405,6 @@ GameObject:
   - component: {fileID: 534943523}
   - component: {fileID: 534943526}
   - component: {fileID: 534943525}
-  - component: {fileID: 534943524}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1428,29 +1427,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2030469070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &534943524
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534943522}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &534943525
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2936,7 +2912,6 @@ GameObject:
   - component: {fileID: 982295591}
   - component: {fileID: 982295594}
   - component: {fileID: 982295593}
-  - component: {fileID: 982295592}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -2959,27 +2934,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2030469070}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!65 &982295592
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982295590}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &982295593
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3567,9 +3521,13 @@ MonoBehaviour:
   nodeOne: {fileID: 2054695435}
   itemRoot: {fileID: 1106176729}
   item: {fileID: 2030469070}
+  data: {fileID: 11400000, guid: 271ef0d6e414fd642a2d9f56306e898f, type: 2}
   nodeContainer: {fileID: 384555175}
   smoothTime: 0.1
+  mass: 1
   maxSpeed: Infinity
+  distanceMultiplier: 1
+  distanceLimit: 3
   baseRotationSpeed: 15
   maxRotationSpeed: 150
   maxDistance: 10
@@ -4825,7 +4783,6 @@ GameObject:
   - component: {fileID: 1642514100}
   - component: {fileID: 1642514103}
   - component: {fileID: 1642514102}
-  - component: {fileID: 1642514101}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4848,27 +4805,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2030469070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1642514101
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1642514099}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1642514102
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5934,6 +5870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030469070}
+  - component: {fileID: 2030469071}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -5959,6 +5896,19 @@ Transform:
   - {fileID: 534943523}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2030469071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030469069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90983947e91f8d4469da2bd4b37bcd5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  weaponData: {fileID: 11400000, guid: 271ef0d6e414fd642a2d9f56306e898f, type: 2}
 --- !u!43 &2043328524
 Mesh:
   m_ObjectHideFlags: 0

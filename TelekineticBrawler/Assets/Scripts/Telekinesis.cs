@@ -3,25 +3,29 @@ using UnityEngine;
 public class Telekinesis : MonoBehaviour
 {
     [Header("References")]
-    public Transform nodeTwoRoot;      
-    public Transform nodeTwo;          
+    public Transform nodeTwoRoot;
+    public Transform nodeTwo;
     public Camera mainCam;
     [SerializeField] Transform nodeOne;
     [SerializeField] Transform itemRoot;
     [SerializeField] Transform item;
+    [SerializeField] WeaponData data;
     [SerializeField] Transform nodeContainer;
 
     [Header("Movement Settings")]
-    public float smoothTime = 0.05f; 
-    public float maxSpeed = 20f;     
+    public float smoothTime = 0.05f;
+    public float mass = 1;
+    public float maxSpeed = 20f;
+    [Range(1, 3)] public float distanceMultiplier = 1f;
+    public float distanceLimit = 5f;
     public float baseRotationSpeed = 720f;
     public float maxRotationSpeed = 1440f;
     public float maxDistance = 5f;
     public float deadzone = 0.1f;
 
     [Header("Tilt Settings")]
-    public float maxRoll = 90f;     
-    public float rollSensitivity = 20f; 
+    public float maxRoll = 90f;
+    public float rollSensitivity = 20f;
     public float lerpSpeed = 5;
 
     private Vector3 velocity;
@@ -31,23 +35,43 @@ public class Telekinesis : MonoBehaviour
     {
         if (mainCam == null) mainCam = Camera.main;
         lastTargetPos = nodeTwoRoot.position;
+
+        switch (data.Size)
+        {
+            case Size.Small:
+                break;
+
+            case Size.Medium:
+                break;
+
+            case Size.Big:
+                break;
+
+            case Size.Huge:
+                break;
+
+            default:
+                Debug.Log($"Invalid Size detected: {data.Size}");
+                break;
+        }
     }
 
     void Update()
     {
-        
+
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 2f);
         Vector3 holdPosition = mainCam.ScreenToWorldPoint(screenCenter);
         nodeOne.position = holdPosition;
-        /// var newPos = nodeOne.position - nodeOne.forward;
+        // var newPos = nodeOne.position - nodeOne.forward;
 
         nodeTwoRoot.position = Vector3.SmoothDamp(
             nodeTwoRoot.position,
             nodeOne.position,
             ref velocity,
-            smoothTime,
-            maxSpeed
+            smoothTime * mass,
+            maxSpeed * Time.deltaTime
         );
+
 
         Vector3 direction = nodeOne.position - nodeTwoRoot.position;
         float distance = direction.magnitude;
@@ -62,7 +86,7 @@ public class Telekinesis : MonoBehaviour
         Vector3 screenPos = mainCam.WorldToScreenPoint(nodeOne.position);
         Vector3 lastScreenPos = mainCam.WorldToScreenPoint(lastTargetPos);
 
-        Vector3 delta = screenPos - lastScreenPos; 
+        Vector3 delta = screenPos - lastScreenPos;
 
         var currentRot = nodeTwo.localRotation;
 
