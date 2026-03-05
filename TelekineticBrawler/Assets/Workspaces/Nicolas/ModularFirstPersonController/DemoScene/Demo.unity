@@ -2875,7 +2875,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921174854}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3570,12 +3570,13 @@ MonoBehaviour:
   nodeContainer: {fileID: 384555175}
   smoothTime: 0.1
   maxSpeed: Infinity
-  baseRotationSpeed: 4
-  maxRotationSpeed: 50
-  maxDistance: 3
+  baseRotationSpeed: 15
+  maxRotationSpeed: 150
+  maxDistance: 10
   deadzone: 0.16
   maxRoll: 90
-  rollSensitivity: 3
+  rollSensitivity: 10
+  lerpSpeed: 100
 --- !u!1 &1106176728
 GameObject:
   m_ObjectHideFlags: 0

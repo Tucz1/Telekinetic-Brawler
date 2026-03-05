@@ -22,6 +22,7 @@ public class Telekinesis : MonoBehaviour
     [Header("Tilt Settings")]
     public float maxRoll = 90f;     
     public float rollSensitivity = 20f; 
+    public float lerpSpeed = 5;
 
     private Vector3 velocity;
     private Vector3 lastTargetPos;
@@ -38,6 +39,7 @@ public class Telekinesis : MonoBehaviour
         Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 2f);
         Vector3 holdPosition = mainCam.ScreenToWorldPoint(screenCenter);
         nodeOne.position = holdPosition;
+        /// var newPos = nodeOne.position - nodeOne.forward;
 
         nodeTwoRoot.position = Vector3.SmoothDamp(
             nodeTwoRoot.position,
@@ -62,9 +64,11 @@ public class Telekinesis : MonoBehaviour
 
         Vector3 delta = screenPos - lastScreenPos; 
 
+        var currentRot = nodeTwo.localRotation;
+
         float rollAmount = Mathf.Clamp(-delta.x * rollSensitivity, -maxRoll, maxRoll);
 
-        nodeTwo.localRotation = Quaternion.Euler(0f, 0f, -rollAmount);
+        nodeTwo.localRotation = Quaternion.Lerp(Quaternion.Euler(0f, 0f, -rollAmount), currentRot, lerpSpeed * Time.deltaTime); //Quaternion.Euler(0f, 0f, -rollAmount);
 
         float dynamicSpeed = Mathf.Lerp(baseRotationSpeed, maxRotationSpeed, normalized);
         nodeTwoRoot.rotation = Quaternion.Slerp(
