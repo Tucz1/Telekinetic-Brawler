@@ -1,111 +1,123 @@
 using UnityEngine;
 
-public class Telekinesis : MonoBehaviour
+public class TelekinesisController : MonoBehaviour
 {
     [Header("References")]
     public Transform nodeTwoRoot;
     public Transform nodeTwo;
     public Camera mainCam;
-    [SerializeField] Transform nodeOne;
-    [SerializeField] Transform itemRoot;
-    [SerializeField] Transform item;
-    [SerializeField] WeaponData data;
-    [SerializeField] Transform nodeContainer;
 
-    [Header("Movement Settings")]
-    public float smoothTime = 0.05f;
-    public float mass = 1;
-    public float maxSpeed = 20f;
-    [Range(1, 3)] public float distanceMultiplier = 1f;
-    public float distanceLimit = 5f;
-    public float baseRotationSpeed = 720f;
-    public float maxRotationSpeed = 1440f;
-    public float maxDistance = 5f;
-    public float deadzone = 0.1f;
+    [SerializeField] private Transform nodeOne;
+    [SerializeField] private Transform item;
 
-    [Header("Tilt Settings")]
-    public float maxRoll = 90f;
-    public float rollSensitivity = 20f;
-    public float lerpSpeed = 5;
+    [Header("Weapon")]
+    [SerializeField] private WeaponData weaponData;
 
-    private Vector3 velocity;
     private Vector3 lastTargetPos;
+
+    [Header("Player Movement Compensation")]
+    [SerializeField] Transform player;
+    [SerializeField] float movementInfluence = 1f;
+
+    Vector3 lastPlayerPos;
+    Vector3 playerVelocity;
 
     void Start()
     {
         if (mainCam == null) mainCam = Camera.main;
+
         lastTargetPos = nodeTwoRoot.position;
 
-        switch (data.Size)
-        {
-            case Size.Small:
-                break;
+        lastPlayerPos = player.position;
 
-            case Size.Medium:
-                break;
-
-            case Size.Big:
-                break;
-
-            case Size.Huge:
-                break;
-
-            default:
-                Debug.Log($"Invalid Size detected: {data.Size}");
-                break;
-        }
+        AttachItem();
     }
 
     void Update()
     {
+        playerVelocity = (player.position - lastPlayerPos) / Time.deltaTime;
+        lastPlayerPos = player.position;
 
-        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 2f);
-        Vector3 holdPosition = mainCam.ScreenToWorldPoint(screenCenter);
-        nodeOne.position = holdPosition;
-        // var newPos = nodeOne.position - nodeOne.forward;
-
-        nodeTwoRoot.position = Vector3.SmoothDamp(
-            nodeTwoRoot.position,
-            nodeOne.position,
-            ref velocity,
-            smoothTime * mass,
-            maxSpeed * Time.deltaTime
-        );
-
+        UpdateTargetPosition();
 
         Vector3 direction = nodeOne.position - nodeTwoRoot.position;
         float distance = direction.magnitude;
-        float normalized = Mathf.Clamp01(distance / maxDistance);
+        float normalizedDistance = Mathf.Clamp01(distance / weaponData.MaxDistance);
 
-        Quaternion baseRotation;
-        if (distance > deadzone)
-            baseRotation = Quaternion.LookRotation(direction);
-        else
-            baseRotation = Quaternion.LookRotation(mainCam.transform.forward); // guard stance
+        UpdatePosition(distance);
+        UpdateRotation(direction, distance, normalizedDistance);
+        UpdateRoll();
 
-        Vector3 screenPos = mainCam.WorldToScreenPoint(nodeOne.position);
-        Vector3 lastScreenPos = mainCam.WorldToScreenPoint(lastTargetPos);
-
-        Vector3 delta = screenPos - lastScreenPos;
-
-        var currentRot = nodeTwo.localRotation;
-
-        float rollAmount = Mathf.Clamp(-delta.x * rollSensitivity, -maxRoll, maxRoll);
-
-        nodeTwo.localRotation = Quaternion.Lerp(Quaternion.Euler(0f, 0f, -rollAmount), currentRot, lerpSpeed * Time.deltaTime); //Quaternion.Euler(0f, 0f, -rollAmount);
-
-        float dynamicSpeed = Mathf.Lerp(baseRotationSpeed, maxRotationSpeed, normalized);
-        nodeTwoRoot.rotation = Quaternion.Slerp(
-            nodeTwoRoot.rotation,
-            baseRotation,
-            dynamicSpeed * Time.deltaTime
-        );
+        nodeTwoRoot.position += playerVelocity * Time.deltaTime * movementInfluence;
 
         lastTargetPos = nodeOne.position;
+    }
 
+    void UpdateTargetPosition()
+    {
+        Vector3 screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 2f);
+        nodeOne.position = mainCam.ScreenToWorldPoint(screenCenter);
+    }
+
+
+    void UpdatePosition(float distance)
+    {
+        float weightedSpeed = weaponData.BaseFollowSpeed + distance * weaponData.Weight;
+
+        nodeTwoRoot.position = Vector3.MoveTowards(
+            nodeTwoRoot.position,
+            nodeOne.position,
+            weightedSpeed * Time.deltaTime
+        );
+    }
+
+    void UpdateRotation(Vector3 direction, float distance, float normalizedDistance)
+    {
+        Quaternion targetRotation =
+            distance > weaponData.Deadzone
+            ? Quaternion.LookRotation(direction)
+            : Quaternion.LookRotation(mainCam.transform.forward);
+
+        float rotationSpeed = Mathf.Lerp(
+            weaponData.BaseRotationSpeed,
+            weaponData.MaxRotationSpeed,
+            normalizedDistance
+        );
+
+        nodeTwoRoot.rotation = Quaternion.Slerp(
+            nodeTwoRoot.rotation,
+            targetRotation,
+            rotationSpeed * Time.deltaTime
+        );
+    }
+
+    void UpdateRoll()
+    {
+        Vector3 currentScreenPos = mainCam.WorldToScreenPoint(nodeOne.position);
+        Vector3 lastScreenPos = mainCam.WorldToScreenPoint(lastTargetPos);
+
+        Vector3 delta = currentScreenPos - lastScreenPos;
+
+        float rollAmount = Mathf.Clamp(
+            -delta.x * weaponData.RollSensitivity,
+            -weaponData.MaxRoll,
+            weaponData.MaxRoll
+        );
+
+        Quaternion targetRoll = Quaternion.Euler(0f, 0f, -rollAmount);
+
+        nodeTwo.localRotation = Quaternion.Lerp(
+            nodeTwo.localRotation,
+            targetRoll,
+            weaponData.RollSmoothSpeed * Time.deltaTime
+        );
+    }
+
+
+    void AttachItem()
+    {
         item.SetParent(nodeTwo);
         item.localPosition = Vector3.zero;
         item.localRotation = Quaternion.identity;
-
     }
 }

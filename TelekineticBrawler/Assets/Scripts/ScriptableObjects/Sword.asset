@@ -14,5 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sword
   damageType: 1
   damage: 20
-  size: 0
+  baseFollowSpeed: 2
+  weight: 6
+  baseRotationSpeed: 10
+  maxRotationSpeed: 20
+  maxDistance: 5
+  deadzone: 0.1
+  maxRoll: 90
+  rollSensitivity: 10
+  rollSmoothSpeed: 7
   hitSFX: {fileID: 0}

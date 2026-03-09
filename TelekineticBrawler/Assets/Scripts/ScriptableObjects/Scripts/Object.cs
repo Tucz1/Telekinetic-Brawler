@@ -7,14 +7,6 @@ public enum DamageType
     Piercing
 }
 
-public enum Size
-{
-    Small,
-    Medium,
-    Big,
-    Huge
-}
-
 public struct AbilityInfo
 {
     // public data
@@ -29,16 +21,39 @@ public class WeaponData : ScriptableObject
 {
     [Header("WeaponType")]
 	[SerializeField] protected DamageType damageType;
-	
-	[Header("Variables")]
+
 	[SerializeField] protected float damage;
-	[SerializeField] protected Size size;
+
+	[Header("Movement")]
+    [SerializeField] protected float baseFollowSpeed = 1.5f;
+    [SerializeField] protected float weight = 6f;
+
+    [Header("Rotation")]
+    [SerializeField] protected float baseRotationSpeed = 720f;
+    [SerializeField] protected float maxRotationSpeed = 1440f;
+    [SerializeField] protected float maxDistance = 5f;
+    [SerializeField] protected float deadzone = 0.1f;
+
+    [Header("Tilt")]
+    [SerializeField] protected float maxRoll = 90f;
+    [SerializeField] protected float rollSensitivity = 20f;
+    [SerializeField] protected float rollSmoothSpeed = 5f;
 	
 	[Header("SFX")]
-	[SerializeField] AudioClip hitSFX;
+	[SerializeField] protected AudioClip hitSFX;
 	
 	public float Damage => damage;
-	public Size Size => size;
+	public float BaseFollowSpeed => baseFollowSpeed;
+	public float Weight => weight;
+	public float BaseRotationSpeed => baseRotationSpeed;
+	public float MaxRotationSpeed => maxRotationSpeed;
+	public float MaxDistance => maxDistance;
+	public float Deadzone => deadzone;
+	public float MaxRoll => maxRoll;
+	public float RollSensitivity => rollSensitivity;
+	public float RollSmoothSpeed => rollSmoothSpeed;
+	public AudioClip HitSFX => hitSFX;
+
 
 
 	public virtual void UseAbility(AbilityInfo info)

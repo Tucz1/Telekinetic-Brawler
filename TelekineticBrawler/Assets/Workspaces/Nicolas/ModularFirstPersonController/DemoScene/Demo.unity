@@ -682,7 +682,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148423868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2851,7 +2851,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921174854}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3519,22 +3519,10 @@ MonoBehaviour:
   nodeTwo: {fileID: 1526258778}
   mainCam: {fileID: 119212170}
   nodeOne: {fileID: 2054695435}
-  itemRoot: {fileID: 1106176729}
   item: {fileID: 2030469070}
-  data: {fileID: 11400000, guid: 271ef0d6e414fd642a2d9f56306e898f, type: 2}
-  nodeContainer: {fileID: 384555175}
-  smoothTime: 0.1
-  mass: 1
-  maxSpeed: Infinity
-  distanceMultiplier: 1
-  distanceLimit: 3
-  baseRotationSpeed: 15
-  maxRotationSpeed: 150
-  maxDistance: 10
-  deadzone: 0.16
-  maxRoll: 90
-  rollSensitivity: 10
-  lerpSpeed: 100
+  weaponData: {fileID: 11400000, guid: 271ef0d6e414fd642a2d9f56306e898f, type: 2}
+  player: {fileID: 1062291015}
+  movementInfluence: 1
 --- !u!1 &1106176728
 GameObject:
   m_ObjectHideFlags: 0
