@@ -25,19 +25,19 @@ public class WeaponData : ScriptableObject
 	[SerializeField] protected float damage;
 
 	[Header("Movement")]
-    [SerializeField] protected float baseFollowSpeed = 1.5f;
+    [SerializeField] protected float baseFollowSpeed = 2f;
     [SerializeField] protected float weight = 6f;
 
     [Header("Rotation")]
-    [SerializeField] protected float baseRotationSpeed = 720f;
-    [SerializeField] protected float maxRotationSpeed = 1440f;
+    [SerializeField] protected float baseRotationSpeed = 10f;
+    [SerializeField] protected float maxRotationSpeed = 20f;
     [SerializeField] protected float maxDistance = 5f;
     [SerializeField] protected float deadzone = 0.1f;
 
     [Header("Tilt")]
     [SerializeField] protected float maxRoll = 90f;
-    [SerializeField] protected float rollSensitivity = 20f;
-    [SerializeField] protected float rollSmoothSpeed = 5f;
+    [SerializeField] protected float rollSensitivity = 10f;
+    [SerializeField] protected float rollSmoothSpeed = 7f;
 	
 	[Header("SFX")]
 	[SerializeField] protected AudioClip hitSFX;

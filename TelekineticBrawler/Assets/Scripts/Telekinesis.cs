@@ -3,15 +3,15 @@ using UnityEngine;
 public class TelekinesisController : MonoBehaviour
 {
     [Header("References")]
-    public Transform nodeTwoRoot;
-    public Transform nodeTwo;
+    public Transform weaponRoot;
+    public Transform weaponTransform;
     public Camera mainCam;
 
     [SerializeField] private Transform nodeOne;
 
     [Header("Weapon")]
     [SerializeField] private WeaponData weaponData;
-    [SerializeField] private Transform weaponTransform;
+    // [SerializeField] private Transform weaponTransform;
     [SerializeField] private Rigidbody weaponRB;
 
     private Vector3 lastTargetPos;
@@ -30,7 +30,7 @@ public class TelekinesisController : MonoBehaviour
     {
         if (mainCam == null) mainCam = Camera.main;
 
-        lastTargetPos = nodeTwoRoot.position;
+        lastTargetPos = weaponRoot.position;
 
         lastPlayerPos = player.position;
 
@@ -38,6 +38,10 @@ public class TelekinesisController : MonoBehaviour
 
     void Update()
     {
+
+        Debug.Log($"Weapon position: {weaponTransform.position}");
+        Debug.Log($"Node two: {weaponRoot.position}");
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (attachedItem)
@@ -50,11 +54,13 @@ public class TelekinesisController : MonoBehaviour
         playerVelocity = (player.position - lastPlayerPos) / Time.deltaTime;
         lastPlayerPos = player.position;
 
-        UpdateTargetPosition();
-
         if (!attachedItem) return;
 
-        Vector3 direction = nodeOne.position - nodeTwoRoot.position;
+        UpdateTargetPosition();
+
+        
+
+        Vector3 direction = nodeOne.position - weaponRoot.position;
         lastDir = direction;
         float distance = direction.magnitude;
         float normalizedDistance = Mathf.Clamp01(distance / weaponData.MaxDistance);
@@ -63,7 +69,7 @@ public class TelekinesisController : MonoBehaviour
         UpdateRotation(direction, distance, normalizedDistance);
         UpdateRoll();
 
-        nodeTwoRoot.position += playerVelocity * Time.deltaTime * movementInfluence;
+        weaponRoot.position += playerVelocity * Time.deltaTime * movementInfluence;
 
         lastTargetPos = nodeOne.position;
     }
@@ -79,8 +85,8 @@ public class TelekinesisController : MonoBehaviour
     {
         float weightedSpeed = weaponData.BaseFollowSpeed + distance * weaponData.Weight;
 
-        nodeTwoRoot.position = Vector3.MoveTowards(
-            nodeTwoRoot.position,
+        weaponRoot.position = Vector3.MoveTowards(
+            weaponRoot.position,
             nodeOne.position,
             weightedSpeed * Time.deltaTime
         );
@@ -99,8 +105,8 @@ public class TelekinesisController : MonoBehaviour
             normalizedDistance
         );
 
-        nodeTwoRoot.rotation = Quaternion.Slerp(
-            nodeTwoRoot.rotation,
+        weaponRoot.rotation = Quaternion.Slerp(
+            weaponRoot.rotation,
             targetRotation,
             rotationSpeed * Time.deltaTime
         );
@@ -121,8 +127,8 @@ public class TelekinesisController : MonoBehaviour
 
         Quaternion targetRoll = Quaternion.Euler(0f, 0f, -rollAmount);
 
-        nodeTwo.localRotation = Quaternion.Lerp(
-            nodeTwo.localRotation,
+        weaponTransform.localRotation = Quaternion.Lerp(
+            weaponTransform.localRotation,
             targetRoll,
             weaponData.RollSmoothSpeed * Time.deltaTime
         );
@@ -132,7 +138,6 @@ public class TelekinesisController : MonoBehaviour
     void AttachItem()
     {
         weaponRB.isKinematic = true;
-        weaponTransform.SetParent(nodeTwo);
         weaponTransform.localPosition = Vector3.zero;
         weaponTransform.localRotation = Quaternion.identity;
 
@@ -142,7 +147,7 @@ public class TelekinesisController : MonoBehaviour
     void RemoveItem()
     {
         weaponRB.isKinematic = false;
-        weaponTransform.SetParent(null);
+        // weaponTransform.SetParent(null);
 
         weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
 
