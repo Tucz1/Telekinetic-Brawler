@@ -8,10 +8,11 @@ public class TelekinesisController : MonoBehaviour
     public Camera mainCam;
 
     [SerializeField] private Transform nodeOne;
-    [SerializeField] private Transform item;
 
     [Header("Weapon")]
     [SerializeField] private WeaponData weaponData;
+    [SerializeField] private Transform weaponTransform;
+    [SerializeField] private Rigidbody weaponRB;
 
     private Vector3 lastTargetPos;
 
@@ -21,6 +22,9 @@ public class TelekinesisController : MonoBehaviour
 
     Vector3 lastPlayerPos;
     Vector3 playerVelocity;
+    private Vector3 lastDir;
+
+    public bool attachedItem;
 
     void Start()
     {
@@ -30,17 +34,28 @@ public class TelekinesisController : MonoBehaviour
 
         lastPlayerPos = player.position;
 
-        AttachItem();
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (attachedItem)
+            {
+                Debug.Log("Removing item");
+                RemoveItem();
+            }
+            else { Debug.Log("Attaching item"); AttachItem(); }
+        }
         playerVelocity = (player.position - lastPlayerPos) / Time.deltaTime;
         lastPlayerPos = player.position;
 
         UpdateTargetPosition();
 
+        if (!attachedItem) return;
+
         Vector3 direction = nodeOne.position - nodeTwoRoot.position;
+        lastDir = direction;
         float distance = direction.magnitude;
         float normalizedDistance = Mathf.Clamp01(distance / weaponData.MaxDistance);
 
@@ -116,8 +131,21 @@ public class TelekinesisController : MonoBehaviour
 
     void AttachItem()
     {
-        item.SetParent(nodeTwo);
-        item.localPosition = Vector3.zero;
-        item.localRotation = Quaternion.identity;
+        weaponRB.isKinematic = true;
+        weaponTransform.SetParent(nodeTwo);
+        weaponTransform.localPosition = Vector3.zero;
+        weaponTransform.localRotation = Quaternion.identity;
+
+        attachedItem = true;
+    }
+
+    void RemoveItem()
+    {
+        weaponRB.isKinematic = false;
+        weaponTransform.SetParent(null);
+
+        weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
+
+        attachedItem = false;
     }
 }
