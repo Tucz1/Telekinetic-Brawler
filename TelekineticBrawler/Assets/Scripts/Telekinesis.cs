@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class TelekinesisController : MonoBehaviour
@@ -25,6 +26,15 @@ public class TelekinesisController : MonoBehaviour
     private Vector3 lastDir;
 
     public bool attachedItem;
+    Interactable interactable;
+
+    void Awake()
+    {
+        interactable = FindAnyObjectByType<Interactable>();
+
+        interactable.Held += AttachItem;
+        interactable.Dropped += RemoveItem;
+    }
 
     void Start()
     {
@@ -39,18 +49,6 @@ public class TelekinesisController : MonoBehaviour
     void Update()
     {
 
-        Debug.Log($"Weapon position: {weaponTransform.position}");
-        Debug.Log($"Node two: {weaponRoot.position}");
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (attachedItem)
-            {
-                Debug.Log("Removing item");
-                RemoveItem();
-            }
-            else { Debug.Log("Attaching item"); AttachItem(); }
-        }
         playerVelocity = (player.position - lastPlayerPos) / Time.deltaTime;
         lastPlayerPos = player.position;
 
@@ -147,7 +145,6 @@ public class TelekinesisController : MonoBehaviour
     void RemoveItem()
     {
         weaponRB.isKinematic = false;
-        // weaponTransform.SetParent(null);
 
         weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
 

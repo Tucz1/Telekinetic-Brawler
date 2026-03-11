@@ -3402,6 +3402,19 @@ MonoBehaviour:
   player: {fileID: 1062291015}
   movementInfluence: 1
   attachedItem: 0
+--- !u!114 &1062291017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062291009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8075633c03941ab4ea8b0ccad89a12a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxDistance: 10
 --- !u!43 &1121822312
 Mesh:
   m_ObjectHideFlags: 0
@@ -5734,8 +5747,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030469070}
-  - component: {fileID: 2030469071}
   - component: {fileID: 2030469072}
+  - component: {fileID: 2030469074}
+  - component: {fileID: 2030469073}
   m_Layer: 6
   m_Name: Sword
   m_TagString: Untagged
@@ -5761,19 +5775,6 @@ Transform:
   - {fileID: 534943523}
   m_Father: {fileID: 1988899570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2030469071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030469069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90983947e91f8d4469da2bd4b37bcd5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
-  weaponData: {fileID: 11400000, guid: 271ef0d6e414fd642a2d9f56306e898f, type: 2}
 --- !u!65 &2030469072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5795,6 +5796,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13, y: 1.5, z: 0.46}
   m_Center: {x: 0, y: -0.24, z: -0.03}
+--- !u!114 &2030469073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030469069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &2030469074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030469069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90983947e91f8d4469da2bd4b37bcd5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  outline: {fileID: 2030469073}
+  outlineEnableDelay: 0
+  outlineDisableDelay: 0
+  weaponData: {fileID: 11400000, guid: 271ef0d6e414fd642a2d9f56306e898f, type: 2}
 --- !u!43 &2043328524
 Mesh:
   m_ObjectHideFlags: 0
@@ -6313,6 +6348,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1062291016}
+    - targetCorrespondingSourceObject: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1062291017}
     - targetCorrespondingSourceObject: {fileID: 4459864851310106424, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       insertIndex: -1
       addedObject: {fileID: 119212171}
