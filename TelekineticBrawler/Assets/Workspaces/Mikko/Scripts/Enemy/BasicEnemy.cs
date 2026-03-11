@@ -6,33 +6,63 @@ public class BasicEnemy : MonoBehaviour {
     NavMeshAgent agent;
     Animator animator;
     public Transform Target;
-    [SerializeField] BoxCollider hitBox;
     [SerializeField] bool isPlayerInside = false;
+    [SerializeField] private Rigidbody[] ragdollRigidbodies;
+    [SerializeField] private bool ragdolling;
 
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
 
-    void Start() {
+    void Awake() {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
 
         animator.applyRootMotion = true;
         agent.updatePosition = false;
         agent.updateRotation = true;
+        disableRagdolls();
+    }
 
+    private void enableRagdolls() {
+        agent.enabled = false;
+        animator.enabled = false;
+        foreach (Rigidbody ragdoll in ragdollRigidbodies) {
+            ragdoll.isKinematic = false;
+        }
+        ragdolling = true;
+
+    }
+
+    private void disableRagdolls() {
+        foreach (Rigidbody ragdoll in ragdollRigidbodies) {
+            ragdoll.isKinematic = true;
+        }
+        agent.enabled = true;
+        animator.enabled = true;
+        ragdolling = false;
     }
     private void OnAnimatorMove() {
         Vector3 rootPosition = animator.rootPosition;
         rootPosition.y = agent.nextPosition.y;
         transform.position = rootPosition;
         agent.nextPosition = rootPosition;
-        
     }
 
     // Update is called once per frame
     void Update() {
-        agent.destination = Target.position;
-        SyncAnimatorAndAgent();
+
+        if (ragdolling == false) {
+            agent.destination = Target.position;
+            SyncAnimatorAndAgent();
+        }
+
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            enableRagdolls();
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+            disableRagdolls();
+        }
     }
     private void SyncAnimatorAndAgent() {
 
