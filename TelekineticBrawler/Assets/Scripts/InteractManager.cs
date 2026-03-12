@@ -10,6 +10,8 @@ public class InteractManager : MonoBehaviour
 
     [Header("Raycast Settings")]
     [SerializeField] float maxDistance;
+    private bool holding;
+    private IInteractable cachedInteractable;
     private IInteractable currentInteractable;
 
     private void SetInteractable(IInteractable interactable)
@@ -32,7 +34,7 @@ public class InteractManager : MonoBehaviour
         // in general I'd use vars .. no need to have class fields for those
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out var hit, maxDistance))
+        if (Physics.Raycast(ray, out var hit, maxDistance) && !holding)
         {
             if (hit.collider.TryGetComponent<IInteractable>(out var interactable))
             {
@@ -55,12 +57,18 @@ public class InteractManager : MonoBehaviour
         if (currentInteractable != null && Input.GetKeyDown(KeyCode.F))
         {
             currentInteractable.Interact();
+            cachedInteractable = currentInteractable;
+            holding = true;
+            Debug.Log(cachedInteractable);
         }
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if (currentInteractable == null) return;
+            if (cachedInteractable == null) return;
+            Debug.Log(cachedInteractable);
+            SetInteractable(cachedInteractable);
             currentInteractable.Drop();
+            holding = false;
         }
     }
 

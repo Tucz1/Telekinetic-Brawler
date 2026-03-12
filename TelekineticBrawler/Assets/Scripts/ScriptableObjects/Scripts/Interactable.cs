@@ -17,6 +17,13 @@ public interface IInteractable
 
 public class Interactable : MonoBehaviour, IInteractable
 {
+    [Header("Weapon")]
+    [SerializeField] WeaponData weaponData;
+    [SerializeField] Rigidbody weaponRB;
+    [SerializeField] Transform weaponRoot;
+    [SerializeField] Transform weaponTransform;
+
+    [Header("Outline")]
     [SerializeField] private Outline outline;
     // adjust delays in seconds
     [SerializeField] private float outlineEnableDelay = 1f;
@@ -28,14 +35,18 @@ public class Interactable : MonoBehaviour, IInteractable
     private bool isLooking;
     public bool IsHeld { get; set; }
 
-    public event Action Held;
+    public event Action<Interactable, WeaponData, Rigidbody, Transform, Transform> Held;
     public event Action Dropped;
+    TelekinesisController telekinesis;
 
 
     private void Awake()
     {
         if (!outline) outline = GetComponent<Outline>();
         outline.enabled = false;
+
+        telekinesis = FindFirstObjectByType<TelekinesisController>();
+
     }
 
     public bool IsLooking
@@ -67,7 +78,7 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Interacted with {name}", this);
         IsHeld = true;
         outline.enabled = false;
-        Held?.Invoke();
+        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform);
     }
 
     public void Drop()
@@ -75,8 +86,9 @@ public class Interactable : MonoBehaviour, IInteractable
         if (!IsHeld) { return; }
         Debug.Log($"Dropped item {name}", this);
         IsHeld = false;
-        Dropped?.Invoke();
+        telekinesis.DropItem();
     }
+
 
     // This routine simply has an initial delay and then
     // applies the target state to the outline

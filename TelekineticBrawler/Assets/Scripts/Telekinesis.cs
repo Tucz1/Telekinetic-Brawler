@@ -4,16 +4,15 @@ using UnityEngine;
 public class TelekinesisController : MonoBehaviour
 {
     [Header("References")]
-    public Transform weaponRoot;
-    public Transform weaponTransform;
+    private Transform weaponRoot;
+    private Transform weaponTransform;
     public Camera mainCam;
 
     [SerializeField] private Transform nodeOne;
 
     [Header("Weapon")]
-    [SerializeField] private WeaponData weaponData;
-    // [SerializeField] private Transform weaponTransform;
-    [SerializeField] private Rigidbody weaponRB;
+    private WeaponData weaponData;
+    private Rigidbody weaponRB;
 
     private Vector3 lastTargetPos;
 
@@ -26,21 +25,20 @@ public class TelekinesisController : MonoBehaviour
     private Vector3 lastDir;
 
     public bool attachedItem;
-    Interactable interactable;
+    // Interactable interactable;
 
     void Awake()
     {
-        interactable = FindAnyObjectByType<Interactable>();
 
-        interactable.Held += AttachItem;
-        interactable.Dropped += RemoveItem;
+        // interactable = FindAnyObjectByType<Interactable>();
+
+        // interactable.Held += AttachItem;
+        // interactable.Dropped += RemoveItem;
     }
 
     void Start()
     {
         if (mainCam == null) mainCam = Camera.main;
-
-        lastTargetPos = weaponRoot.position;
 
         lastPlayerPos = player.position;
 
@@ -49,10 +47,12 @@ public class TelekinesisController : MonoBehaviour
     void Update()
     {
 
+        if (!attachedItem) return;
+
         playerVelocity = (player.position - lastPlayerPos) / Time.deltaTime;
         lastPlayerPos = player.position;
 
-        if (!attachedItem) return;
+        
 
         UpdateTargetPosition();
 
@@ -70,6 +70,7 @@ public class TelekinesisController : MonoBehaviour
         weaponRoot.position += playerVelocity * Time.deltaTime * movementInfluence;
 
         lastTargetPos = nodeOne.position;
+
     }
 
     void UpdateTargetPosition()
@@ -133,8 +134,23 @@ public class TelekinesisController : MonoBehaviour
     }
 
 
-    void AttachItem()
+    public void AttachItem(Interactable _interactable, 
+                    WeaponData _weaponData, 
+                    Rigidbody _weaponRB, 
+                    Transform _weaponRoot, 
+                    Transform _weaponTransform)
     {
+
+        // _interactable.Held += AttachItem;
+        // _interactable.Dropped += RemoveItem;
+        weaponData = _weaponData;
+        weaponRB = _weaponRB;
+        weaponRoot = _weaponRoot;
+        weaponTransform = _weaponTransform;
+
+        lastTargetPos = weaponRoot.position;
+
+
         weaponRB.isKinematic = true;
         weaponTransform.localPosition = Vector3.zero;
         weaponTransform.localRotation = Quaternion.identity;
@@ -142,7 +158,7 @@ public class TelekinesisController : MonoBehaviour
         attachedItem = true;
     }
 
-    void RemoveItem()
+    public void DropItem()
     {
         weaponRB.isKinematic = false;
 
