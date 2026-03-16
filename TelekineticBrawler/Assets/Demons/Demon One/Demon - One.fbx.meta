@@ -60,11 +60,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk.DemonOne
-      takeName: Demon One Armature|Armature|Armature|ArmatureAction
+      name: Demon One Armature|ArmatureAction
+      takeName: Demon One Armature|ArmatureAction
       internalID: -7235422649653694744
-      firstFrame: 0
-      lastFrame: 40
+      firstFrame: 120
+      lastFrame: 231
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
