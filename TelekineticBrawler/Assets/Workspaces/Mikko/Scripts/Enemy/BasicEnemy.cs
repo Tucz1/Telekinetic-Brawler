@@ -13,6 +13,9 @@ public class BasicEnemy : MonoBehaviour {
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
 
+    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private float currentHealth = 100;
+
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -22,6 +25,14 @@ public class BasicEnemy : MonoBehaviour {
         agent.updatePosition = false;
         agent.updateRotation = true;
         disableRagdolls();
+    }
+
+    public void takeDamage(float damage) {
+        currentHealth -= damage;
+        if (currentHealth <= 0) {
+            enableRagdolls();
+            StartCoroutine("removeBody()");
+        }
     }
 
     private void enableRagdolls() {
@@ -99,8 +110,6 @@ public class BasicEnemy : MonoBehaviour {
     }
     private void OnTriggerExit(Collider collision)  {
         isPlayerInside = false;
-        //StopCoroutine(attackPlayer());
-        //StartCoroutine(backtoDefault());
     }
 
     IEnumerator attackPlayer() {
@@ -114,6 +123,11 @@ public class BasicEnemy : MonoBehaviour {
         }
         animator.SetBool("isAttacking", false);
         yield return null;
+    }
+
+    IEnumerator removeBody() {
+        yield return new WaitForSeconds(20);
+        Destroy(gameObject);
     }
 
 }
