@@ -46,6 +46,13 @@ public class TelekinesisController : MonoBehaviour
 
     void Update()
     {
+        if (weaponRoot != null)
+        {
+            Debug.Log(weaponRoot.position);
+            Debug.Log(weaponTransform.position);
+            Debug.Log(nodeOne.position);
+        }
+        
 
         if (!attachedItem) return;
 
