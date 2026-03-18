@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 22482464}
   - component: {fileID: 22482463}
   - component: {fileID: 22482462}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,9 +654,9 @@ GameObject:
   - component: {fileID: 167484305}
   - component: {fileID: 167484304}
   - component: {fileID: 167484303}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -671,7 +671,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 188194743}
   - component: {fileID: 188194742}
   - component: {fileID: 188194741}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 271115976}
   - component: {fileID: 271115975}
   - component: {fileID: 271115974}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 533210980}
   - component: {fileID: 533210979}
   - component: {fileID: 533210978}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,9 +1280,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74574583917428685, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_Name
       value: SwordRoot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 983971222748441572, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429616338067503287, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4570421620986010623, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1324,6 +1344,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7772343890810288233, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1341,7 +1365,7 @@ GameObject:
   - component: {fileID: 574370339}
   - component: {fileID: 574370338}
   - component: {fileID: 574370337}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1358,7 +1382,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1810,7 +1834,7 @@ GameObject:
   - component: {fileID: 656884507}
   - component: {fileID: 656884506}
   - component: {fileID: 656884505}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2047,7 +2071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706318864}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TetherNode
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -2260,7 +2284,7 @@ GameObject:
   - component: {fileID: 841105803}
   - component: {fileID: 841105802}
   - component: {fileID: 841105801}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2370,7 +2394,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841781652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2587,7 +2611,7 @@ GameObject:
   - component: {fileID: 912187482}
   - component: {fileID: 912187481}
   - component: {fileID: 912187480}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2699,7 +2723,7 @@ GameObject:
   - component: {fileID: 921174855}
   - component: {fileID: 921174858}
   - component: {fileID: 921174857}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2790,7 +2814,7 @@ GameObject:
   - component: {fileID: 988193881}
   - component: {fileID: 988193880}
   - component: {fileID: 988193879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3078,7 +3102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1039753631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3533,7 +3557,7 @@ GameObject:
   - component: {fileID: 1133088864}
   - component: {fileID: 1133088863}
   - component: {fileID: 1133088862}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3643,7 +3667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1187101986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ramps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3682,7 +3706,7 @@ GameObject:
   - component: {fileID: 1189072721}
   - component: {fileID: 1189072720}
   - component: {fileID: 1189072719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3795,7 +3819,7 @@ GameObject:
   - component: {fileID: 1201953290}
   - component: {fileID: 1201953289}
   - component: {fileID: 1201953288}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3908,7 +3932,7 @@ GameObject:
   - component: {fileID: 1205087890}
   - component: {fileID: 1205087889}
   - component: {fileID: 1205087888}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4017,9 +4041,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 74574583917428685, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_Name
       value: SwordRoot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 983971222748441572, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4429616338067503287, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4570421620986010623, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4060,6 +4104,10 @@ PrefabInstance:
     - target: {fileID: 4570421620986010623, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7772343890810288233, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4323,7 +4371,7 @@ GameObject:
   - component: {fileID: 1483835293}
   - component: {fileID: 1483835292}
   - component: {fileID: 1483835291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4436,7 +4484,7 @@ GameObject:
   - component: {fileID: 1521483452}
   - component: {fileID: 1521483451}
   - component: {fileID: 1521483450}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4453,7 +4501,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4546,7 +4594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565053948}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JumpBlocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4813,7 +4861,7 @@ GameObject:
   - component: {fileID: 1746328240}
   - component: {fileID: 1746328239}
   - component: {fileID: 1746328238}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5289,7 +5337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838606100}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arches
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5503,7 +5551,7 @@ GameObject:
   - component: {fileID: 1871528407}
   - component: {fileID: 1871528409}
   - component: {fileID: 1871528408}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5909,7 +5957,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2054695435}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Node1
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -6121,6 +6169,14 @@ PrefabInstance:
     - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_Name
       value: SwordRoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 661267600469837918, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_Size.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4243906724949021904, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4570421620986010623, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6341,8 +6397,40 @@ PrefabInstance:
       value: FirstPersonController
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850190357393, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850831721272, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850888339818, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851310106424, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851397454630, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851508666809, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864851551516604, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

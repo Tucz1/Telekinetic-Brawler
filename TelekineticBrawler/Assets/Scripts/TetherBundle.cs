@@ -109,13 +109,13 @@ public class TetherBundle : MonoBehaviour
 
             for (int i = 0; i < segments; i++)
             {
-                float t = i / (float)(segments - 1); // The point at which a segment is at in the chain
+                float t = i / (float)(segments - 1); // The point at which a segment is at in the chain 0-1
 
                 // Create two points to form a quadratic bezier curve
                 Vector3 p1 = Vector3.Lerp(start, tether.midPoint, t); // Create point between start and middle
                 Vector3 p2 = Vector3.Lerp(tether.midPoint, end, t); // Create point between middle and end
 
-                Vector3 curve = Vector3.Lerp(p1, p2, t); // lerp between p1 & p2
+                Vector3 curve = Vector3.Lerp(p1, p2, t); // lerp between p1 & p2 blend the points for a curve
 
                 float arc = Mathf.Sin(t * Mathf.PI) * curveHeight; // Add arc AKA how much of a peak the curve has
 

@@ -35,9 +35,10 @@ public class Interactable : MonoBehaviour, IInteractable
     private bool isLooking;
     public bool IsHeld { get; set; }
 
-    public event Action<Interactable, WeaponData, Rigidbody, Transform, Transform> Held;
-    public event Action Dropped;
     TelekinesisController telekinesis;
+
+    private Vector3 lastPos;
+    private Vector3 currentSpeed;
 
 
     private void Awake()
@@ -48,6 +49,22 @@ public class Interactable : MonoBehaviour, IInteractable
         telekinesis = FindFirstObjectByType<TelekinesisController>();
 
     }
+
+    // void Start()
+    // {
+    //     lastPos = transform.position;
+    // }
+
+    // void FixedUpdate()
+    // {
+    //     if (lastPos != transform.position)
+    //     {
+    //         currentSpeed = transform.position - lastPos;
+    //         currentSpeed /= Time.deltaTime;
+    //         lastPos = transform.position;
+    //     }
+    //     print(currentSpeed.magnitude);
+    // }
 
     public bool IsLooking
     {
@@ -102,6 +119,18 @@ public class Interactable : MonoBehaviour, IInteractable
 
         // reset the routine field just to be sure
         lookingRoutine = null;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Deal damage
+        Debug.Log(collision.relativeVelocity);
+
+
+        // Take damage
+
+
+
     }
 }
 
