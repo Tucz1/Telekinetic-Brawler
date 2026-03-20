@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class TelekinesisController : MonoBehaviour
@@ -8,7 +9,9 @@ public class TelekinesisController : MonoBehaviour
     private Transform weaponTransform;
     public Camera mainCam;
 
+    [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private Transform nodeOne;
+    [SerializeField] private Transform wallCheck;
 
     [Header("Weapon")]
     private WeaponData weaponData;
@@ -19,12 +22,17 @@ public class TelekinesisController : MonoBehaviour
     [Header("Player Movement Compensation")]
     [SerializeField] Transform player;
     [SerializeField] float movementInfluence = 1f;
+    public bool canInfluence;
 
+    Vector3 screenCenter;
     Vector3 lastPlayerPos;
     Vector3 playerVelocity;
     private Vector3 lastDir;
+    private float distance;
 
     public bool attachedItem;
+    bool facingEnvironment;
+    bool blocked;
     // Interactable interactable;
 
     void Awake()
@@ -42,6 +50,8 @@ public class TelekinesisController : MonoBehaviour
 
         lastPlayerPos = player.position;
 
+        screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
+
     }
 
     void Update()
@@ -52,9 +62,22 @@ public class TelekinesisController : MonoBehaviour
         //     Debug.Log(weaponTransform.position);
         //     Debug.Log(nodeOne.position);
         // }
+
+
+
+        
         
 
         if (!attachedItem) return;
+
+        Debug.DrawLine(mainCam.transform.position, nodeOne.position, Color.blue);
+        if (Physics.Linecast(mainCam.transform.position, nodeOne.position, environmentLayer))
+        {
+            // Debug.Log("Blocked");
+            facingEnvironment = true;
+        }
+        else facingEnvironment = false;
+        
 
         playerVelocity = (player.position - lastPlayerPos) / Time.deltaTime;
         lastPlayerPos = player.position;
@@ -67,14 +90,14 @@ public class TelekinesisController : MonoBehaviour
 
         Vector3 direction = nodeOne.position - weaponRoot.position;
         lastDir = direction;
-        float distance = direction.magnitude;
+        distance = direction.magnitude;
         float normalizedDistance = Mathf.Clamp01(distance / weaponData.MaxDistance);
 
         UpdatePosition(distance);
         UpdateRotation(direction, distance, normalizedDistance);
         UpdateRoll();
 
-        weaponRoot.position += playerVelocity * Time.deltaTime * movementInfluence;
+        if (canInfluence) weaponRoot.position += playerVelocity * Time.deltaTime * movementInfluence;
 
         lastTargetPos = nodeOne.position;
 
@@ -82,8 +105,10 @@ public class TelekinesisController : MonoBehaviour
 
     void UpdateTargetPosition()
     {
-        Vector3 screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 2f);
-        nodeOne.position = mainCam.ScreenToWorldPoint(screenCenter);
+        // Vector3 screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 2f);
+        wallCheck.position = mainCam.ScreenToWorldPoint(screenCenter + (Vector3.forward * weaponData.DistanceHeld));
+
+        if (!facingEnvironment && !blocked) nodeOne.position = mainCam.ScreenToWorldPoint(screenCenter + (Vector3.forward * weaponData.DistanceHeld));
     }
 
 
@@ -91,6 +116,7 @@ public class TelekinesisController : MonoBehaviour
     {
         float weightedSpeed = weaponData.BaseFollowSpeed + distance * weaponData.Weight;
 
+        if ((!blocked && !facingEnvironment) || !facingEnvironment)
         weaponRoot.position = Vector3.MoveTowards(
             weaponRoot.position,
             nodeOne.position,
@@ -172,5 +198,44 @@ public class TelekinesisController : MonoBehaviour
         weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
 
         attachedItem = false;
+    }
+
+    void ReversePosition(float distance)
+    {
+        float weightedSpeed = weaponData.BaseFollowSpeed + distance * weaponData.Weight;
+
+        weaponRoot.position = Vector3.MoveTowards(
+            weaponRoot.position,
+            nodeOne.position,
+            -weightedSpeed * Time.deltaTime
+        );
+    }
+
+    public IEnumerator PushBack()
+    {
+        while (true)
+        {
+            // Debug.Log("Pushing back");
+            if ((weaponRoot != null) && facingEnvironment) ReversePosition(distance);
+            yield return null;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Environment"))
+        {
+            Debug.Log("On");
+            blocked = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Environment"))
+        {
+            Debug.Log("Off");
+            blocked = false;
+        }
     }
 }

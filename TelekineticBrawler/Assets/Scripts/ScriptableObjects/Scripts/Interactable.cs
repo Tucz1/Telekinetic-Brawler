@@ -40,6 +40,9 @@ public class Interactable : MonoBehaviour, IInteractable
     private Vector3 lastPos;
     private Vector3 currentSpeed;
 
+    IEnumerator pushRoutine = null;
+    bool isPushing;
+
 
     private void Awake()
     {
@@ -123,6 +126,15 @@ public class Interactable : MonoBehaviour, IInteractable
 
     void OnCollisionEnter(Collision collision)
     {
+
+        if (collision.gameObject.CompareTag("Environment") && IsHeld && !isPushing)
+        {
+            isPushing = true;
+            telekinesis.canInfluence = false;
+            pushRoutine = telekinesis.PushBack();
+            telekinesis.StartCoroutine(pushRoutine);
+        }
+
         // Deal damage
         Debug.Log(collision.relativeVelocity);
 
@@ -131,6 +143,24 @@ public class Interactable : MonoBehaviour, IInteractable
 
 
 
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Environment"))
+        {
+            if (pushRoutine != null)
+            {
+                isPushing = false;
+                telekinesis.canInfluence = true;
+                telekinesis.StopCoroutine(pushRoutine);
+            }
+        }
     }
 }
 

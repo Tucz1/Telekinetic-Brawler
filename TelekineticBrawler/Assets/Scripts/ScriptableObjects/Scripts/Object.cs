@@ -23,6 +23,7 @@ public class WeaponData : ScriptableObject
 	[SerializeField] protected DamageType damageType;
 
 	[SerializeField] protected float damage;
+	[SerializeField] protected float distanceHeld = 2f;
 
 	[Header("Movement")]
     [SerializeField] protected float baseFollowSpeed = 2f;
@@ -43,6 +44,7 @@ public class WeaponData : ScriptableObject
 	[SerializeField] protected AudioClip hitSFX;
 	
 	public float Damage => damage;
+	public float DistanceHeld => distanceHeld;
 	public float BaseFollowSpeed => baseFollowSpeed;
 	public float Weight => weight;
 	public float BaseRotationSpeed => baseRotationSpeed;

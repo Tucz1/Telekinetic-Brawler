@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sword
   damageType: 1
   damage: 20
+  distanceHeld: 2
   baseFollowSpeed: 2
   weight: 6
   baseRotationSpeed: 10
