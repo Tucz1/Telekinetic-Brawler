@@ -70,8 +70,8 @@ public class TelekinesisController : MonoBehaviour
 
         if (!attachedItem) return;
 
-        Debug.DrawLine(mainCam.transform.position, nodeOne.position, Color.blue);
-        if (Physics.Linecast(mainCam.transform.position, nodeOne.position, environmentLayer))
+        Debug.DrawLine(mainCam.transform.position, wallCheck.position, Color.blue);
+        if (Physics.Linecast(mainCam.transform.position, wallCheck.position, environmentLayer))
         {
             // Debug.Log("Blocked");
             facingEnvironment = true;
