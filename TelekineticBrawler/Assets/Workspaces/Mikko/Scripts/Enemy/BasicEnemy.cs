@@ -20,6 +20,7 @@ public class BasicEnemy : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
+        Target = FindAnyObjectByType<FirstPersonController>().transform;
 
         animator.applyRootMotion = true;
         agent.updatePosition = false;
@@ -63,7 +64,7 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    void Update() {
 
         if (ragdolling == false) {
             agent.destination = Target.position;
