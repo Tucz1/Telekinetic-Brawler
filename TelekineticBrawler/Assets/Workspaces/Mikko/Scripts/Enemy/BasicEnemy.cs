@@ -33,6 +33,7 @@ public class BasicEnemy : MonoBehaviour {
             enableRagdolls();
             StartCoroutine("removeBody()");
         }
+        //Add thresholds for ragdolling and other reactions
     }
 
     private void enableRagdolls() {
@@ -51,6 +52,7 @@ public class BasicEnemy : MonoBehaviour {
         }
         agent.enabled = true;
         animator.enabled = true;
+        animator.Play("GetUp");
         ragdolling = false;
     }
     private void OnAnimatorMove() {
@@ -61,7 +63,7 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
 
         if (ragdolling == false) {
             agent.destination = Target.position;
