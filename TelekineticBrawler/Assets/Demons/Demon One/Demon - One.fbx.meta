@@ -89,11 +89,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: GetUp.DemonOne
+      name: Demon One Armature|ArmatureAction
       takeName: Demon One Armature|ArmatureAction
       internalID: -6779454991021198534
       firstFrame: 165
-      lastFrame: 194
+      lastFrame: 237
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
