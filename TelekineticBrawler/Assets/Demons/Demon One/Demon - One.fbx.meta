@@ -63,7 +63,7 @@ ModelImporter:
       name: Walk.DemonOne
       takeName: Demon One Armature|ArmatureAction
       internalID: -7235422649653694744
-      firstFrame: 0
+      firstFrame: 105
       lastFrame: 152
       wrapMode: 0
       orientationOffsetY: 0
