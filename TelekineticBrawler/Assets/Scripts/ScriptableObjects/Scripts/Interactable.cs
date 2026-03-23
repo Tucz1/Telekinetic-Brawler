@@ -37,8 +37,10 @@ public class Interactable : MonoBehaviour, IInteractable
 
     TelekinesisController telekinesis;
 
-    private Vector3 lastPos;
-    private Vector3 currentSpeed;
+    // private Vector3 lastPos;
+    private Vector3 currentVelocity;
+    private Vector3 trueVelocity;
+    private Vector3 lastVelocity;
 
     IEnumerator pushRoutine = null;
     bool isPushing;
@@ -51,6 +53,31 @@ public class Interactable : MonoBehaviour, IInteractable
 
         telekinesis = FindFirstObjectByType<TelekinesisController>();
 
+    }
+
+    void Update()
+    {
+        currentVelocity = weaponTransform.position;
+
+        if (lastVelocity == null) return;
+
+        switch (weaponRB.isKinematic)
+        {
+            case true:
+                trueVelocity = (currentVelocity - lastVelocity) * 100;
+                break;
+
+            case false:
+                trueVelocity = weaponRB.linearVelocity;
+                break;
+        }
+        
+        Debug.Log($"Velocity: {trueVelocity.magnitude}");
+    }
+
+    private void LateUpdate()
+    {
+        if ((weaponTransform != null) && IsHeld) { lastVelocity = currentVelocity; }
     }
 
     // void Start()
@@ -135,8 +162,20 @@ public class Interactable : MonoBehaviour, IInteractable
             telekinesis.StartCoroutine(pushRoutine);
         }
 
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            var limb = collision.gameObject.GetComponent<LimbScript>();
+
+            if (limb == null) { Debug.LogError("Limb script not found"); return; }
+
+            var damage = trueVelocity.magnitude;
+            Debug.Log($"Damage dealt: {damage}");
+
+            limb.TakeDamage(damage);
+        }
+
         // Deal damage
-        Debug.Log(collision.relativeVelocity);
+
 
 
         // Take damage
@@ -147,7 +186,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     void OnCollisionStay(Collision collision)
     {
-        
+
     }
 
     void OnCollisionExit(Collision collision)

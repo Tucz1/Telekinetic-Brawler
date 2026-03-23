@@ -65,8 +65,8 @@ public class TelekinesisController : MonoBehaviour
 
 
 
-        
-        
+
+
 
         if (!attachedItem) return;
 
@@ -77,16 +77,16 @@ public class TelekinesisController : MonoBehaviour
             facingEnvironment = true;
         }
         else facingEnvironment = false;
-        
+
 
         playerVelocity = (player.position - lastPlayerPos) / Time.deltaTime;
         lastPlayerPos = player.position;
 
-        
+
 
         UpdateTargetPosition();
 
-        
+
 
         Vector3 direction = nodeOne.position - weaponRoot.position;
         lastDir = direction;
@@ -117,11 +117,11 @@ public class TelekinesisController : MonoBehaviour
         float weightedSpeed = weaponData.BaseFollowSpeed + distance * weaponData.Weight;
 
         if ((!blocked && !facingEnvironment) || !facingEnvironment)
-        weaponRoot.position = Vector3.MoveTowards(
-            weaponRoot.position,
-            nodeOne.position,
-            weightedSpeed * Time.deltaTime
-        );
+            weaponRoot.position = Vector3.MoveTowards(
+                weaponRoot.position,
+                nodeOne.position,
+                weightedSpeed * Time.deltaTime
+            );
     }
 
     void UpdateRotation(Vector3 direction, float distance, float normalizedDistance)
@@ -167,10 +167,10 @@ public class TelekinesisController : MonoBehaviour
     }
 
 
-    public void AttachItem(Interactable _interactable, 
-                    WeaponData _weaponData, 
-                    Rigidbody _weaponRB, 
-                    Transform _weaponRoot, 
+    public void AttachItem(Interactable _interactable,
+                    WeaponData _weaponData,
+                    Rigidbody _weaponRB,
+                    Transform _weaponRoot,
                     Transform _weaponTransform)
     {
 
