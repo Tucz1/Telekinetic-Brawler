@@ -16,16 +16,16 @@ public class LimbScript : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float damage) {
+    public void TakeDamage(float damage, float stagger, WeaponData weaponData) {
         currentHealth -= damage;
 
         //Send damage to main but avoid huge overflow damage
         float damageToMain = damage * damageMultiplierToMain;
         if (damageToMain > maxHealth) {
             damageToMain = maxHealth * damageMultiplierToMain;
-            BasicEnemy.takeDamage(damageToMain);
+            BasicEnemy.takeDamage(damageToMain, stagger);
         }
-        BasicEnemy.takeDamage(damageToMain);
+        BasicEnemy.takeDamage(damageToMain, stagger);
         if (currentHealth <= 0) {
             if (childLimb != null) {
                 childLimb.disableLimb();

@@ -9,6 +9,9 @@ public class BasicEnemy : MonoBehaviour {
     [SerializeField] bool isPlayerInside = false;
     [SerializeField] private Rigidbody[] ragdollRigidbodies;
     [SerializeField] private bool ragdolling;
+    [SerializeField] private int staggerThreshold;
+    [SerializeField] private int ragdollThreshold;
+    [SerializeField] private int ragdollTime;
 
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
@@ -28,13 +31,20 @@ public class BasicEnemy : MonoBehaviour {
         disableRagdolls();
     }
 
-    public void takeDamage(float damage) {
+    public void takeDamage(float damage, float staggerAmount) {
         currentHealth -= damage;
         if (currentHealth <= 0) {
             enableRagdolls();
             StartCoroutine("removeBody()");
         }
-        //Add thresholds for ragdolling and other reactions
+        //Ragdoll threshold
+        if(staggerAmount >= ragdollThreshold) {
+            StartCoroutine("RagdollStagger()");
+            enableRagdolls();
+        }
+        //Stagger threshold
+        if (staggerAmount >= staggerThreshold) {
+        }
     }
 
     private void enableRagdolls() {
@@ -128,6 +138,12 @@ public class BasicEnemy : MonoBehaviour {
         yield return null;
     }
 
+    IEnumerator ragdollStagger() {
+        enableRagdolls();
+        yield return new WaitForSeconds(ragdollTime);
+        disableRagdolls();
+        yield return null;
+    }
     IEnumerator removeBody() {
         yield return new WaitForSeconds(20);
         Destroy(gameObject);
