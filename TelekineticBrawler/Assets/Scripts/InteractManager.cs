@@ -70,6 +70,15 @@ public class InteractManager : MonoBehaviour
             currentInteractable.Drop();
             holding = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (cachedInteractable == null) return;
+            Debug.Log(cachedInteractable);
+            SetInteractable(cachedInteractable);
+            currentInteractable.Throw();
+            holding = false;
+        }
     }
 
 }

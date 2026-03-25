@@ -200,6 +200,16 @@ public class TelekinesisController : MonoBehaviour
         attachedItem = false;
     }
 
+    public void ThrowItem()
+    {
+        weaponRB.isKinematic = false;
+
+        // weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
+        weaponRB.AddForce(transform.forward * weaponData.Weight, ForceMode.Impulse);
+
+        attachedItem = false;
+    }
+
     void ReversePosition(float distance)
     {
         float weightedSpeed = weaponData.BaseFollowSpeed + distance * weaponData.Weight;

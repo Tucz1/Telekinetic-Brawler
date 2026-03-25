@@ -9,6 +9,7 @@ public interface IInteractable
     bool IsHeld { get; set; }
     void Interact();
     void Drop();
+    void Throw();
 }
 
 
@@ -133,6 +134,14 @@ public class Interactable : MonoBehaviour, IInteractable
         telekinesis.DropItem();
     }
 
+    public void Throw()
+    {
+        if (!IsHeld) { return; }
+        Debug.Log($"Threw item {name}", this);
+        IsHeld = false;
+        telekinesis.ThrowItem();
+    }
+
 
     // This routine simply has an initial delay and then
     // applies the target state to the outline
@@ -161,9 +170,9 @@ public class Interactable : MonoBehaviour, IInteractable
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            var limb = collision.gameObject.GetComponent<LimbScript>();
+            var limb = collision.gameObject.GetComponentInChildren<LimbScript>();
 
-            if (limb == null) { Debug.LogError("Limb script not found"); return; }
+            if (limb == null) { Debug.LogError($"Limb script not found {collision.gameObject}"); return; }
 
             var damage = CalculateDamage();
             var stagger = CalculateStagger(damage);
@@ -216,10 +225,10 @@ public class Interactable : MonoBehaviour, IInteractable
         return stagger;
     }
 
-    void OnCollisionStay(Collision collision)
-    {
+    // void OnCollisionStay(Collision collision)
+    // {
 
-    }
+    // }
 
     void OnCollisionExit(Collision collision)
     {
