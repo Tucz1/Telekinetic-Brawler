@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.Processors;
 
 public class BasicEnemy : MonoBehaviour {
     NavMeshAgent agent;
@@ -33,17 +34,21 @@ public class BasicEnemy : MonoBehaviour {
 
     public void takeDamage(float damage, float staggerAmount) {
         currentHealth -= damage;
-        if (currentHealth <= 0) {
-            enableRagdolls();
-            StartCoroutine("removeBody()");
-        }
-        //Ragdoll threshold
-        if(staggerAmount >= ragdollThreshold) {
-            StartCoroutine("RagdollStagger()");
-            enableRagdolls();
-        }
-        //Stagger threshold
-        if (staggerAmount >= staggerThreshold) {
+        bool isDead = false;
+        if (!isDead) {
+            if (currentHealth <= 0) {
+                enableRagdolls();
+                StartCoroutine(RemoveBody());
+                isDead = true;
+            }
+            //Ragdoll threshold
+            if (staggerAmount >= ragdollThreshold) {
+                StartCoroutine(RagdollStagger());
+                enableRagdolls();
+            }
+            //Stagger threshold
+            if (staggerAmount >= staggerThreshold) {
+            }
         }
     }
 
@@ -138,13 +143,13 @@ public class BasicEnemy : MonoBehaviour {
         yield return null;
     }
 
-    IEnumerator ragdollStagger() {
+    IEnumerator RagdollStagger() {
         enableRagdolls();
         yield return new WaitForSeconds(ragdollTime);
         disableRagdolls();
         yield return null;
     }
-    IEnumerator removeBody() {
+    IEnumerator RemoveBody() {
         yield return new WaitForSeconds(20);
         Destroy(gameObject);
     }
