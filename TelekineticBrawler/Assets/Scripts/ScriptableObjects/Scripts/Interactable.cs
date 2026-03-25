@@ -11,9 +11,6 @@ public interface IInteractable
     void Drop();
 }
 
-// Source - https://stackoverflow.com/a/76617510
-// Posted by derHugo, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-03-11, License - CC BY-SA 4.0
 
 public class Interactable : MonoBehaviour, IInteractable
 {
@@ -72,7 +69,7 @@ public class Interactable : MonoBehaviour, IInteractable
                 break;
         }
         
-        Debug.Log($"Velocity: {trueVelocity.magnitude}");
+        // Debug.Log($"Velocity: {trueVelocity.magnitude}");
     }
 
     private void LateUpdate()
@@ -168,10 +165,10 @@ public class Interactable : MonoBehaviour, IInteractable
 
             if (limb == null) { Debug.LogError("Limb script not found"); return; }
 
-            var damage = trueVelocity.magnitude;
-            Debug.Log($"Damage dealt: {damage}");
+            var damage = CalculateDamage();
+            var stagger = CalculateStagger(damage);
 
-            limb.TakeDamage(damage);
+            limb.TakeDamage(damage, stagger, weaponData);
         }
 
         // Deal damage
@@ -182,6 +179,41 @@ public class Interactable : MonoBehaviour, IInteractable
 
 
 
+    }
+
+    private float CalculateDamage()
+    {
+        var damage = trueVelocity.magnitude * weaponData.Damage;
+        Debug.Log($"Damage dealt: {damage}");
+        return damage;
+    }
+
+    private float CalculateStagger(float damage)
+    {
+        float stagger;
+        switch (weaponData.DamageType)
+        {
+            case DamageType.Blunt:
+                stagger = damage * 1.5f;
+                break;
+
+            case DamageType.Slashing:
+                stagger = damage;
+                break;
+
+            case DamageType.Piercing:
+                stagger = damage * 0.5f;
+                break;
+
+            default:
+                Debug.LogError("Damage type not found");
+                stagger = damage;
+                break;
+        }
+        Debug.Log($"Damage type: {weaponData.DamageType}");
+        Debug.Log($"Stagger amount: {stagger}");
+
+        return stagger;
     }
 
     void OnCollisionStay(Collision collision)

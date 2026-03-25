@@ -44,6 +44,7 @@ public class WeaponData : ScriptableObject
 	[SerializeField] protected AudioClip hitSFX;
 	
 	public float Damage => damage;
+	public DamageType DamageType => damageType;
 	public float DistanceHeld => distanceHeld;
 	public float BaseFollowSpeed => baseFollowSpeed;
 	public float Weight => weight;
