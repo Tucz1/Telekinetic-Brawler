@@ -44,7 +44,6 @@ public class BasicEnemy : MonoBehaviour {
             //Ragdoll threshold
             if (staggerAmount >= ragdollThreshold) {
                 StartCoroutine(RagdollStagger());
-                enableRagdolls();
             }
             //Stagger threshold
             if (staggerAmount >= staggerThreshold) {
