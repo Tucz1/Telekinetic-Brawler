@@ -9,29 +9,37 @@ public class LimbScript : MonoBehaviour
     public LimbScript childLimb;
     public float maxHealth = 10f;
     [SerializeField] private float currentHealth;
+    [SerializeField] private float damageCooldown;
+    [SerializeField] private float damageCooldownTimer;
 
-    public float damageMultiplierToMain = 1f;
+    public float damageMultiplierToMain = 0.5f;
     private void Awake() {
         BasicEnemy = GetComponentInParent<BasicEnemy>();
         currentHealth = maxHealth;
     }
 
     public void TakeDamage(float damage, float stagger, WeaponData weaponData) {
-        currentHealth -= damage;
+        if (damageCooldownTimer >= damageCooldown) {
+            damageCooldownTimer = 0f;
+            currentHealth -= damage;
 
-        //Send damage to main but avoid huge overflow damage
-        float damageToMain = damage * damageMultiplierToMain;
-        if (damageToMain > maxHealth) {
-            damageToMain = maxHealth * damageMultiplierToMain;
-            BasicEnemy.takeDamage(damageToMain, stagger);
-        }
-        BasicEnemy.takeDamage(damageToMain, stagger);
-        if (currentHealth <= 0) {
-            if (childLimb != null) {
-                childLimb.disableLimb();
+            //Send damage to main but avoid huge overflow damage
+            float damageToMain = damage * damageMultiplierToMain;
+            if (damageToMain > maxHealth) {
+                damageToMain = maxHealth * damageMultiplierToMain;
+                BasicEnemy.takeDamage(damageToMain, stagger, weaponData);
             }
-            disableLimb();
+            BasicEnemy.takeDamage(damageToMain, stagger, weaponData);
+            if (currentHealth <= 0) {
+                if (childLimb != null) {
+                    childLimb.disableLimb();
+                }
+                disableLimb();
+            }
         }
+    }
+    private void Update() {
+        damageCooldownTimer += Time.deltaTime;
     }
 
     private void disableLimb() {

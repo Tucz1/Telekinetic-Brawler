@@ -13,6 +13,8 @@ public class BasicEnemy : MonoBehaviour {
     [SerializeField] private int staggerThreshold;
     [SerializeField] private int ragdollThreshold;
     [SerializeField] private int ragdollTime;
+    [SerializeField] private bool isDead = false;
+    [SerializeField] private float deathDespawnTime = 5f;
 
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
@@ -32,9 +34,8 @@ public class BasicEnemy : MonoBehaviour {
         disableRagdolls();
     }
 
-    public void takeDamage(float damage, float staggerAmount) {
+    public void takeDamage(float damage, float staggerAmount, WeaponData weaponData) {
         currentHealth -= damage;
-        bool isDead = false;
         if (!isDead) {
             if (currentHealth <= 0) {
                 enableRagdolls();
@@ -149,7 +150,7 @@ public class BasicEnemy : MonoBehaviour {
         yield return null;
     }
     IEnumerator RemoveBody() {
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(deathDespawnTime);
         Destroy(gameObject);
     }
 
