@@ -4,9 +4,9 @@ using System.Collections.Generic;
 public class TetherBundle : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Transform playerAnchor;
-    [SerializeField] Transform targetObject;
-    [SerializeField] Collider targetCollider;
+    private Transform playerAnchor;
+    private Transform targetObject;
+    private Collider targetCollider;
 
     [Header("Tether Settings")]
     [SerializeField] GameObject tetherPrefab;
@@ -21,6 +21,8 @@ public class TetherBundle : MonoBehaviour
     [Header("Curve")]
     [SerializeField] int segments = 5;
     [SerializeField] float curveHeight = 0.25f;
+
+    bool connectedTethers;
 
     class Tether
     {
@@ -37,11 +39,19 @@ public class TetherBundle : MonoBehaviour
 
     void Start()
     {
-        CreateTethers();
+        // CreateTethers();
     }
 
-    void CreateTethers()
+    public void CreateTethers(Transform _playerAnchor, Transform _targetObject, Collider _targetCollider)
     {
+        playerAnchor = _playerAnchor;
+        Debug.Log($"player anchor: {playerAnchor}");
+        targetObject = _targetObject;
+        Debug.Log($"target object: {targetObject}");
+        targetCollider = _targetCollider;
+        Debug.Log($"target collider: {targetCollider}");
+        Debug.LogError("Pausing");
+
         for (int i = 0; i < tetherCount; i++)
         {
             GameObject obj = Instantiate(tetherPrefab, transform);
@@ -60,6 +70,13 @@ public class TetherBundle : MonoBehaviour
 
             tethers.Add(tether);
         }
+        connectedTethers = true;
+    }
+
+    public void ClearTethers()
+    {
+        connectedTethers = false;
+        tethers.Clear();
     }
 
     Vector3 GetRandomAttachPoint()
@@ -86,6 +103,7 @@ public class TetherBundle : MonoBehaviour
 
     void Update()
     {
+        if (connectedTethers == false) return;
         if (targetObject == null) return;
 
         foreach (var tether in tethers)

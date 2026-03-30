@@ -6,12 +6,13 @@ public class TelekinesisController : MonoBehaviour
 {
     [Header("References")]
     private Transform weaponRoot;
-    private Transform weaponTransform;
+    private Transform weaponLogic;
     public Camera mainCam;
 
     [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private Transform nodeOne;
     [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform tetherNode;
 
     [Header("Weapon")]
     private WeaponData weaponData;
@@ -33,11 +34,13 @@ public class TelekinesisController : MonoBehaviour
     public bool attachedItem;
     bool facingEnvironment;
     bool blocked;
+    TetherBundle tether;
     // Interactable interactable;
 
     void Awake()
     {
 
+        tether = GetComponent<TetherBundle>();
         // interactable = FindAnyObjectByType<Interactable>();
 
         // interactable.Held += AttachItem;
@@ -59,7 +62,7 @@ public class TelekinesisController : MonoBehaviour
         // if (weaponRoot != null)
         // {
         //     Debug.Log(weaponRoot.position);
-        //     Debug.Log(weaponTransform.position);
+        //     Debug.Log(weaponLogic.position);
         //     Debug.Log(nodeOne.position);
         // }
 
@@ -159,8 +162,8 @@ public class TelekinesisController : MonoBehaviour
 
         Quaternion targetRoll = Quaternion.Euler(0f, 0f, -rollAmount);
 
-        weaponTransform.localRotation = Quaternion.Lerp(
-            weaponTransform.localRotation,
+        weaponLogic.localRotation = Quaternion.Lerp(
+            weaponLogic.localRotation,
             targetRoll,
             weaponData.RollSmoothSpeed * Time.deltaTime
         );
@@ -171,7 +174,7 @@ public class TelekinesisController : MonoBehaviour
                     WeaponData _weaponData,
                     Rigidbody _weaponRB,
                     Transform _weaponRoot,
-                    Transform _weaponTransform)
+                    Transform _weaponLogic)
     {
 
         // _interactable.Held += AttachItem;
@@ -179,16 +182,17 @@ public class TelekinesisController : MonoBehaviour
         weaponData = _weaponData;
         weaponRB = _weaponRB;
         weaponRoot = _weaponRoot;
-        weaponTransform = _weaponTransform;
+        weaponLogic = _weaponLogic;
 
         lastTargetPos = weaponRoot.position;
 
 
         weaponRB.isKinematic = true;
-        weaponTransform.localPosition = Vector3.zero;
-        weaponTransform.localRotation = Quaternion.identity;
+        weaponLogic.localPosition = Vector3.zero;
+        weaponLogic.localRotation = Quaternion.identity;
 
         attachedItem = true;
+        tether.CreateTethers(tetherNode, weaponLogic, weaponLogic.GetComponent<Collider>());
     }
 
     public void DropItem()
@@ -198,6 +202,7 @@ public class TelekinesisController : MonoBehaviour
         weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
 
         attachedItem = false;
+        tether.ClearTethers();
     }
 
     public void ThrowItem()
@@ -208,6 +213,7 @@ public class TelekinesisController : MonoBehaviour
         weaponRB.AddForce(transform.forward * weaponData.Weight, ForceMode.Impulse);
 
         attachedItem = false;
+        tether.ClearTethers();
     }
 
     void ReversePosition(float distance)
