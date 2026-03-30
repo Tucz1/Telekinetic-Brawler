@@ -24,6 +24,7 @@ public class WeaponData : ScriptableObject
 
 	[SerializeField] protected float damage;
 	[SerializeField] protected float distanceHeld = 2f;
+	[SerializeField] protected float holdHeightOffset = 2f;
 
 	[Header("Movement")]
     [SerializeField] protected float baseFollowSpeed = 2f;
@@ -46,6 +47,7 @@ public class WeaponData : ScriptableObject
 	public float Damage => damage;
 	public DamageType DamageType => damageType;
 	public float DistanceHeld => distanceHeld;
+	public float HoldHeightOffset => holdHeightOffset;
 	public float BaseFollowSpeed => baseFollowSpeed;
 	public float Weight => weight;
 	public float BaseRotationSpeed => baseRotationSpeed;

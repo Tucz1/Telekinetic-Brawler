@@ -50,7 +50,7 @@ public class TetherBundle : MonoBehaviour
         Debug.Log($"target object: {targetObject}");
         targetCollider = _targetCollider;
         Debug.Log($"target collider: {targetCollider}");
-        Debug.LogError("Pausing");
+        // Debug.LogError("Pausing");
 
         for (int i = 0; i < tetherCount; i++)
         {

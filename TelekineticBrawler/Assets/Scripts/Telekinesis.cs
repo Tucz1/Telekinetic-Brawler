@@ -179,10 +179,13 @@ public class TelekinesisController : MonoBehaviour
 
         // _interactable.Held += AttachItem;
         // _interactable.Dropped += RemoveItem;
+
         weaponData = _weaponData;
         weaponRB = _weaponRB;
         weaponRoot = _weaponRoot;
         weaponLogic = _weaponLogic;
+
+        nodeOne.position = Vector3.up * weaponData.HoldHeightOffset;
 
         lastTargetPos = weaponRoot.position;
 
@@ -192,7 +195,7 @@ public class TelekinesisController : MonoBehaviour
         weaponLogic.localRotation = Quaternion.identity;
 
         attachedItem = true;
-        tether.CreateTethers(tetherNode, weaponLogic, weaponLogic.GetComponent<Collider>());
+        tether.CreateTethers(tetherNode, weaponRoot, weaponLogic.GetComponent<Collider>());
     }
 
     public void DropItem()
