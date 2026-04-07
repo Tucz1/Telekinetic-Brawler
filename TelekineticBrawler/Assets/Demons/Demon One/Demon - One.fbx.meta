@@ -93,7 +93,7 @@ ModelImporter:
       takeName: Demon One Armature|ArmatureAction
       internalID: -6779454991021198534
       firstFrame: 300
-      lastFrame: 428
+      lastFrame: 427
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -121,16 +121,16 @@ ModelImporter:
       name: HitOnRight.DemonOne
       takeName: Demon One Armature|ArmatureAction
       internalID: 8136044981260227772
-      firstFrame: 0
-      lastFrame: 0
+      firstFrame: 480
+      lastFrame: 500
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -150,16 +150,16 @@ ModelImporter:
       name: HitOnLeft.DemonOne
       takeName: Demon One Armature|ArmatureAction
       internalID: 5902123182105129240
-      firstFrame: 0
-      lastFrame: 0
+      firstFrame: 510
+      lastFrame: 529
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
