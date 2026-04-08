@@ -198,6 +198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Demon - One
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: 3d507e2c2af4050488f2cf6a6eaa8710, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 43b71932ad2ff604798e5cc1ede73221, type: 2}
     - target: {fileID: 5866666021909216657, guid: 3d507e2c2af4050488f2cf6a6eaa8710, type: 3}
       propertyPath: m_Controller
       value: 
