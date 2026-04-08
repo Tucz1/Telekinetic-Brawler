@@ -20,6 +20,7 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Rigidbody weaponRB;
     [SerializeField] Transform weaponRoot;
     [SerializeField] Transform weaponTransform;
+    [SerializeField] Collider weaponMeshCollider;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
@@ -123,7 +124,7 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Interacted with {name}", this);
         IsHeld = true;
         outline.enabled = false;
-        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform);
+        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponMeshCollider);
     }
 
     public void Drop()

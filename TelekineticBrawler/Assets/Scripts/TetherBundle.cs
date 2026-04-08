@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class TetherBundle : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class TetherBundle : MonoBehaviour
     private Transform playerAnchor;
     private Transform targetObject;
     private Collider targetCollider;
+    private List<GameObject> gameObjectList = new();
+    private List<LineRenderer> lineList = new();
+    private List <Tether> tetherList = new();
 
     [Header("Tether Settings")]
     [SerializeField] GameObject tetherPrefab;
@@ -55,11 +59,15 @@ public class TetherBundle : MonoBehaviour
         for (int i = 0; i < tetherCount; i++)
         {
             GameObject obj = Instantiate(tetherPrefab, transform);
+            gameObjectList.Add(obj);
+
             LineRenderer line = obj.GetComponent<LineRenderer>();
+            lineList.Add(line);
 
             line.positionCount = segments;
 
             Tether tether = new Tether();
+            tetherList.Add(tether);
 
             tether.line = line;
             tether.phase = Random.Range(0f, 100f);
@@ -76,6 +84,22 @@ public class TetherBundle : MonoBehaviour
     public void ClearTethers()
     {
         connectedTethers = false;
+
+        foreach (GameObject gameObject in gameObjectList)
+        {
+            Destroy(gameObject);
+        }
+
+        foreach (LineRenderer line in lineList)
+        {
+            Destroy(line);
+        }
+
+        // foreach (Tether tether in tetherList)
+        // {
+            
+        // }
+
         tethers.Clear();
     }
 

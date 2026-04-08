@@ -174,7 +174,8 @@ public class TelekinesisController : MonoBehaviour
                     WeaponData _weaponData,
                     Rigidbody _weaponRB,
                     Transform _weaponRoot,
-                    Transform _weaponLogic)
+                    Transform _weaponLogic,
+                    Collider _weaponMeshCollider)
     {
 
         // _interactable.Held += AttachItem;
@@ -184,6 +185,10 @@ public class TelekinesisController : MonoBehaviour
         weaponRB = _weaponRB;
         weaponRoot = _weaponRoot;
         weaponLogic = _weaponLogic;
+        tether.CreateTethers(tetherNode, weaponRoot, _weaponMeshCollider);
+
+        Debug.Log($"Collider: {_weaponMeshCollider}");
+        // Debug.LogError("pause");
 
         nodeOne.position = Vector3.up * weaponData.HoldHeightOffset;
 
@@ -195,7 +200,7 @@ public class TelekinesisController : MonoBehaviour
         weaponLogic.localRotation = Quaternion.identity;
 
         attachedItem = true;
-        tether.CreateTethers(tetherNode, weaponRoot, weaponLogic.GetComponent<Collider>());
+        
     }
 
     public void DropItem()

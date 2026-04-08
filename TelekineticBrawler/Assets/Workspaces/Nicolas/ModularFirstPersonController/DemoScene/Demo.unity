@@ -3070,6 +3070,7 @@ MonoBehaviour:
   weaponRB: {fileID: 905860610}
   weaponRoot: {fileID: 974204074}
   weaponTransform: {fileID: 905860609}
+  weaponMeshCollider: {fileID: 8534374256761425200}
   outline: {fileID: 905860611}
   outlineEnableDelay: 0
   outlineDisableDelay: 0
@@ -3353,6 +3354,7 @@ MonoBehaviour:
   weaponRB: {fileID: 979387000}
   weaponRoot: {fileID: 2104051086}
   weaponTransform: {fileID: 979386999}
+  weaponMeshCollider: {fileID: 2741667695933651227}
   outline: {fileID: 979387001}
   outlineEnableDelay: 0
   outlineDisableDelay: 0
@@ -4902,6 +4904,7 @@ MonoBehaviour:
   weaponRB: {fileID: 1311657095}
   weaponRoot: {fileID: 1403406648}
   weaponTransform: {fileID: 1311657094}
+  weaponMeshCollider: {fileID: 3456757412854930483}
   outline: {fileID: 1311657096}
   outlineEnableDelay: 0
   outlineDisableDelay: 0
@@ -7536,6 +7539,7 @@ GameObject:
   - component: {fileID: 1753876181157254039}
   - component: {fileID: 3456757412854930482}
   - component: {fileID: 584387975756540152}
+  - component: {fileID: 3456757412854930483}
   m_Layer: 6
   m_Name: Baseballbat
   m_TagString: Untagged
@@ -7569,6 +7573,7 @@ GameObject:
   - component: {fileID: 1271008688664409791}
   - component: {fileID: 2741667695933651226}
   - component: {fileID: 137548319417765328}
+  - component: {fileID: 2741667695933651227}
   m_Layer: 6
   m_Name: Machete_test
   m_TagString: Untagged
@@ -7584,6 +7589,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938895329457253381}
   m_Mesh: {fileID: -5495902117074765545, guid: bcec50e9dc0af1f41a61b05aaad0d1bb, type: 3}
+--- !u!65 &2741667695933651227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938895329457253381}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25, y: 0.66, z: 3.53}
+  m_Center: {x: 0, y: -0.12, z: 1.14}
 --- !u!33 &3456757412854930482
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7592,6 +7618,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377210558349429037}
   m_Mesh: {fileID: 716655249603938094, guid: 3ded7108fa4d66a43b75a244ed7910f0, type: 3}
+--- !u!65 &3456757412854930483
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377210558349429037}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.44, y: 0.44, z: 3.68}
+  m_Center: {x: 0, y: 0, z: 0.9}
 --- !u!4 &4746771734161506954
 Transform:
   m_ObjectHideFlags: 0
@@ -7618,6 +7665,7 @@ GameObject:
   - component: {fileID: 4746771734161506954}
   - component: {fileID: 8534374256761425199}
   - component: {fileID: 5878542639637215717}
+  - component: {fileID: 8534374256761425200}
   m_Layer: 6
   m_Name: Pitchfork
   m_TagString: Untagged
@@ -7772,6 +7820,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5373985207047133232}
   m_Mesh: {fileID: 5320648350954132309, guid: c9e194d3917c47048bf9f751f8a87f26, type: 3}
+--- !u!65 &8534374256761425200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5373985207047133232}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.17, y: 0.05, z: 1.36}
+  m_Center: {x: 0, y: 0, z: -0.41}
 --- !u!1001 &8676789673542936129
 PrefabInstance:
   m_ObjectHideFlags: 0
