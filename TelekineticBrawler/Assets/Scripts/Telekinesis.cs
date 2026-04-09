@@ -185,7 +185,6 @@ public class TelekinesisController : MonoBehaviour
         weaponRB = _weaponRB;
         weaponRoot = _weaponRoot;
         weaponLogic = _weaponLogic;
-        tether.CreateTethers(tetherNode, weaponRoot, _weaponMeshCollider);
 
         Debug.Log($"Collider: {_weaponMeshCollider}");
         // Debug.LogError("pause");
@@ -199,8 +198,16 @@ public class TelekinesisController : MonoBehaviour
         weaponLogic.localPosition = Vector3.zero;
         weaponLogic.localRotation = Quaternion.identity;
 
+        StartCoroutine(CreateNextFrame(tetherNode, weaponLogic, _weaponMeshCollider));
+
         attachedItem = true;
         
+    }
+
+    IEnumerator CreateNextFrame(Transform a, Transform b, Collider c)
+    {
+        yield return null;
+        tether.CreateTethers(a, b, c);
     }
 
     public void DropItem()
