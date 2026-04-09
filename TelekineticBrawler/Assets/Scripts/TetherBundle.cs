@@ -90,16 +90,14 @@ public class TetherBundle : MonoBehaviour
             Destroy(gameObject);
         }
 
-        foreach (LineRenderer line in lineList)
-        {
-            Destroy(line);
-        }
-
         // foreach (Tether tether in tetherList)
         // {
             
         // }
 
+        gameObjectList.Clear();
+        lineList.Clear();
+        tetherList.Clear();
         tethers.Clear();
     }
 
@@ -107,17 +105,19 @@ public class TetherBundle : MonoBehaviour
     {
         if (targetCollider != null)
         {
-            Bounds b = targetCollider.bounds;
+            BoxCollider box = targetCollider as BoxCollider;
 
-            Vector3 random = new Vector3(
-                Random.Range(-1f, 1f),
-                Random.Range(-1f, 1f),
-                Random.Range(-1f, 1f)
+            Vector3 local = new Vector3(
+                Random.Range(-0.5f, 0.5f),
+                Random.Range(-0.5f, 0.5f),
+                Random.Range(-0.5f, 0.5f)
             );
 
-            return targetObject.InverseTransformPoint(
-                b.center + Vector3.Scale(random, b.extents)
+            Vector3 worldPoint = box.transform.TransformPoint(
+                Vector3.Scale(local, box.size)
             );
+
+            return targetObject.InverseTransformPoint(worldPoint);
         }
 
         Debug.LogWarning("Collider not found");
@@ -130,10 +130,16 @@ public class TetherBundle : MonoBehaviour
         if (connectedTethers == false) return;
         if (targetObject == null) return;
 
+        
+
         foreach (var tether in tethers)
         {
             Vector3 start = playerAnchor.position;
             Vector3 end = targetObject.TransformPoint(tether.localAttachPoint);
+            // Vector3 end = weaponRoot.TransformPoint(tether.localAttachPoint);
+
+            Debug.DrawLine(start, end, Color.red);
+            Debug.DrawRay(end, Vector3.up * 0.2f, Color.green);
 
             Vector3 desiredMid = (start + end) * 0.5f;
 
