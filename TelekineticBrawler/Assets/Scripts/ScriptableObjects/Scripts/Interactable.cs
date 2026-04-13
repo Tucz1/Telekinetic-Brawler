@@ -10,6 +10,7 @@ public interface IInteractable
     void Interact();
     void Drop();
     void Throw();
+    void Break();
 }
 
 
@@ -21,6 +22,7 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Transform weaponRoot;
     [SerializeField] Transform weaponTransform;
     [SerializeField] Collider weaponMeshCollider;
+    [SerializeField] GameObject brokenWeapon;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
@@ -141,6 +143,20 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Threw item {name}", this);
         IsHeld = false;
         telekinesis.ThrowItem();
+    }
+
+    public void Break()
+    {
+        var obj = Instantiate(brokenWeapon);
+
+        
+        Rigidbody[] partRBs = brokenWeapon.GetComponentsInChildren<Rigidbody>();
+
+        Debug.Log(partRBs.Length);
+
+        telekinesis.MoveToWeapon(obj, partRBs);
+
+        Destroy(this.gameObject, 0.2f);
     }
 
 

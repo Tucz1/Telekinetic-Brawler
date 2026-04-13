@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TelekinesisController : MonoBehaviour
@@ -201,7 +202,7 @@ public class TelekinesisController : MonoBehaviour
         StartCoroutine(CreateNextFrame(tetherNode, weaponLogic, _weaponMeshCollider));
 
         attachedItem = true;
-        
+
     }
 
     IEnumerator CreateNextFrame(Transform a, Transform b, Collider c)
@@ -268,5 +269,30 @@ public class TelekinesisController : MonoBehaviour
             Debug.Log("Off");
             blocked = false;
         }
+    }
+
+    public void MoveToWeapon(GameObject obj, Array parts)
+    {
+        // if (weaponRoot || weaponLogic == null) return;
+
+        weaponRB.isKinematic = false;
+
+        attachedItem = false;
+        tether.ClearTethers();
+
+        //weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
+
+
+        obj.transform.position = weaponRoot.position;
+        obj.transform.rotation = weaponLogic.rotation;
+
+        foreach (Rigidbody part in parts)
+        {
+            // Debug.Log("Adding force");
+            part.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
+            //Debug.Log(lastDir);
+        }
+
+        weaponRoot.gameObject.SetActive(false);
     }
 }

@@ -3071,6 +3071,7 @@ MonoBehaviour:
   weaponRoot: {fileID: 974204074}
   weaponTransform: {fileID: 905860609}
   weaponMeshCollider: {fileID: 905860613}
+  brokenWeapon: {fileID: 8525010868669530674, guid: d1962b2b667f31c4f861880be2a8c389, type: 3}
   outline: {fileID: 905860611}
   outlineEnableDelay: 0
   outlineDisableDelay: 0
@@ -3355,6 +3356,7 @@ MonoBehaviour:
   weaponRoot: {fileID: 2104051086}
   weaponTransform: {fileID: 979386999}
   weaponMeshCollider: {fileID: 979387003}
+  brokenWeapon: {fileID: 0}
   outline: {fileID: 979387001}
   outlineEnableDelay: 0
   outlineDisableDelay: 0
@@ -4905,6 +4907,7 @@ MonoBehaviour:
   weaponRoot: {fileID: 1403406648}
   weaponTransform: {fileID: 1311657094}
   weaponMeshCollider: {fileID: 1311657098}
+  brokenWeapon: {fileID: 0}
   outline: {fileID: 1311657096}
   outlineEnableDelay: 0
   outlineDisableDelay: 0
@@ -5122,7 +5125,7 @@ GameObject:
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1403406648
 Transform:
   m_ObjectHideFlags: 0
@@ -7219,7 +7222,7 @@ GameObject:
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2104051086
 Transform:
   m_ObjectHideFlags: 0
@@ -7738,6 +7741,10 @@ PrefabInstance:
     - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_Name
       value: SwordRoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 240642291611573732, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 661267600469837918, guid: ac40a88991e9d5b4090a2b5ecd2d14d1, type: 3}
       propertyPath: m_Size.x

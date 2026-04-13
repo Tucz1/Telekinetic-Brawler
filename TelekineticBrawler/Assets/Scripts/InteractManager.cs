@@ -54,7 +54,7 @@ public class InteractManager : MonoBehaviour
         }
 
         // if currently focusing an IInteractable and click -> interact
-        if (currentInteractable != null && Input.GetKeyDown(KeyCode.F))
+        if (currentInteractable != null && Input.GetKeyDown(KeyCode.F)) // Pickup
         {
             currentInteractable.Interact();
             cachedInteractable = currentInteractable;
@@ -62,7 +62,7 @@ public class InteractManager : MonoBehaviour
             Debug.Log(cachedInteractable);
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G)) // Drop
         {
             if (cachedInteractable == null) return;
             Debug.Log(cachedInteractable);
@@ -71,12 +71,21 @@ public class InteractManager : MonoBehaviour
             holding = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) // Throw
         {
             if (cachedInteractable == null) return;
             Debug.Log(cachedInteractable);
             SetInteractable(cachedInteractable);
             currentInteractable.Throw();
+            holding = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) // Break
+        {
+            if (cachedInteractable == null) return;
+            Debug.Log(cachedInteractable);
+            SetInteractable(cachedInteractable);
+            currentInteractable.Break();
             holding = false;
         }
     }
