@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -149,12 +150,7 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         var obj = Instantiate(brokenWeapon);
 
-        
-        Rigidbody[] partRBs = brokenWeapon.GetComponentsInChildren<Rigidbody>();
-
-        Debug.Log(partRBs.Length);
-
-        telekinesis.MoveToWeapon(obj, partRBs);
+        telekinesis.MoveToWeapon(obj);
 
         Destroy(this.gameObject, 0.2f);
     }

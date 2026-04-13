@@ -271,7 +271,7 @@ public class TelekinesisController : MonoBehaviour
         }
     }
 
-    public void MoveToWeapon(GameObject obj, Array parts)
+    public void MoveToWeapon(GameObject obj)
     {
         // if (weaponRoot || weaponLogic == null) return;
 
@@ -286,7 +286,9 @@ public class TelekinesisController : MonoBehaviour
         obj.transform.position = weaponRoot.position;
         obj.transform.rotation = weaponLogic.rotation;
 
-        foreach (Rigidbody part in parts)
+        Rigidbody[] partRBs = obj.GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody part in partRBs)
         {
             // Debug.Log("Adding force");
             part.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
