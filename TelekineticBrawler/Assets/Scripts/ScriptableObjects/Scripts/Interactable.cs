@@ -38,6 +38,8 @@ public class Interactable : MonoBehaviour, IInteractable
     public bool IsHeld { get; set; }
 
     TelekinesisController telekinesis;
+    TimeWarp timeWarp;
+    public event Action ImpactFrame;
 
     // private Vector3 lastPos;
     private Vector3 currentVelocity;
@@ -54,6 +56,7 @@ public class Interactable : MonoBehaviour, IInteractable
         outline.enabled = false;
 
         telekinesis = FindFirstObjectByType<TelekinesisController>();
+        timeWarp = FindAnyObjectByType<TimeWarp>();
 
     }
 
@@ -189,6 +192,9 @@ public class Interactable : MonoBehaviour, IInteractable
 
             var damage = CalculateDamage();
             var stagger = CalculateStagger(damage);
+
+            // If damage || stagger > threshold
+            // StartCoroutine(timeWarp.ImpactFrame());
 
             limb.TakeDamage(damage, stagger, weaponData);
         }

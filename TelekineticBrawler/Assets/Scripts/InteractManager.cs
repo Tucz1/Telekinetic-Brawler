@@ -13,6 +13,12 @@ public class InteractManager : MonoBehaviour
     private bool holding;
     private IInteractable cachedInteractable;
     private IInteractable currentInteractable;
+    TimeWarp timeWarp;
+
+    void Awake()
+    {
+        timeWarp = FindAnyObjectByType<TimeWarp>();
+    }
 
     private void SetInteractable(IInteractable interactable)
     {
@@ -87,6 +93,11 @@ public class InteractManager : MonoBehaviour
             SetInteractable(cachedInteractable);
             currentInteractable.Break();
             holding = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            StartCoroutine(timeWarp.ImpactFrame());
         }
     }
 
