@@ -2498,6 +2498,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 824675474424263922, guid: 37d683746de755c468e49b81d1ccfafd, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6224444310854443896, guid: 37d683746de755c468e49b81d1ccfafd, type: 3}
       propertyPath: m_Name
       value: Cane
@@ -6774,6 +6778,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hammer
       objectReference: {fileID: 0}
+    - target: {fileID: 2699642080351664288, guid: f268c22a8054abf4e8f7f9319d30f4ec, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6456383393701441299, guid: f268c22a8054abf4e8f7f9319d30f4ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.89
@@ -6827,6 +6835,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1845634649332392655, guid: 08967cd81eb1a874f8a0287fa715d586, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8710320379891987719, guid: 08967cd81eb1a874f8a0287fa715d586, type: 3}
       propertyPath: m_Name
       value: Morningstar
@@ -6924,6 +6936,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5156654265734612224, guid: 52613962ef9fb5847852f0745e5dfffa, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5401944451924259785, guid: 52613962ef9fb5847852f0745e5dfffa, type: 3}
       propertyPath: m_Name
       value: BaseballBat
@@ -6944,6 +6960,10 @@ PrefabInstance:
     - target: {fileID: 1916197567367182821, guid: 78d48ef24840d064595024bac24bf6e0, type: 3}
       propertyPath: m_Name
       value: Pitchfork
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012621855084764119, guid: 78d48ef24840d064595024bac24bf6e0, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4375146119953539354, guid: 78d48ef24840d064595024bac24bf6e0, type: 3}
       propertyPath: m_LocalPosition.x

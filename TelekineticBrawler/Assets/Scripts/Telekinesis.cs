@@ -196,6 +196,7 @@ public class TelekinesisController : MonoBehaviour
 
 
         weaponRB.isKinematic = true;
+        weaponRB.interpolation = RigidbodyInterpolation.None;
         weaponLogic.localPosition = Vector3.zero;
         weaponLogic.localRotation = Quaternion.identity;
 
@@ -214,6 +215,7 @@ public class TelekinesisController : MonoBehaviour
     public void DropItem()
     {
         weaponRB.isKinematic = false;
+        weaponRB.interpolation = RigidbodyInterpolation.Interpolate;
 
         weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
 
