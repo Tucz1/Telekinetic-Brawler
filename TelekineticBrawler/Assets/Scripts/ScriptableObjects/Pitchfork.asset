@@ -15,7 +15,8 @@ MonoBehaviour:
   damageType: 2
   damage: 12
   distanceHeld: 2
-  baseFollowSpeed: 2
+  holdHeightOffset: 2
+  baseFollowSpeed: 2.5
   weight: 6
   baseRotationSpeed: 10
   maxRotationSpeed: 20

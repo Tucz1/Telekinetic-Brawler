@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f26561cc582f22c4188157e66566ceec, type: 3}
-  m_Name: Sword
-  m_EditorClassIdentifier: Assembly-CSharp::Sword
-  damageType: 1
-  damage: 20
-  distanceHeld: 3
+  m_Script: {fileID: 11500000, guid: 0df291d13a634584ca62266dd80e4069, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: Assembly-CSharp::Hammer
+  damageType: 0
+  damage: 25
+  distanceHeld: 2
   holdHeightOffset: 2
   baseFollowSpeed: 2
-  weight: 6
+  weight: 5
   baseRotationSpeed: 10
   maxRotationSpeed: 20
   maxDistance: 5

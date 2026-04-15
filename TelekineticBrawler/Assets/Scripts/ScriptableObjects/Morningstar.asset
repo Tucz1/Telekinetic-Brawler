@@ -9,20 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f26561cc582f22c4188157e66566ceec, type: 3}
-  m_Name: Sword
-  m_EditorClassIdentifier: Assembly-CSharp::Sword
-  damageType: 1
+  m_Script: {fileID: 11500000, guid: f400aad0e78e4ba4e8a4652b8eeec497, type: 3}
+  m_Name: Morningstar
+  m_EditorClassIdentifier: Assembly-CSharp::Morningstar
+  damageType: 0
   damage: 20
-  distanceHeld: 3
+  distanceHeld: 1.2
   holdHeightOffset: 2
-  baseFollowSpeed: 2
+  baseFollowSpeed: 2.5
   weight: 6
   baseRotationSpeed: 10
   maxRotationSpeed: 20
   maxDistance: 5
   deadzone: 0.1
   maxRoll: 90
-  rollSensitivity: 10
+  rollSensitivity: 13
   rollSmoothSpeed: 7
   hitSFX: {fileID: 0}

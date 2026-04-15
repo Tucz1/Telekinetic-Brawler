@@ -22,14 +22,14 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Rigidbody weaponRB;
     [SerializeField] Transform weaponRoot;
     [SerializeField] Transform weaponTransform;
-    [SerializeField] Collider weaponMeshCollider;
+    [SerializeField] Collider weaponCollider;
     [SerializeField] GameObject brokenWeapon;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
     // adjust delays in seconds
-    [SerializeField] private float outlineEnableDelay = 1f;
-    [SerializeField] private float outlineDisableDelay = 1f;
+    [SerializeField] private float outlineEnableDelay = 0f;
+    [SerializeField] private float outlineDisableDelay = 0f;
 
     // stores currently running routine (see below)
     private Coroutine lookingRoutine;
@@ -127,7 +127,7 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Interacted with {name}", this);
         IsHeld = true;
         outline.enabled = false;
-        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponMeshCollider);
+        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponCollider);
     }
 
     public void Drop()

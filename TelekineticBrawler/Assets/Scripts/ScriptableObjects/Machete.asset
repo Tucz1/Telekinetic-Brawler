@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Machete
   damageType: 1
   damage: 20
-  distanceHeld: 2
-  baseFollowSpeed: 2
+  distanceHeld: 3
+  holdHeightOffset: 2
+  baseFollowSpeed: 2.5
   weight: 6
   baseRotationSpeed: 10
   maxRotationSpeed: 20

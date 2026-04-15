@@ -1,0 +1,15 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "Object", menuName = "Objects/Cane")]
+class Cane : WeaponData
+{
+	public override void UseAbility(AbilityInfo info)
+	{
+		Debug.Log("Cane Ability Activated");
+		
+		// Ability logic? Or maybe just a trigger?
+	}
+	
+	// Break consistent across all items & objects, so no need to declare?
+	
+}
