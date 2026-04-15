@@ -211,7 +211,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1777172239099271262}
+      - m_Target: {fileID: 3358394215603529798}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ReturnToMainMenu
         m_Mode: 1
@@ -372,6 +372,7 @@ GameObject:
   - component: {fileID: 5530860354918715478}
   - component: {fileID: 1628353761459509702}
   - component: {fileID: 2375444191228251008}
+  - component: {fileID: 3358394215603529798}
   m_Layer: 5
   m_Name: InteractableUI
   m_TagString: Untagged
@@ -462,6 +463,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3358394215603529798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015492496659706295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1561a68d0c1c104439f7e8572435803b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  PauseMenuUI: {fileID: 9192530966724625717}
+  CrosshairStamCanvas: {fileID: 4459864851551516604}
+  fpc: {fileID: 4459864850019384740}
+  eventSystem: {fileID: 2015492496659706295}
 --- !u!1 &2020098200209572469
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +600,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1777172239099271262}
+      - m_Target: {fileID: 3358394215603529798}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -1450,7 +1467,6 @@ GameObject:
   - component: {fileID: 4459864851551516607}
   - component: {fileID: 4459864851551516593}
   - component: {fileID: 4459864851551516606}
-  - component: {fileID: 1777172239099271262}
   m_Layer: 3
   m_Name: CrosshairAndStamina
   m_TagString: Untagged
@@ -1525,20 +1541,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &1777172239099271262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4459864851551516604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1561a68d0c1c104439f7e8572435803b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  PauseMenuUI: {fileID: 9192530966724625717}
-  fpc: {fileID: 4459864850019384740}
 --- !u!1 &5300602107758285417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,7 +1747,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1777172239099271262}
+      - m_Target: {fileID: 3358394215603529798}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: restartLevel
         m_Mode: 1

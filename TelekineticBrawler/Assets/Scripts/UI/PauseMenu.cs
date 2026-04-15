@@ -1,19 +1,30 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
     [SerializeField] GameObject PauseMenuUI;
+    [SerializeField] GameObject CrosshairStamCanvas;
     [SerializeField] FirstPersonController fpc;
+    [SerializeField] GameObject eventSystem;
     bool ispaused;
+
+    private void Start() {
+        eventSystem = GameObject.Find("UIEventSystem");
+        eventSystem.SetActive(false);
+    }
 
     public void PauseGame() {
         Time.timeScale = 0f;
+        eventSystem.SetActive(true);
         PauseMenuUI.SetActive(true);
         ispaused = true;
 
         Cursor.lockState = CursorLockMode.None;
         fpc.cameraCanMove = false;
         fpc.lockCursor = false;
+
+        CrosshairStamCanvas.SetActive(false);
     }
 
     public void ResumeGame() {
@@ -24,6 +35,8 @@ public class PauseMenu : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         fpc.cameraCanMove = true;
         fpc.lockCursor = true;
+
+        CrosshairStamCanvas.SetActive(true);
     }
 
     public void restartLevel() {
