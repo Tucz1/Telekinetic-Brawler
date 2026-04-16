@@ -9,6 +9,7 @@ public class TelekinesisController : MonoBehaviour
     private Transform weaponRoot;
     private Transform weaponLogic;
     public Camera mainCam;
+    [SerializeField] Animator handAnimator;
 
     [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private Transform nodeOne;
@@ -36,12 +37,14 @@ public class TelekinesisController : MonoBehaviour
     bool facingEnvironment;
     bool blocked;
     TetherBundle tether;
+    PauseMenu pauseMenu;
     // Interactable interactable;
 
     void Awake()
     {
 
         tether = GetComponent<TetherBundle>();
+        pauseMenu = FindAnyObjectByType<PauseMenu>();
         // interactable = FindAnyObjectByType<Interactable>();
 
         // interactable.Held += AttachItem;
@@ -71,7 +74,7 @@ public class TelekinesisController : MonoBehaviour
 
 
 
-
+        if (pauseMenu.ispaused) return;
         if (!attachedItem) return;
 
         Debug.DrawLine(mainCam.transform.position, wallCheck.position, Color.blue);
@@ -200,16 +203,18 @@ public class TelekinesisController : MonoBehaviour
         weaponLogic.localPosition = Vector3.zero;
         weaponLogic.localRotation = Quaternion.identity;
 
-        StartCoroutine(CreateNextFrame(tetherNode, weaponLogic, _weaponMeshCollider));
+        StartCoroutine(CreateNextFrame(weaponLogic, _weaponMeshCollider));
+
+        handAnimator.Play("Pull In_Hand");
 
         attachedItem = true;
 
     }
 
-    IEnumerator CreateNextFrame(Transform a, Transform b, Collider c)
+    IEnumerator CreateNextFrame(Transform a, Collider b)
     {
         yield return null;
-        tether.CreateTethers(a, b, c);
+        tether.CreateTethers(a, b);
     }
 
     public void DropItem()
@@ -229,6 +234,8 @@ public class TelekinesisController : MonoBehaviour
 
         // weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
         weaponRB.AddForce(transform.forward * weaponData.Weight, ForceMode.Impulse);
+
+        handAnimator.Play("Push Out_Hand");
 
         attachedItem = false;
         tether.ClearTethers();

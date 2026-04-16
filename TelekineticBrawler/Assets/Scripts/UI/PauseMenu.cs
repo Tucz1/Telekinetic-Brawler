@@ -7,7 +7,7 @@ public class PauseMenu : MonoBehaviour {
     [SerializeField] GameObject CrosshairStamCanvas;
     [SerializeField] FirstPersonController fpc;
     [SerializeField] GameObject eventSystem;
-    bool ispaused;
+    public bool ispaused;
 
     private void Start() {
         eventSystem = GameObject.Find("UIEventSystem");

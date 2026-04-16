@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 public class TetherBundle : MonoBehaviour
 {
     [Header("References")]
-    private Transform playerAnchor;
+    [SerializeField] private Transform playerAnchor;
     private Transform targetObject;
     private Collider targetCollider;
     private List<GameObject> gameObjectList = new();
@@ -46,9 +46,8 @@ public class TetherBundle : MonoBehaviour
         // CreateTethers();
     }
 
-    public void CreateTethers(Transform _playerAnchor, Transform _targetObject, Collider _targetCollider)
+    public void CreateTethers(Transform _targetObject, Collider _targetCollider)
     {
-        playerAnchor = _playerAnchor;
         Debug.Log($"player anchor: {playerAnchor}");
         targetObject = _targetObject;
         Debug.Log($"target object: {targetObject}");
@@ -129,8 +128,6 @@ public class TetherBundle : MonoBehaviour
     {
         if (connectedTethers == false) return;
         if (targetObject == null) return;
-
-        
 
         foreach (var tether in tethers)
         {
