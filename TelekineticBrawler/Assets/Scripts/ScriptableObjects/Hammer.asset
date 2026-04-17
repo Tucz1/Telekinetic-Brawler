@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df291d13a634584ca62266dd80e4069, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: Assembly-CSharp::Hammer
+  damageType: 0
+  damage: 25
+  distanceHeld: 2
+  holdHeightOffset: 2
+  baseFollowSpeed: 2
+  weight: 5
+  baseRotationSpeed: 10
+  maxRotationSpeed: 20
+  maxDistance: 5
+  deadzone: 0.1
+  maxRoll: 90
+  rollSensitivity: 10
+  rollSmoothSpeed: 7
+  hitSFX: {fileID: 0}

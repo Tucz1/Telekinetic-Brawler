@@ -22,14 +22,14 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Rigidbody weaponRB;
     [SerializeField] Transform weaponRoot;
     [SerializeField] Transform weaponTransform;
-    [SerializeField] Collider weaponMeshCollider;
+    [SerializeField] Collider weaponCollider;
     [SerializeField] GameObject brokenWeapon;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
     // adjust delays in seconds
-    [SerializeField] private float outlineEnableDelay = 1f;
-    [SerializeField] private float outlineDisableDelay = 1f;
+    [SerializeField] private float outlineEnableDelay = 0f;
+    [SerializeField] private float outlineDisableDelay = 0f;
 
     // stores currently running routine (see below)
     private Coroutine lookingRoutine;
@@ -38,6 +38,8 @@ public class Interactable : MonoBehaviour, IInteractable
     public bool IsHeld { get; set; }
 
     TelekinesisController telekinesis;
+    TimeWarp timeWarp;
+    public event Action ImpactFrame;
 
     // private Vector3 lastPos;
     private Vector3 currentVelocity;
@@ -54,6 +56,7 @@ public class Interactable : MonoBehaviour, IInteractable
         outline.enabled = false;
 
         telekinesis = FindFirstObjectByType<TelekinesisController>();
+        timeWarp = FindAnyObjectByType<TimeWarp>();
 
     }
 
@@ -127,7 +130,7 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Interacted with {name}", this);
         IsHeld = true;
         outline.enabled = false;
-        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponMeshCollider);
+        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponCollider);
     }
 
     public void Drop()
@@ -189,6 +192,9 @@ public class Interactable : MonoBehaviour, IInteractable
 
             var damage = CalculateDamage();
             var stagger = CalculateStagger(damage);
+
+            // If damage || stagger > threshold
+            // StartCoroutine(timeWarp.ImpactFrame());
 
             limb.TakeDamage(damage, stagger, weaponData);
         }
