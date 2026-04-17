@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractManager : MonoBehaviour
 {
@@ -8,16 +9,25 @@ public class InteractManager : MonoBehaviour
 
     // store currently focused instance!
 
+    [Header("UI")]
+
+    [SerializeField] Slider tempChargeSlider;
+
+    [Header("Throw Settings")]
+    private float timeHeld;
+
     [Header("Raycast Settings")]
     [SerializeField] float maxDistance;
     private bool holding;
     private IInteractable cachedInteractable;
     private IInteractable currentInteractable;
     TimeWarp timeWarp;
+    TelekinesisController telekinesis;
 
     void Awake()
     {
         timeWarp = FindAnyObjectByType<TimeWarp>();
+        telekinesis = FindAnyObjectByType<TelekinesisController>();
     }
 
     private void SetInteractable(IInteractable interactable)
@@ -37,6 +47,7 @@ public class InteractManager : MonoBehaviour
 
     void Update()
     {
+        tempChargeSlider.value = Mathf.InverseLerp(0, telekinesis.maxThrowChargeDuration, timeHeld);
         // in general I'd use vars .. no need to have class fields for those
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -77,13 +88,20 @@ public class InteractManager : MonoBehaviour
             holding = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E)) // Throw
+        if (Input.GetKey(KeyCode.E)) // Throw
         {
             if (cachedInteractable == null) return;
+            timeHeld += Time.deltaTime;
+            holding = false;
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (cachedInteractable == null) return;
+            Debug.Log($"Throwing item held for: {timeHeld}");
             Debug.Log(cachedInteractable);
             SetInteractable(cachedInteractable);
-            currentInteractable.Throw();
-            holding = false;
+            currentInteractable.Throw(timeHeld);
+            timeHeld = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.Space)) // Break

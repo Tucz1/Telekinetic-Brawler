@@ -2,49 +2,51 @@ using UnityEngine;
 
 public enum DamageType
 {
-    Blunt,
-    Slashing,
-    Piercing
+	Blunt,
+	Slashing,
+	Piercing
 }
 
 public struct AbilityInfo
 {
-    // public data
-    // public AbilityInfo()
-    // {
-        
-    // }
+	// public data
+	// public AbilityInfo()
+	// {
+
+	// }
 }
 
 // [CreateAssetMenu(fileName = "Object", menuName = "Scriptable Objects/Object")]
 public class WeaponData : ScriptableObject
 {
-    [Header("WeaponType")]
+	[Header("WeaponType")]
 	[SerializeField] protected DamageType damageType;
 
 	[SerializeField] protected float damage;
+	[Range(3.5f, 4.2f)][SerializeField] protected float minThrowStrength = 3.8f;
 	[SerializeField] protected float distanceHeld = 2f;
 	[SerializeField] protected float holdHeightOffset = 2f;
 
 	[Header("Movement")]
-    [SerializeField] protected float baseFollowSpeed = 2f;
-    [SerializeField] protected float weight = 6f;
+	[SerializeField] protected float baseFollowSpeed = 2f;
+	[SerializeField] protected float weight = 6f;
 
-    [Header("Rotation")]
-    [SerializeField] protected float baseRotationSpeed = 10f;
-    [SerializeField] protected float maxRotationSpeed = 20f;
-    [SerializeField] protected float maxDistance = 5f;
-    [SerializeField] protected float deadzone = 0.1f;
+	[Header("Rotation")]
+	[SerializeField] protected float baseRotationSpeed = 10f;
+	[SerializeField] protected float maxRotationSpeed = 20f;
+	[SerializeField] protected float maxDistance = 5f;
+	[SerializeField] protected float deadzone = 0.1f;
 
-    [Header("Tilt")]
-    [SerializeField] protected float maxRoll = 90f;
-    [SerializeField] protected float rollSensitivity = 10f;
-    [SerializeField] protected float rollSmoothSpeed = 7f;
-	
+	[Header("Tilt")]
+	[SerializeField] protected float maxRoll = 90f;
+	[SerializeField] protected float rollSensitivity = 10f;
+	[SerializeField] protected float rollSmoothSpeed = 7f;
+
 	[Header("SFX")]
 	[SerializeField] protected AudioClip hitSFX;
-	
+
 	public float Damage => damage;
+	public float MinThrowStrength => minThrowStrength;
 	public DamageType DamageType => damageType;
 	public float DistanceHeld => distanceHeld;
 	public float HoldHeightOffset => holdHeightOffset;
@@ -65,11 +67,11 @@ public class WeaponData : ScriptableObject
 	{
 		Debug.Log("No Ability Assigned");
 	}
-	
+
 	public void BreakItem()
 	{
 		Debug.Log("Breaking Item");
-		
+
 		// Break logic
 	}
 }

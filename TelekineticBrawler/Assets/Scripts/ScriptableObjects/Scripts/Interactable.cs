@@ -10,7 +10,7 @@ public interface IInteractable
     bool IsHeld { get; set; }
     void Interact();
     void Drop();
-    void Throw();
+    void Throw(float timeHeld);
     void Break();
 }
 
@@ -141,12 +141,25 @@ public class Interactable : MonoBehaviour, IInteractable
         telekinesis.DropItem();
     }
 
-    public void Throw()
+    public void Throw(float _timeHeld)
     {
         if (!IsHeld) { return; }
+        var force = weaponData.MinThrowStrength;
+        var timeHeld = _timeHeld; // If the player holds for 2 seconds, the timeheld becomes 3. This is for the exponent, and it is as high as we let the player charge
         Debug.Log($"Threw item {name}", this);
         IsHeld = false;
-        telekinesis.ThrowItem();
+
+        var t0 = Mathf.InverseLerp(0, telekinesis.maxThrowChargeDuration, timeHeld);
+        var t1 = Mathf.Lerp(0.5f, telekinesis.maxThrowChargeDuration, t0);
+        
+
+        Debug.Log($"Lerped Time Held: {t1}");
+
+        force = Mathf.Pow(force, t1);
+
+        Debug.Log($"Force: {force}");
+
+        telekinesis.ThrowItem(force);
     }
 
     public void Break()

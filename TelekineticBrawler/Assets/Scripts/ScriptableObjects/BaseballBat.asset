@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseballBat
   damageType: 0
   damage: 15
+  minThrowStrength: 4.2
   distanceHeld: 2
   holdHeightOffset: 2
   baseFollowSpeed: 2.5
