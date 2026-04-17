@@ -117,6 +117,11 @@ public class InteractManager : MonoBehaviour
         {
             StartCoroutine(timeWarp.ImpactFrame());
         }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            AudioFW.Play("demongrunt1");
+        }
     }
 
 }
