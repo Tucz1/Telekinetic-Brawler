@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pitchfork
   damageType: 2
   damage: 12
+  minThrowStrength: 4
   distanceHeld: 2
   holdHeightOffset: 2
   baseFollowSpeed: 2.5

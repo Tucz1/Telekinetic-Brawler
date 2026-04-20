@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Morningstar
   damageType: 0
   damage: 20
+  minThrowStrength: 4
   distanceHeld: 1.2
   holdHeightOffset: 2
   baseFollowSpeed: 2.5

@@ -10,15 +10,16 @@ public class TelekinesisController : MonoBehaviour
     private Transform weaponLogic;
     public Camera mainCam;
     [SerializeField] Animator handAnimator;
+    [SerializeField] Transform handRotation;
 
     [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private Transform nodeOne;
     [SerializeField] private Transform wallCheck;
-    [SerializeField] private Transform tetherNode;
 
     [Header("Weapon")]
     private WeaponData weaponData;
     private Rigidbody weaponRB;
+    [Range(0f, 3f)] public float maxThrowChargeDuration = 2f;
 
     private Vector3 lastTargetPos;
 
@@ -104,6 +105,8 @@ public class TelekinesisController : MonoBehaviour
         UpdateRotation(direction, distance, normalizedDistance);
         UpdateRoll();
 
+        // UpdateHandRoll();
+
         if (canInfluence) weaponRoot.position += playerVelocity * Time.deltaTime * movementInfluence;
 
         lastTargetPos = nodeOne.position;
@@ -173,6 +176,28 @@ public class TelekinesisController : MonoBehaviour
         );
     }
 
+    void UpdateHandRoll()
+    {
+        Vector3 currentScreenPos = mainCam.WorldToScreenPoint(nodeOne.position);
+        Vector3 lastScreenPos = mainCam.WorldToScreenPoint(lastTargetPos);
+
+        Vector3 delta = currentScreenPos - lastScreenPos;
+
+        float rollAmount = Mathf.Clamp(
+            -delta.x * weaponData.RollSensitivity,
+            -weaponData.MaxRoll,
+            weaponData.MaxRoll
+        );
+
+        Quaternion targetRoll = Quaternion.Euler(0f, 0f, -rollAmount);
+
+        handRotation.localRotation = Quaternion.Lerp(
+            handRotation.localRotation,
+            targetRoll,
+            weaponData.RollSmoothSpeed * Time.deltaTime
+        );
+    }
+
 
     public void AttachItem(Interactable _interactable,
                     WeaponData _weaponData,
@@ -228,12 +253,12 @@ public class TelekinesisController : MonoBehaviour
         tether.ClearTethers();
     }
 
-    public void ThrowItem()
+    public void ThrowItem(float force)
     {
         weaponRB.isKinematic = false;
 
         // weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
-        weaponRB.AddForce(transform.forward * weaponData.Weight, ForceMode.Impulse);
+        weaponRB.AddForce(transform.forward * force, ForceMode.Impulse);
 
         handAnimator.Play("Push Out_Hand");
 
