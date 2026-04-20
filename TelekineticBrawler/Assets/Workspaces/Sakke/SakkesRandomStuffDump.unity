@@ -1331,7 +1331,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4f0a574dfbd63dc4faadebd64031c714, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2393200815786672729, guid: cbaefa148a7707349b996d5cf5beb088, type: 3}
+      objectReference: {fileID: -985876954008453975, guid: cbaefa148a7707349b996d5cf5beb088, type: 3}
     - target: {fileID: -7511558181221131132, guid: 4f0a574dfbd63dc4faadebd64031c714, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -1647,7 +1647,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4f78baa5af23ee24ebf416101a5ef706, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 7022173166102305024, guid: cbaefa148a7707349b996d5cf5beb088, type: 3}
+      objectReference: {fileID: -454813018610831317, guid: cbaefa148a7707349b996d5cf5beb088, type: 3}
     - target: {fileID: 919132149155446097, guid: 4f78baa5af23ee24ebf416101a5ef706, type: 3}
       propertyPath: m_Name
       value: chair
