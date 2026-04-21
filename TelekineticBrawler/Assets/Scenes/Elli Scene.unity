@@ -194,11 +194,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6839646920124372704, guid: 3d507e2c2af4050488f2cf6a6eaa8710, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f1b9a0650947b1419459b1d9c84b6dc, type: 2}
+    - target: {fileID: -6639145851956156996, guid: 3d507e2c2af4050488f2cf6a6eaa8710, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f1b9a0650947b1419459b1d9c84b6dc, type: 2}
+    - target: {fileID: -2609032927813756396, guid: 3d507e2c2af4050488f2cf6a6eaa8710, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f1b9a0650947b1419459b1d9c84b6dc, type: 2}
     - target: {fileID: 919132149155446097, guid: 3d507e2c2af4050488f2cf6a6eaa8710, type: 3}
       propertyPath: m_Name
       value: Demon - One
       objectReference: {fileID: 0}
     - target: {fileID: 1630794972795428178, guid: 3d507e2c2af4050488f2cf6a6eaa8710, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f1b9a0650947b1419459b1d9c84b6dc, type: 2}
+    - target: {fileID: 2568908557707665989, guid: 3d507e2c2af4050488f2cf6a6eaa8710, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1f1b9a0650947b1419459b1d9c84b6dc, type: 2}
@@ -493,7 +509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 46b34b603eea2dd4c8b095afcfc48ca2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.56
+      value: 6.68
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 46b34b603eea2dd4c8b095afcfc48ca2, type: 3}
       propertyPath: m_LocalRotation.w
