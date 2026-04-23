@@ -40,6 +40,7 @@ public class TelekinesisController : MonoBehaviour
     bool blocked;
     TetherBundle tether;
     PauseMenu pauseMenu;
+    public bool isThrowing;
     // Interactable interactable;
 
     void Awake()
@@ -97,12 +98,15 @@ public class TelekinesisController : MonoBehaviour
 
 
 
-        Vector3 direction = nodeOne.position - weaponRoot.position;
+        Vector3 direction = !isThrowing ? nodeOne.position - weaponRoot.position : nodeOne.position + Vector3.forward - weaponRoot.position;
         lastDir = direction;
         distance = direction.magnitude;
         float normalizedDistance = Mathf.Clamp01(distance / weaponData.MaxDistance);
 
         UpdatePosition(distance);
+
+
+
         UpdateRotation(direction, distance, normalizedDistance);
         UpdateRoll();
 

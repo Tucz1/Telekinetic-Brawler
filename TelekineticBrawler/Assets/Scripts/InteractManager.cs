@@ -91,6 +91,7 @@ public class InteractManager : MonoBehaviour
         if (Input.GetKey(KeyCode.E)) // Throw
         {
             if (cachedInteractable == null) return;
+            telekinesis.isThrowing = true;
             timeHeld += Time.deltaTime;
             holding = false;
         }
@@ -100,6 +101,7 @@ public class InteractManager : MonoBehaviour
             Debug.Log($"Throwing item held for: {timeHeld}");
             Debug.Log(cachedInteractable);
             SetInteractable(cachedInteractable);
+            telekinesis.isThrowing = false;
             currentInteractable.Throw(timeHeld);
             timeHeld = 0;
         }
