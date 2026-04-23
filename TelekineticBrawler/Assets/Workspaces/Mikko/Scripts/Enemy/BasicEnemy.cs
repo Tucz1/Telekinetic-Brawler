@@ -5,7 +5,7 @@ using UnityEngine.InputSystem.Processors;
 
 public class BasicEnemy : MonoBehaviour {
     NavMeshAgent agent;
-    Animator animator;
+    public Animator animator;
     public Transform Target;
     [SerializeField] bool isPlayerInside = false;
     [SerializeField] private Rigidbody[] ragdollRigidbodies;
@@ -38,17 +38,17 @@ public class BasicEnemy : MonoBehaviour {
         currentHealth -= damage;
         if (!isDead) {
             if (currentHealth <= 0) {
-                enableRagdolls();
                 StartCoroutine(RemoveBody());
+                enableRagdolls();
                 isDead = true;
             }
             //Ragdoll threshold
-            if (staggerAmount >= ragdollThreshold) {
-                StartCoroutine(RagdollStagger());
-            }
-            //Stagger threshold
-            if (staggerAmount >= staggerThreshold) {
-            }
+            //if (staggerAmount >= ragdollThreshold) {
+            //}
+            ////Stagger threshold
+            //if (staggerAmount >= staggerThreshold) {
+            //    StartCoroutine(RagdollStagger());
+            //}
         }
     }
 

@@ -11,6 +11,7 @@ public class TelekinesisController : MonoBehaviour
     public Camera mainCam;
     [SerializeField] Animator handAnimator;
     [SerializeField] Transform handRotation;
+    [SerializeField] float handMaxRoll;
 
     [SerializeField] private LayerMask environmentLayer;
     [SerializeField] private Transform nodeOne;
@@ -105,7 +106,7 @@ public class TelekinesisController : MonoBehaviour
         UpdateRotation(direction, distance, normalizedDistance);
         UpdateRoll();
 
-        // UpdateHandRoll();
+        UpdateHandRoll();
 
         if (canInfluence) weaponRoot.position += playerVelocity * Time.deltaTime * movementInfluence;
 
@@ -185,8 +186,8 @@ public class TelekinesisController : MonoBehaviour
 
         float rollAmount = Mathf.Clamp(
             -delta.x * weaponData.RollSensitivity,
-            -weaponData.MaxRoll,
-            weaponData.MaxRoll
+            -handMaxRoll,
+            handMaxRoll
         );
 
         Quaternion targetRoll = Quaternion.Euler(0f, 0f, -rollAmount);
@@ -230,7 +231,7 @@ public class TelekinesisController : MonoBehaviour
 
         StartCoroutine(CreateNextFrame(weaponLogic, _weaponMeshCollider));
 
-        handAnimator.Play("Pull In_Hand");
+        handAnimator.Play("Pull In_Hand2");
 
         attachedItem = true;
 
@@ -249,6 +250,8 @@ public class TelekinesisController : MonoBehaviour
 
         weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
 
+        handAnimator.Play("Drop_Hand2");
+
         attachedItem = false;
         tether.ClearTethers();
     }
@@ -260,7 +263,7 @@ public class TelekinesisController : MonoBehaviour
         // weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
         weaponRB.AddForce(transform.forward * force, ForceMode.Impulse);
 
-        handAnimator.Play("Push Out_Hand");
+        handAnimator.Play("Push Out_Hand2");
 
         attachedItem = false;
         tether.ClearTethers();
