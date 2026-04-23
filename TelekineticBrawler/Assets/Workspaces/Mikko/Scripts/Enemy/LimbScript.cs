@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class LimbScript : MonoBehaviour
-{
+public class LimbScript : MonoBehaviour {
     [SerializeField] private BasicEnemy BasicEnemy;
     public LimbType limb;
 
     //Manually set child limb
     public LimbScript childLimb;
+    public GameObject limbToDismember;
+    public GameObject limbToSpawn;
     public float maxHealth = 10f;
     [SerializeField] private float currentHealth;
     [SerializeField] private float damageCooldown;
@@ -43,7 +44,11 @@ public class LimbScript : MonoBehaviour
     }
 
     private void disableLimb() {
-        //Insert dismemberment logic
+        var spawnPos = limbToDismember.transform.position;
+        var rotPos = limbToDismember.transform.rotation;
+        
+        limbToDismember.SetActive(false);
+        Instantiate(limbToSpawn, spawnPos, rotPos);
+
     }
-    
 }

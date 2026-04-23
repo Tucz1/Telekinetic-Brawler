@@ -177,6 +177,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -6639145851956156996, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5427541841728799135, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -742,6 +746,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 8
   childLimb: {fileID: 8368727022873388835}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -964,11 +970,18 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 0
   childLimb: {fileID: 3133712735689572410}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
   damageCooldownTimer: 0
   damageMultiplierToMain: 0.5
+--- !u!1 &2996693675260300492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1504836945230065634, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+  m_PrefabInstance: {fileID: 4428204189631292206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4251008008523596997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
@@ -1073,6 +1086,11 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &4704113519053120418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8952164771190833292, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+  m_PrefabInstance: {fileID: 4428204189631292206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5040362759196652244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8684860957557035514, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
@@ -1187,6 +1205,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 0
   childLimb: {fileID: 0}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -1308,6 +1328,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 9
   childLimb: {fileID: 0}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -1429,6 +1451,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 0
   childLimb: {fileID: 5814502227694107137}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -1550,6 +1574,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 3
   childLimb: {fileID: 0}
+  limbToDismember: {fileID: 2996693675260300492}
+  limbToSpawn: {fileID: 4799008916157882300, guid: 0edbb17cb4f355b489db4f39d41636d0, type: 3}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -1671,6 +1697,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 0
   childLimb: {fileID: 0}
+  limbToDismember: {fileID: 4704113519053120418}
+  limbToSpawn: {fileID: 8952164771190833292, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -1792,6 +1820,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 7
   childLimb: {fileID: 0}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -1913,6 +1943,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 3
   childLimb: {fileID: 1490888472517145568}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -1986,6 +2018,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 1
   childLimb: {fileID: 0}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
