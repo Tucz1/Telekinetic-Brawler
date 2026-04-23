@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 46b34b603eea2dd4c8b095afcfc48ca2
+guid: 7a3e926a8ab8be24794d9ed7b2ad5f5c
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle.Hand
+      name: Idle.Hand2
       takeName: Rig Hand|rigAction
       internalID: -805672090025262910
       firstFrame: 0
-      lastFrame: 96
+      lastFrame: 74
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -47,8 +47,8 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
@@ -60,9 +60,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Pull In.Hand
+      name: Pull In.Hand2
       takeName: Rig Hand|rigAction
-      internalID: -3765600217150437556
+      internalID: 7434434832147223254
       firstFrame: 108
       lastFrame: 129
       wrapMode: 0
@@ -72,7 +72,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -89,11 +89,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Push Out.Hand
+      name: Push Out.Hand2
       takeName: Rig Hand|rigAction
       internalID: 4879305071582373507
       firstFrame: 137
-      lastFrame: 171
+      lastFrame: 172
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -101,7 +101,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -118,10 +118,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Drop.Hand
+      name: Drop.Hand2
       takeName: Rig Hand|rigAction
       internalID: 8582899913547093907
-      firstFrame: 190
+      firstFrame: 180
       lastFrame: 234
       wrapMode: 0
       orientationOffsetY: 0
@@ -130,7 +130,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -147,11 +147,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Holding.Hand
+      name: Holding.Hand2
       takeName: Rig Hand|rigAction
       internalID: -3824972789838282490
       firstFrame: 240
-      lastFrame: 288
+      lastFrame: 290
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -237,7 +237,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Hand
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
