@@ -291,7 +291,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635547659545568360, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 703946765240975747, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
       propertyPath: m_Layer
@@ -401,6 +405,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 635547659545568360, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2417238322265467343}
     - targetCorrespondingSourceObject: {fileID: 1903600687086874709, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4651163848539622095}
@@ -982,6 +989,38 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1504836945230065634, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
   m_PrefabInstance: {fileID: 4428204189631292206}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3865723475932333894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 635547659545568360, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+  m_PrefabInstance: {fileID: 4428204189631292206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &2417238322265467343
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865723475932333894}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &4251008008523596997 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
@@ -1449,10 +1488,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
-  limb: 0
+  limb: 4
   childLimb: {fileID: 5814502227694107137}
-  limbToDismember: {fileID: 0}
-  limbToSpawn: {fileID: 0}
+  limbToDismember: {fileID: 6196604474095667242}
+  limbToSpawn: {fileID: 4799008916157882300, guid: 0edbb17cb4f355b489db4f39d41636d0, type: 3}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -1695,7 +1734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
-  limb: 0
+  limb: 5
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 4704113519053120418}
   limbToSpawn: {fileID: 8952164771190833292, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
@@ -1943,8 +1982,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 3
   childLimb: {fileID: 1490888472517145568}
-  limbToDismember: {fileID: 0}
-  limbToSpawn: {fileID: 0}
+  limbToDismember: {fileID: 6191907497094590796}
+  limbToSpawn: {fileID: 4799008916157882300, guid: 0edbb17cb4f355b489db4f39d41636d0, type: 3}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
