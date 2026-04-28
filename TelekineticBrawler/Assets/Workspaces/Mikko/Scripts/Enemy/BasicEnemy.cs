@@ -14,7 +14,7 @@ public class BasicEnemy : MonoBehaviour {
     [SerializeField] private int ragdollThreshold;
     [SerializeField] private int ragdollTime;
     [SerializeField] private bool isDead = false;
-    [SerializeField] private float deathDespawnTime = 5f;
+    [SerializeField] private float deathDespawnTime = 10f;
 
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
