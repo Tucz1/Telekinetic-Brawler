@@ -189,13 +189,6 @@ public class Interactable : MonoBehaviour, IInteractable
     void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.CompareTag("Environment") && IsHeld && !isPushing)
-        {
-            isPushing = true;
-            telekinesis.canInfluence = false;
-            pushRoutine = telekinesis.PushBack();
-            telekinesis.StartCoroutine(pushRoutine);
-        }
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
@@ -219,6 +212,13 @@ public class Interactable : MonoBehaviour, IInteractable
         // Take damage
 
 
+        if (collision.gameObject.CompareTag("Environment") && IsHeld && !isPushing)
+        {
+            isPushing = true;
+            telekinesis.canInfluence = false;
+            pushRoutine = telekinesis.PushBack();
+            telekinesis.StartCoroutine(pushRoutine);
+        }
 
     }
 

@@ -66,6 +66,9 @@ public class TelekinesisController : MonoBehaviour
 
     void Update()
     {
+
+        Debug.Log($"facing environment: {facingEnvironment}");
+        Debug.Log($"blocked: {blocked}");
         // if (weaponRoot != null)
         // {
         //     Debug.Log(weaponRoot.position);

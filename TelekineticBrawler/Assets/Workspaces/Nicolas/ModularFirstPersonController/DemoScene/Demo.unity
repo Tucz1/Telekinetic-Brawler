@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 22482463}
   - component: {fileID: 22482462}
   - component: {fileID: 22482467}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Ground (1)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 167484304}
   - component: {fileID: 167484303}
   - component: {fileID: 167484308}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Arch
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 188194742}
   - component: {fileID: 188194741}
   - component: {fileID: 188194744}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (4)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 271115975}
   - component: {fileID: 271115974}
   - component: {fileID: 271115977}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -1259,7 +1259,7 @@ GameObject:
   - component: {fileID: 533210979}
   - component: {fileID: 533210978}
   - component: {fileID: 533210981}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (5)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -1478,7 +1478,7 @@ GameObject:
   - component: {fileID: 574370338}
   - component: {fileID: 574370337}
   - component: {fileID: 574370342}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Arch (2)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -1929,6 +1929,8 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 0
   childLimb: {fileID: 0}
+  limbToDismember: {fileID: 0}
+  limbToSpawn: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
   damageCooldown: 0
@@ -2125,7 +2127,7 @@ GameObject:
   - component: {fileID: 656884506}
   - component: {fileID: 656884505}
   - component: {fileID: 656884508}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -2617,7 +2619,7 @@ GameObject:
   - component: {fileID: 841105802}
   - component: {fileID: 841105801}
   - component: {fileID: 841105804}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -2743,7 +2745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841781652}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Environment
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -2961,7 +2963,7 @@ GameObject:
   - component: {fileID: 912187481}
   - component: {fileID: 912187480}
   - component: {fileID: 912187483}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -3139,7 +3141,7 @@ GameObject:
   - component: {fileID: 988193880}
   - component: {fileID: 988193879}
   - component: {fileID: 988193882}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -3522,7 +3524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1039753631}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -3915,7 +3917,7 @@ GameObject:
   - component: {fileID: 1133088863}
   - component: {fileID: 1133088862}
   - component: {fileID: 1133088865}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -4041,7 +4043,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1187101986}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Ramps
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -4081,7 +4083,7 @@ GameObject:
   - component: {fileID: 1189072720}
   - component: {fileID: 1189072719}
   - component: {fileID: 1189072722}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (3)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -4268,7 +4270,7 @@ GameObject:
   - component: {fileID: 1201953289}
   - component: {fileID: 1201953288}
   - component: {fileID: 1201953293}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -4414,7 +4416,7 @@ GameObject:
   - component: {fileID: 1205087889}
   - component: {fileID: 1205087888}
   - component: {fileID: 1205087893}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Stairs
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -4882,7 +4884,7 @@ GameObject:
   - component: {fileID: 1483835292}
   - component: {fileID: 1483835291}
   - component: {fileID: 1483835294}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -5012,7 +5014,7 @@ GameObject:
   - component: {fileID: 1521483451}
   - component: {fileID: 1521483450}
   - component: {fileID: 1521483455}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Arch (1)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -5138,7 +5140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565053948}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: JumpBlocks
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -5362,7 +5364,7 @@ GameObject:
   - component: {fileID: 1746328239}
   - component: {fileID: 1746328238}
   - component: {fileID: 1746328241}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Cube (4)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -5844,7 +5846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1838606100}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Arches
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -7312,6 +7314,10 @@ PrefabInstance:
       propertyPath: nodeOne
       value: 
       objectReference: {fileID: 2054695435}
+    - target: {fileID: 4560406830805021049, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: environmentLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 7086156937469381450, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.2
