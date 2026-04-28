@@ -2557,6 +2557,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2083972113183383227, guid: 37d683746de755c468e49b81d1ccfafd, type: 3}
+      propertyPath: weaponThrowRotation.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875640404123278883, guid: 37d683746de755c468e49b81d1ccfafd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875640404123278883, guid: 37d683746de755c468e49b81d1ccfafd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2875640404123278883, guid: 37d683746de755c468e49b81d1ccfafd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6224444310854443896, guid: 37d683746de755c468e49b81d1ccfafd, type: 3}
       propertyPath: m_Name
       value: Cane
@@ -6969,6 +6985,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hammer
       objectReference: {fileID: 0}
+    - target: {fileID: 510861740143841777, guid: f268c22a8054abf4e8f7f9319d30f4ec, type: 3}
+      propertyPath: weaponThrowRotation.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 6456383393701441299, guid: f268c22a8054abf4e8f7f9319d30f4ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.89
@@ -7022,6 +7042,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3377886629280705719, guid: 08967cd81eb1a874f8a0287fa715d586, type: 3}
+      propertyPath: weaponThrowRotation.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8710320379891987719, guid: 08967cd81eb1a874f8a0287fa715d586, type: 3}
       propertyPath: m_Name
       value: Morningstar
@@ -7079,6 +7103,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3156361334528854170, guid: 52613962ef9fb5847852f0745e5dfffa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156361334528854170, guid: 52613962ef9fb5847852f0745e5dfffa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3156361334528854170, guid: 52613962ef9fb5847852f0745e5dfffa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3612974103328843717, guid: 52613962ef9fb5847852f0745e5dfffa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7119,6 +7155,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4951446715023759513, guid: 52613962ef9fb5847852f0745e5dfffa, type: 3}
+      propertyPath: weaponThrowRotation.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5401944451924259785, guid: 52613962ef9fb5847852f0745e5dfffa, type: 3}
       propertyPath: m_Name
       value: BaseballBat
@@ -7136,6 +7176,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 767450445568006602, guid: 78d48ef24840d064595024bac24bf6e0, type: 3}
+      propertyPath: weaponThrowRotation.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 1916197567367182821, guid: 78d48ef24840d064595024bac24bf6e0, type: 3}
       propertyPath: m_Name
       value: Pitchfork

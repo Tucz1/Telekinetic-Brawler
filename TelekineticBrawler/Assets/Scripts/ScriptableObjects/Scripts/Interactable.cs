@@ -22,6 +22,7 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Rigidbody weaponRB;
     [SerializeField] Transform weaponRoot;
     [SerializeField] Transform weaponTransform;
+    [SerializeField] Vector3 weaponThrowRotation;
     [SerializeField] Collider weaponCollider;
     [SerializeField] GameObject brokenWeapon;
 
@@ -130,7 +131,7 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Interacted with {name}", this);
         IsHeld = true;
         outline.enabled = false;
-        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponCollider);
+        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponCollider, weaponThrowRotation);
     }
 
     public void Drop()
@@ -144,6 +145,7 @@ public class Interactable : MonoBehaviour, IInteractable
     public void Throw(float _timeHeld)
     {
         if (!IsHeld) { return; }
+
         var force = weaponData.MinThrowStrength;
         var timeHeld = _timeHeld; // If the player holds for 2 seconds, the timeheld becomes 3. This is for the exponent, and it is as high as we let the player charge
         Debug.Log($"Threw item {name}", this);
