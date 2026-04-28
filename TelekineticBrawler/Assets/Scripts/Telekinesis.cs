@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TelekinesisController : MonoBehaviour
 {
+
     [Header("References")]
     private Transform weaponRoot;
     private Transform weaponLogic;
@@ -41,6 +42,8 @@ public class TelekinesisController : MonoBehaviour
     TetherBundle tether;
     PauseMenu pauseMenu;
     public bool isThrowing;
+    [SerializeField] private bool hitEnemy;
+    [SerializeField] private WaitForSeconds staggerWaitForSeconds = new WaitForSeconds(0.08f);
     // Interactable interactable;
 
     void Awake()
@@ -67,18 +70,12 @@ public class TelekinesisController : MonoBehaviour
     void Update()
     {
 
-        Debug.Log($"facing environment: {facingEnvironment}");
-        Debug.Log($"blocked: {blocked}");
         // if (weaponRoot != null)
         // {
         //     Debug.Log(weaponRoot.position);
         //     Debug.Log(weaponLogic.position);
         //     Debug.Log(nodeOne.position);
         // }
-
-
-
-
 
         if (pauseMenu.ispaused) return;
         if (!attachedItem) return;
@@ -132,7 +129,8 @@ public class TelekinesisController : MonoBehaviour
 
     void UpdatePosition(float distance)
     {
-        float weightedSpeed = weaponData.BaseFollowSpeed + distance * weaponData.Weight;
+        float weightedSpeed = !hitEnemy ? weaponData.BaseFollowSpeed + distance * weaponData.Weight : 
+                                        (weaponData.BaseFollowSpeed + distance * weaponData.Weight) / 10f;
 
         if ((!blocked && !facingEnvironment) || !facingEnvironment)
             weaponRoot.position = Vector3.MoveTowards(
@@ -274,6 +272,13 @@ public class TelekinesisController : MonoBehaviour
 
         attachedItem = false;
         tether.ClearTethers();
+    }
+
+    public IEnumerator OnHit()
+    {
+        hitEnemy = true;
+        yield return staggerWaitForSeconds;
+        hitEnemy = false;
     }
 
     void ReversePosition(float distance)

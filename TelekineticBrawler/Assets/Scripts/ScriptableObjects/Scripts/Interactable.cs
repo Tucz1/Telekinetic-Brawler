@@ -203,6 +203,8 @@ public class Interactable : MonoBehaviour, IInteractable
             // StartCoroutine(timeWarp.ImpactFrame());
 
             limb.TakeDamage(damage, stagger, weaponData);
+
+            StartCoroutine(telekinesis.OnHit());
         }
 
         // Deal damage
