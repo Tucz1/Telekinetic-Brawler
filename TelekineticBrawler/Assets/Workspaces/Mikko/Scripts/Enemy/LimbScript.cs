@@ -9,16 +9,18 @@ public class LimbScript : MonoBehaviour {
     public GameObject limbToDismember;
     public GameObject limbToSpawn;
     public float maxHealth = 10f;
+    public Animator parentAnimator;
     [SerializeField] private float currentHealth;
     [SerializeField] private float damageCooldown = 2f;
     [SerializeField] private float damageCooldownTimer;
 
-    private bool dismembered = false;
+    [SerializeField] private bool dismembered = false;
 
     public float damageMultiplierToMain = 0.5f;
     private void Awake() {
         BasicEnemy = GetComponentInParent<BasicEnemy>();
         currentHealth = maxHealth;
+        parentAnimator = GetComponentInParent<Animator>();
     }
 
     public void TakeDamage(float damage, float stagger, WeaponData weaponData) {
@@ -33,9 +35,13 @@ public class LimbScript : MonoBehaviour {
             }
             BasicEnemy.takeDamage(damageToMain, stagger, weaponData);
 
+            if (limb == LimbType.UpperRightArm || limb == LimbType.LowerRightArm) parentAnimator.Play("StaggerLeft");
+            if (limb == LimbType.UpperLeftArm || limb == LimbType.LowerLeftArm) parentAnimator.Play("StaggerRight");
+
             if (currentHealth <= 0) {
                 if (childLimb != null)
-                    childLimb.disableChildOnly();
+                    disableChildOnly();
+                    disableLimb();
 
                 disableLimb(); // only this one spawns
             }
@@ -43,6 +49,13 @@ public class LimbScript : MonoBehaviour {
     }
     private void Update() {
         damageCooldownTimer += Time.deltaTime;
+    }
+    private void disableChildOnly() {
+        if (limbToDismember != null) {
+            if (childLimb != null)
+                childLimb.limbToDismember.SetActive(false);
+
+        }
     }
 
     private void disableLimb() {
@@ -56,14 +69,6 @@ public class LimbScript : MonoBehaviour {
             if (limbToSpawn != null) {
                 Instantiate(limbToSpawn, spawnPos, rotPos);
             }
-        }
-    }
-    private void disableChildOnly() {
-        if (limbToDismember != null) {
-            if (childLimb != null)
-                childLimb.disableChildOnly();
-
-            limbToDismember.SetActive(false);
         }
     }
 }
