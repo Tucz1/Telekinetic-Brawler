@@ -34,7 +34,7 @@ public class BasicEnemy : MonoBehaviour {
         disableRagdolls();
     }
 
-    public void takeDamage(float damage, float staggerAmount, WeaponData weaponData) {
+    public void takeDamage(float damage, float stagger, WeaponData weaponData) {
         currentHealth -= damage;
         if (!isDead) {
             if (currentHealth <= 0) {
@@ -43,12 +43,9 @@ public class BasicEnemy : MonoBehaviour {
                 isDead = true;
             }
             //Ragdoll threshold
-            //if (staggerAmount >= ragdollThreshold) {
-            //}
-            ////Stagger threshold
-            //if (staggerAmount >= staggerThreshold) {
-            //    StartCoroutine(RagdollStagger());
-            //}
+            if (stagger >= ragdollThreshold) {
+                StartCoroutine(RagdollStagger());
+            }
         }
     }
 
@@ -120,27 +117,30 @@ public class BasicEnemy : MonoBehaviour {
             transform.position = Vector3.Lerp(animator.rootPosition, agent.nextPosition, smooth);
         }
     }
-    private void OnTriggerEnter(Collider collision) {
-        if(collision.gameObject.name == "FirstPersonController") {
-        isPlayerInside = true;
-        StartCoroutine(attackPlayer());
+    //private void OnTriggerEnter(Collider collision) {
+    //    if(collision.gameObject.name == "FirstPersonController") {
+    //    isPlayerInside = true;
+    //    AttackPlayer();
+    //    }
+    //}
+    private void OnTriggerStay(Collider other) {
+        if (other.gameObject.name == "FirstPersonController") {
+            isPlayerInside = true;
+            AttackPlayer();
         }
     }
     private void OnTriggerExit(Collider collision)  {
         isPlayerInside = false;
+        animator.SetBool("isAttacking", false);
     }
 
-    IEnumerator attackPlayer() {
+    private void AttackPlayer() {
         animator.SetBool("isAttacking", true);
-        yield return new WaitForSeconds(3);
         Debug.Log("Testing if player is inside");
         if (isPlayerInside) {
             //Deal damage
             Debug.Log("player is inside");
-            animator.SetBool("isAttacking", false);
         }
-        animator.SetBool("isAttacking", false);
-        yield return null;
     }
 
     IEnumerator RagdollStagger() {

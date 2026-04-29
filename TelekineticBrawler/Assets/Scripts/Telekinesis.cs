@@ -99,6 +99,8 @@ public class TelekinesisController : MonoBehaviour
         UpdateTargetPosition();
 
         Vector3 direction = nodeOne.position - weaponRoot.position;
+        Debug.DrawLine(nodeOne.position, weaponRoot.position);
+        // Debug.Log($"Direction: {direction}");
         lastDir = direction;
         distance = direction.magnitude;
         float normalizedDistance = Mathf.Clamp01(distance / weaponData.MaxDistance);
@@ -144,20 +146,14 @@ public class TelekinesisController : MonoBehaviour
     {
         Quaternion targetRotation = Quaternion.identity;
 
-        // if (!isThrowing)
-        // {
-            targetRotation =
-            distance > weaponData.Deadzone
-            ? Quaternion.LookRotation(direction)
-            : Quaternion.LookRotation(mainCam.transform.forward);
+        Debug.Log(distance > weaponData.Deadzone);
 
+        var upVector = Vector3.Cross(direction, mainCam.transform.right);
+        
+        targetRotation =
+        distance > weaponData.Deadzone ? Quaternion.LookRotation(direction, upVector)
+                                       : Quaternion.LookRotation(mainCam.transform.forward);
 
-        // }
-        // else
-        // {
-        //     targetRotation = ;
-        //     weaponRoot.rotation = targetRotation;
-        // }
 
 
         float rotationSpeed = Mathf.Lerp(
@@ -178,7 +174,7 @@ public class TelekinesisController : MonoBehaviour
             // Quaternion.Euler(mainCam.WorldToScreenPoint(weaponThrowRotation))
             weaponRoot.rotation = Quaternion.Slerp(
             weaponRoot.rotation,
-            Quaternion.LookRotation(mainCam.transform.up),
+            Quaternion.LookRotation(-mainCam.transform.up, mainCam.transform.forward),
             rotationSpeed * Time.deltaTime);
         }
     }
