@@ -83,9 +83,7 @@ public class BasicEnemy : MonoBehaviour {
         agent.nextPosition = rootPosition;
     }
 
-    // Update is called once per frame
     void Update() {
-        print(hips.forward.y);
         if (ragdolling == false) {
             agent.destination = Target.position;
             SyncAnimatorAndAgent();
@@ -93,7 +91,7 @@ public class BasicEnemy : MonoBehaviour {
         if (ragdolling == true) {
 
         }
-
+        //DEBUG BUTTONS FOR RAGDOLL TESTING
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
             enableRagdolls();
         }
@@ -130,27 +128,19 @@ public class BasicEnemy : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider collision) {
         if (collision.gameObject.name == "FirstPersonController") {
-            isPlayerInside = true;
             AttackPlayer();
         }
     }
-    private void OnTriggerStay(Collider other) {
-        if (other.gameObject.name == "FirstPersonController") {
-            isPlayerInside = true;
-        }
-    }
-    private void OnTriggerExit(Collider collision)  {
-        isPlayerInside = false;
-        animator.SetBool("isAttacking", false);
-    }
 
     private void AttackPlayer() {
-        animator.SetBool("isAttacking", true);
-        Debug.Log("Testing if player is inside");
-        if (isPlayerInside) {
-            //Deal damage
-            Debug.Log("player is inside");
+        if (LeftArmDisabled && !RightArmDisabled) {
+            animator.Play("WalkAttackRightArm");
         }
+        if (RightArmDisabled && !LeftArmDisabled) {
+            animator.Play("WalkAttackLeftArm");
+        }
+        else
+            animator.Play("WalkAttack");
     }
 
     IEnumerator RagdollStagger() {
