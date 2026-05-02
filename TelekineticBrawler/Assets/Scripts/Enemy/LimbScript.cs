@@ -59,6 +59,9 @@ public class LimbScript : MonoBehaviour {
     }
 
     private void disableLimb() {
+        if (limb == LimbType.LowerLeftArm || limb == LimbType.UpperLeftArm) BasicEnemy.LeftArmDisabled = true;
+        if (limb == LimbType.LowerRightArm || limb == LimbType.UpperRightArm) BasicEnemy.RightArmDisabled = true;
+
         if (limbToDismember != null) {
             var spawnPos = limbToDismember.transform.position;
             var rotPos = limbToDismember.transform.rotation;

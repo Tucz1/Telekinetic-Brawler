@@ -8,6 +8,7 @@ public class BasicEnemy : MonoBehaviour {
     public Animator animator;
     public Transform Target;
     [SerializeField] bool isPlayerInside = false;
+    [SerializeField] bool isPointingUp;
     [SerializeField] private Rigidbody[] ragdollRigidbodies;
     [SerializeField] private bool ragdolling;
     [SerializeField] private int staggerThreshold;
@@ -16,12 +17,17 @@ public class BasicEnemy : MonoBehaviour {
     [SerializeField] private bool isDead = false;
     [SerializeField] private float deathDespawnTime = 10f;
 
+    [SerializeField] private Transform hips;
+
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
 
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private float currentHealth = 100;
 
+    //DISABLED LIMBS
+    public bool LeftArmDisabled = false;
+    public bool RightArmDisabled = false;
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -43,7 +49,7 @@ public class BasicEnemy : MonoBehaviour {
                 isDead = true;
             }
             //Ragdoll threshold
-            if (stagger >= ragdollThreshold) {
+            if (stagger >= ragdollThreshold && isDead == false) {
                 StartCoroutine(RagdollStagger());
             }
         }
@@ -65,8 +71,10 @@ public class BasicEnemy : MonoBehaviour {
         }
         agent.enabled = true;
         animator.enabled = true;
-        animator.Play("GetUp");
         ragdolling = false;
+        if (hips.forward.y < 0) animator.Play("GetUpBack");
+        if (hips.forward.y > 0) animator.Play("GetUpFront");
+
     }
     private void OnAnimatorMove() {
         Vector3 rootPosition = animator.rootPosition;
@@ -77,10 +85,13 @@ public class BasicEnemy : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        print(hips.forward.y);
         if (ragdolling == false) {
             agent.destination = Target.position;
             SyncAnimatorAndAgent();
+        }
+        if (ragdolling == true) {
+
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
@@ -117,16 +128,15 @@ public class BasicEnemy : MonoBehaviour {
             transform.position = Vector3.Lerp(animator.rootPosition, agent.nextPosition, smooth);
         }
     }
-    //private void OnTriggerEnter(Collider collision) {
-    //    if(collision.gameObject.name == "FirstPersonController") {
-    //    isPlayerInside = true;
-    //    AttackPlayer();
-    //    }
-    //}
+    private void OnTriggerEnter(Collider collision) {
+        if (collision.gameObject.name == "FirstPersonController") {
+            isPlayerInside = true;
+            AttackPlayer();
+        }
+    }
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.name == "FirstPersonController") {
             isPlayerInside = true;
-            AttackPlayer();
         }
     }
     private void OnTriggerExit(Collider collision)  {
