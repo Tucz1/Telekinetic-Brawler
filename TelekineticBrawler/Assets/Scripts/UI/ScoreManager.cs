@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     int rankScore = 0;
     int rankLevel = 0;
     float rankTimer = 0;
-    float rankDecayTime = 4;
+    float rankDecayTime = 6;
     int uiScore = 0;
     string rankS = "S";
     string rankA = "A";
@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
         if (rankLevel == 3) {
             rankText.text = rankA;
         }
-        if (rankLevel == 4)  {
+        if (rankLevel >= 4)  {
             rankText.text = rankS;
             rankLevel = 4;
         }
@@ -72,7 +72,8 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         if(rankLevel > 0) {
-            rankTimer -= Time.deltaTime;
+            float decayMultiplier = 1f + (rankLevel * 0.5f); //rank 1 = 1.5x speed, 2 = 2x speed and so on, min 1
+            rankTimer -= Time.deltaTime * decayMultiplier;
             if(rankTimer <= 0) {
                 rankTimer = rankDecayTime;
                 rankLevel--;
