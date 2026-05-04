@@ -8,6 +8,7 @@ public class BasicEnemy : MonoBehaviour {
     public Animator animator;
     public Transform Target;
     [SerializeField] bool isPlayerInside = false;
+    [SerializeField] bool isPointingUp;
     [SerializeField] private Rigidbody[] ragdollRigidbodies;
     [SerializeField] private bool ragdolling;
     [SerializeField] private int staggerThreshold;
@@ -16,12 +17,17 @@ public class BasicEnemy : MonoBehaviour {
     [SerializeField] private bool isDead = false;
     [SerializeField] private float deathDespawnTime = 10f;
 
+    [SerializeField] private Transform hips;
+
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
 
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private float currentHealth = 100;
 
+    //DISABLED LIMBS
+    public bool LeftArmDisabled = false;
+    public bool RightArmDisabled = false;
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -43,7 +49,7 @@ public class BasicEnemy : MonoBehaviour {
                 isDead = true;
             }
             //Ragdoll threshold
-            if (stagger >= ragdollThreshold) {
+            if (stagger >= ragdollThreshold && isDead == false) {
                 StartCoroutine(RagdollStagger());
             }
         }
@@ -65,8 +71,10 @@ public class BasicEnemy : MonoBehaviour {
         }
         agent.enabled = true;
         animator.enabled = true;
-        animator.Play("GetUp");
         ragdolling = false;
+        if (hips.forward.y < 0) animator.Play("GetUpBack");
+        if (hips.forward.y > 0) animator.Play("GetUpFront");
+
     }
     private void OnAnimatorMove() {
         Vector3 rootPosition = animator.rootPosition;
@@ -75,14 +83,15 @@ public class BasicEnemy : MonoBehaviour {
         agent.nextPosition = rootPosition;
     }
 
-    // Update is called once per frame
     void Update() {
-
         if (ragdolling == false) {
             agent.destination = Target.position;
             SyncAnimatorAndAgent();
         }
+        if (ragdolling == true) {
 
+        }
+        //DEBUG BUTTONS FOR RAGDOLL TESTING
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
             enableRagdolls();
         }
@@ -117,30 +126,21 @@ public class BasicEnemy : MonoBehaviour {
             transform.position = Vector3.Lerp(animator.rootPosition, agent.nextPosition, smooth);
         }
     }
-    //private void OnTriggerEnter(Collider collision) {
-    //    if(collision.gameObject.name == "FirstPersonController") {
-    //    isPlayerInside = true;
-    //    AttackPlayer();
-    //    }
-    //}
-    private void OnTriggerStay(Collider other) {
-        if (other.gameObject.name == "FirstPersonController") {
-            isPlayerInside = true;
+    private void OnTriggerEnter(Collider collision) {
+        if (collision.gameObject.name == "FirstPersonController") {
             AttackPlayer();
         }
     }
-    private void OnTriggerExit(Collider collision)  {
-        isPlayerInside = false;
-        animator.SetBool("isAttacking", false);
-    }
 
     private void AttackPlayer() {
-        animator.SetBool("isAttacking", true);
-        Debug.Log("Testing if player is inside");
-        if (isPlayerInside) {
-            //Deal damage
-            Debug.Log("player is inside");
+        if (LeftArmDisabled && !RightArmDisabled) {
+            animator.Play("WalkAttackRightArm");
         }
+        if (RightArmDisabled && !LeftArmDisabled) {
+            animator.Play("WalkAttackLeftArm");
+        }
+        else
+            animator.Play("WalkAttack");
     }
 
     IEnumerator RagdollStagger() {
