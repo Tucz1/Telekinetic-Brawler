@@ -146,8 +146,6 @@ public class TelekinesisController : MonoBehaviour
     {
         Quaternion targetRotation = Quaternion.identity;
 
-        Debug.Log(distance > weaponData.Deadzone);
-
         var upVector = Vector3.Cross(direction, mainCam.transform.right);
         
         targetRotation =

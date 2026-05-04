@@ -25,6 +25,8 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Vector3 weaponThrowRotation;
     [SerializeField] Collider weaponCollider;
     [SerializeField] GameObject brokenWeapon;
+    [SerializeField] float minDamageThreshold = 40;
+    [SerializeField] float impactFrameDamageThreshold = 500;
 
     [Header("Outline")]
     [SerializeField] private Outline outline;
@@ -200,11 +202,19 @@ public class Interactable : MonoBehaviour, IInteractable
 
             if (limb == null) { Debug.LogError($"Limb script not found {collision.gameObject}"); return; }
 
+            Debug.Log($"Weapon damage type: {weaponData.DamageType}");
+
             var damage = CalculateDamage();
             var stagger = CalculateStagger(damage);
 
+            if (damage < minDamageThreshold) {Debug.Log("Did not cross damage threshold, returning..."); return;}
+
+            Debug.Log($"Damage dealt: {damage} \n Stagger dealt: {stagger}");
+
             // If damage || stagger > threshold
             // StartCoroutine(timeWarp.ImpactFrame());
+
+            if (damage > impactFrameDamageThreshold) StartCoroutine(timeWarp.ImpactFrame());
 
             limb.TakeDamage(damage, stagger, weaponData);
             scoreManager.AddPoints((int)damage + (int)stagger);
@@ -232,7 +242,6 @@ public class Interactable : MonoBehaviour, IInteractable
     private float CalculateDamage()
     {
         var damage = trueVelocity.magnitude * weaponData.Damage;
-        Debug.Log($"Damage dealt: {damage}");
         return damage;
     }
 
@@ -258,8 +267,6 @@ public class Interactable : MonoBehaviour, IInteractable
                 stagger = damage;
                 break;
         }
-        Debug.Log($"Damage type: {weaponData.DamageType}");
-        Debug.Log($"Stagger amount: {stagger}");
 
         return stagger;
     }

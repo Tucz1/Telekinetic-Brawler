@@ -225,8 +225,11 @@ MonoBehaviour:
   weaponRB: {fileID: 2699642080351664288}
   weaponRoot: {fileID: 6456383393701441299}
   weaponTransform: {fileID: 6630872445995257215}
+  weaponThrowRotation: {x: 90, y: 0, z: 0}
   weaponCollider: {fileID: 4918298260190114103}
   brokenWeapon: {fileID: 3163210030441528345, guid: 16a2673751115224192e95967d0c48ed, type: 3}
+  minDamageThreshold: 40
+  impactFrameDamageThreshold: 500
   outline: {fileID: 604150792992183235}
   outlineEnableDelay: 0
   outlineDisableDelay: 0
