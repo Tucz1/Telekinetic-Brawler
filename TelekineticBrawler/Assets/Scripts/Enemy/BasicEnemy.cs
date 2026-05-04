@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem.Processors;
 
 public class BasicEnemy : MonoBehaviour {
     NavMeshAgent agent;
@@ -21,13 +20,16 @@ public class BasicEnemy : MonoBehaviour {
 
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
-
+    
+    //HP
     [SerializeField] private float maxHealth = 100;
     [SerializeField] private float currentHealth = 100;
 
     //DISABLED LIMBS
     public bool LeftArmDisabled = false;
     public bool RightArmDisabled = false;
+
+
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();

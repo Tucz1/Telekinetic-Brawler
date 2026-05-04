@@ -51,6 +51,7 @@ public class Interactable : MonoBehaviour, IInteractable
     bool isPushing;
 
 
+
     private void Awake()
     {
         if (!outline) outline = GetComponent<Outline>();
@@ -195,6 +196,7 @@ public class Interactable : MonoBehaviour, IInteractable
         if (collision.gameObject.CompareTag("Enemy"))
         {
             var limb = collision.gameObject.GetComponentInChildren<LimbScript>();
+            var scoreManager = FindAnyObjectByType<ScoreManager>();
 
             if (limb == null) { Debug.LogError($"Limb script not found {collision.gameObject}"); return; }
 
@@ -205,6 +207,7 @@ public class Interactable : MonoBehaviour, IInteractable
             // StartCoroutine(timeWarp.ImpactFrame());
 
             limb.TakeDamage(damage, stagger, weaponData);
+            scoreManager.AddPoints((int)damage + (int)stagger);
 
             StartCoroutine(telekinesis.OnHit());
         }
