@@ -1057,7 +1057,7 @@ MonoBehaviour:
   childLimb: {fileID: 8368727022873388835}
   limbToDismember: {fileID: 5332063166981648000}
   limbToSpawn: {fileID: 0}
-  maxHealth: 750
+  maxHealth: 500
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   childLimb: {fileID: 3133712735689572410}
   limbToDismember: {fileID: 6684949546912361672}
   limbToSpawn: {fileID: 0}
-  maxHealth: 750
+  maxHealth: 500
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -1667,7 +1667,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 0}
   limbToSpawn: {fileID: 0}
-  maxHealth: 10
+  maxHealth: 1250
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -1893,7 +1893,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 0}
   limbToSpawn: {fileID: 4799008916157882300, guid: 88b64cc6c941580478a0d9990ac9c537, type: 3}
-  maxHealth: 500
+  maxHealth: 250
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2018,7 +2018,7 @@ MonoBehaviour:
   childLimb: {fileID: 5814502227694107137}
   limbToDismember: {fileID: 4551525708648250642}
   limbToSpawn: {fileID: 1730563975972360691, guid: c12cf057f6bfdc44bbb1a21e344108eb, type: 3}
-  maxHealth: 10
+  maxHealth: 500
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 1434945279956885999}
   limbToSpawn: {fileID: 4799008916157882300, guid: 0edbb17cb4f355b489db4f39d41636d0, type: 3}
-  maxHealth: 10
+  maxHealth: 250
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2268,7 +2268,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 2600385213127024082}
   limbToSpawn: {fileID: 4799008916157882300, guid: 0edbb17cb4f355b489db4f39d41636d0, type: 3}
-  maxHealth: 10
+  maxHealth: 250
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2393,7 +2393,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 0}
   limbToSpawn: {fileID: 4799008916157882300, guid: 88b64cc6c941580478a0d9990ac9c537, type: 3}
-  maxHealth: 500
+  maxHealth: 250
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2518,7 +2518,7 @@ MonoBehaviour:
   childLimb: {fileID: 1490888472517145568}
   limbToDismember: {fileID: 1012339811108711790}
   limbToSpawn: {fileID: 1730563975972360691, guid: c12cf057f6bfdc44bbb1a21e344108eb, type: 3}
-  maxHealth: 10
+  maxHealth: 500
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
