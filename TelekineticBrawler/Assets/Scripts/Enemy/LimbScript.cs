@@ -33,10 +33,31 @@ public class LimbScript : MonoBehaviour {
             if (damageToMain > maxHealth) {
                 damageToMain = maxHealth * damageMultiplierToMain;
             }
+            //Send damage over here, afterwards stagger checks
             BasicEnemy.takeDamage(damageToMain, stagger, weaponData);
 
-            if (limb == LimbType.UpperRightArm || limb == LimbType.LowerRightArm) parentAnimator.Play("StaggerLeft");
-            if (limb == LimbType.UpperLeftArm || limb == LimbType.LowerLeftArm) parentAnimator.Play("StaggerRight");
+            if (limb == LimbType.UpperRightArm || limb == LimbType.LowerRightArm) {
+                if (stagger > BasicEnemy.ragdollThreshold) {
+                    StartCoroutine(BasicEnemy.RagdollStagger());
+                }
+                else if (stagger > BasicEnemy.staggerThreshold) {
+                    parentAnimator.Play("StaggerLeftWalk");
+                }
+                else if (stagger > BasicEnemy.lightStaggerThreshold) {
+                    parentAnimator.Play("StaggerLeft");
+                }
+            }
+            if (limb == LimbType.UpperLeftArm || limb == LimbType.LowerLeftArm) {
+                if (stagger > BasicEnemy.ragdollThreshold) {
+                    StartCoroutine(BasicEnemy.RagdollStagger());
+                }
+                else if (stagger > BasicEnemy.staggerThreshold) {
+                    parentAnimator.Play("StaggerRightWalk");
+                }
+                else if (stagger > BasicEnemy.lightStaggerThreshold) {
+                    parentAnimator.Play("StaggerRight");
+                }
+            }
 
             if (currentHealth <= 0) {
                 if (childLimb != null)

@@ -72,17 +72,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
   animator: {fileID: 0}
   Target: {fileID: 0}
-  isPlayerInside: 0
   isPointingUp: 0
   ragdollRigidbodies: []
+  enemyAttacks: []
   ragdolling: 0
-  staggerThreshold: 0
-  ragdollThreshold: 100
+  lightStaggerThreshold: 50
+  staggerThreshold: 175
+  ragdollThreshold: 250
   ragdollTime: 2
   isDead: 0
   deathDespawnTime: 5
   hips: {fileID: 1050377577980370852}
-  maxHealth: 1250
   currentHealth: 1250
   LeftArmDisabled: 0
   RightArmDisabled: 0
@@ -760,6 +760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
   Target: {fileID: 0}
   damage: 10
+  ScoreManager: {fileID: 0}
 --- !u!54 &3377016311907681601
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1284,7 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
-  limb: 0
+  limb: 6
   childLimb: {fileID: 3133712735689572410}
   limbToDismember: {fileID: 6684949546912361672}
   limbToSpawn: {fileID: 0}
@@ -1295,6 +1296,11 @@ MonoBehaviour:
   damageCooldownTimer: 0
   dismembered: 0
   damageMultiplierToMain: 0.5
+--- !u!1 &3187566602313332083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1245428709370254941, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+  m_PrefabInstance: {fileID: 4428204189631292206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3865723475932333894 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 635547659545568360, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
@@ -1369,6 +1375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
   Target: {fileID: 0}
   damage: 10
+  ScoreManager: {fileID: 0}
 --- !u!54 &5154312796325086205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1891,7 +1898,7 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 9
   childLimb: {fileID: 0}
-  limbToDismember: {fileID: 0}
+  limbToDismember: {fileID: 9076903204106735562}
   limbToSpawn: {fileID: 4799008916157882300, guid: 88b64cc6c941580478a0d9990ac9c537, type: 3}
   maxHealth: 250
   parentAnimator: {fileID: 0}
@@ -2391,7 +2398,7 @@ MonoBehaviour:
   BasicEnemy: {fileID: 0}
   limb: 7
   childLimb: {fileID: 0}
-  limbToDismember: {fileID: 0}
+  limbToDismember: {fileID: 3187566602313332083}
   limbToSpawn: {fileID: 4799008916157882300, guid: 88b64cc6c941580478a0d9990ac9c537, type: 3}
   maxHealth: 250
   parentAnimator: {fileID: 0}
@@ -2804,3 +2811,8 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!1 &9076903204106735562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4574663946488927004, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+  m_PrefabInstance: {fileID: 4428204189631292206}
+  m_PrefabAsset: {fileID: 0}

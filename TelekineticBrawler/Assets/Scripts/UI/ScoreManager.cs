@@ -6,18 +6,30 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI uiText;
     [SerializeField] private TextMeshProUGUI rankText;
+    [SerializeField] private TextMeshProUGUI rankTextmp;
+
     [SerializeField] Slider rankSlider;
     int score = 0;
     int rankScore = 0;
     int rankLevel = 0;
+    float scoreMultiplier = 1;
     float rankTimer = 0;
-    float rankDecayTime = 6;
+    float rankDecayTime = 10;
     int uiScore = 0;
     string rankS = "S";
+    string rankSmp = "3x";
     string rankA = "A";
+    string rankAmp = "2x";
+
     string rankB = "B";
+    string rankBmp = "1.5x";
+
     string rankC = "C";
+    string rankCmp = "1.2x";
+
     string rankD = "D";
+    string rankDmp = "1x";
+
 
 
     float delaySpeed = 0.01f;
@@ -37,27 +49,46 @@ public class ScoreManager : MonoBehaviour
     private void checkRank() {
         if (rankLevel <= 0) {
             rankText.text = rankD;
+            rankTextmp.text = rankDmp;
+            scoreMultiplier = 1;
         }
         if (rankLevel == 1) {
             rankText.text = rankC;
+            rankTextmp.text = rankCmp;
+
+            scoreMultiplier = 1.2f;
+
         }
         if (rankLevel == 2) {
             rankText.text = rankB;
+            rankTextmp.text = rankBmp;
+            scoreMultiplier = 1.5f;
+
         }
         if (rankLevel == 3) {
             rankText.text = rankA;
+            rankTextmp.text = rankAmp;
+            scoreMultiplier = 2;
+
         }
         if (rankLevel >= 4)  {
             rankText.text = rankS;
+            rankTextmp.text = rankSmp;
             rankLevel = 4;
+            scoreMultiplier = 3;
+
         }
+    }
+    public void decreaseRank() {
+        rankLevel--;
+        checkRank();
     }
 
     public void AddPoints(int points) {
         if (currentCoroutineScore != null) StopCoroutine(currentCoroutineScore);
 
         uiScore = score;
-        score += points;
+        score += (int)Mathf.Round(points * scoreMultiplier);
         rankScore += points;
         if (rankScore >= 250) { 
             rankLevel++;

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7498168512358446001}
   - component: {fileID: 8879564416886359086}
   - component: {fileID: 1360517721297143614}
+  - component: {fileID: 2982352596128431530}
+  - component: {fileID: 4385843171978307120}
   m_Layer: 7
   m_Name: ArmFull
   m_TagString: Untagged
@@ -80,8 +82,50 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.22, z: 0.24}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.09, y: 0.67, z: 0.16}
+  m_Center: {x: 0.34, y: -0.22, z: 0}
+--- !u!114 &2982352596128431530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799008916157882300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c25b7da249c0b48b7556b1357f896b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  weaponData: {fileID: 11400000, guid: 290b9f58f7ffd8944b736f11c14c1a4d, type: 2}
+  weaponRB: {fileID: 8879564416886359086}
+  weaponRoot: {fileID: 7498168512358446001}
+  weaponTransform: {fileID: 5842878721788086387}
+  weaponThrowRotation: {x: 0, y: -90, z: 0}
+  weaponCollider: {fileID: 1360517721297143614}
+  brokenWeapon: {fileID: 0}
+  minDamageThreshold: 40
+  impactFrameDamageThreshold: 500
+  outline: {fileID: 0}
+  outlineEnableDelay: 0
+  outlineDisableDelay: 0
+--- !u!114 &4385843171978307120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799008916157882300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Outline
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 7
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &6241050379432456088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,6 +177,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 67ed4ac49aada014ca53dab169125544, type: 3}
       propertyPath: m_Name
       value: Left.Forearm
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 67ed4ac49aada014ca53dab169125544, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

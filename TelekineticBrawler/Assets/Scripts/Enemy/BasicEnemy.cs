@@ -6,12 +6,13 @@ public class BasicEnemy : MonoBehaviour {
     NavMeshAgent agent;
     public Animator animator;
     public Transform Target;
-    [SerializeField] bool isPlayerInside = false;
     [SerializeField] bool isPointingUp;
     [SerializeField] private Rigidbody[] ragdollRigidbodies;
+    [SerializeField] private EnemyAttack[] enemyAttacks;
     [SerializeField] private bool ragdolling;
-    [SerializeField] private int staggerThreshold;
-    [SerializeField] private int ragdollThreshold;
+    [SerializeField] public int lightStaggerThreshold;
+    [SerializeField] public int staggerThreshold;
+    [SerializeField] public int ragdollThreshold;
     [SerializeField] private int ragdollTime;
     [SerializeField] private bool isDead = false;
     [SerializeField] private float deathDespawnTime = 10f;
@@ -22,7 +23,6 @@ public class BasicEnemy : MonoBehaviour {
     private Vector2 SmoothDeltaPosition;
     
     //HP
-    [SerializeField] private float maxHealth = 100;
     [SerializeField] private float currentHealth = 100;
 
     //DISABLED LIMBS
@@ -34,6 +34,7 @@ public class BasicEnemy : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
+        enemyAttacks = GetComponentsInChildren<EnemyAttack>();
         Target = FindAnyObjectByType<FirstPersonController>().transform;
 
         animator.applyRootMotion = true;
@@ -50,14 +51,11 @@ public class BasicEnemy : MonoBehaviour {
                 enableRagdolls();
                 isDead = true;
             }
-            //Ragdoll threshold
-            if (stagger >= ragdollThreshold && isDead == false) {
-                StartCoroutine(RagdollStagger());
-            }
         }
     }
 
-    private void enableRagdolls() {
+    public void enableRagdolls() {
+        disableAttacks();
         agent.enabled = false;
         animator.enabled = false;
         foreach (Rigidbody ragdoll in ragdollRigidbodies) {
@@ -68,14 +66,17 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     private void disableRagdolls() {
-        foreach (Rigidbody ragdoll in ragdollRigidbodies) {
-            ragdoll.isKinematic = true;
+        if (!isDead) {
+            foreach (Rigidbody ragdoll in ragdollRigidbodies) {
+                ragdoll.isKinematic = true;
+            }
+            agent.enabled = true;
+            animator.enabled = true;
+            ragdolling = false;
+            if (hips.forward.y < 0) animator.Play("GetUpBack");
+            if (hips.forward.y > 0) animator.Play("GetUpFront");
+            enableAttacks();
         }
-        agent.enabled = true;
-        animator.enabled = true;
-        ragdolling = false;
-        if (hips.forward.y < 0) animator.Play("GetUpBack");
-        if (hips.forward.y > 0) animator.Play("GetUpFront");
 
     }
     private void OnAnimatorMove() {
@@ -101,7 +102,7 @@ public class BasicEnemy : MonoBehaviour {
             disableRagdolls();
         }
     }
-    private void SyncAnimatorAndAgent() {
+    public void SyncAnimatorAndAgent() {
 
         Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
         worldDeltaPosition.y = 0;
@@ -129,7 +130,7 @@ public class BasicEnemy : MonoBehaviour {
         }
     }
     private void OnTriggerEnter(Collider collision) {
-        if (collision.gameObject.name == "FirstPersonController") {
+        if (collision.gameObject.name == "FirstPersonController" && !isDead) {
             AttackPlayer();
         }
     }
@@ -144,11 +145,26 @@ public class BasicEnemy : MonoBehaviour {
         else
             animator.Play("WalkAttack");
     }
+    public void disableAttacks() {
+        foreach (EnemyAttack ea in enemyAttacks) {
+            ea.enabled = false;
+        }
+    }
 
-    IEnumerator RagdollStagger() {
+    public void enableAttacks() {
+        foreach (EnemyAttack ea in enemyAttacks) {
+            ea.enabled = true;
+        }
+    }
+
+    public IEnumerator RagdollStagger() {
+        agent.updateRotation = false;
+
         enableRagdolls();
         yield return new WaitForSeconds(ragdollTime);
         disableRagdolls();
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        agent.updateRotation = true;
         yield return null;
     }
     IEnumerator RemoveBody() {
