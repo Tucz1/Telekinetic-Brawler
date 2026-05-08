@@ -36,26 +36,28 @@ public class LimbScript : MonoBehaviour {
             //Send damage over here, afterwards stagger checks
             BasicEnemy.takeDamage(damageToMain, stagger, weaponData);
 
-            if (limb == LimbType.UpperRightArm || limb == LimbType.LowerRightArm) {
-                if (stagger > BasicEnemy.ragdollThreshold) {
-                    StartCoroutine(BasicEnemy.RagdollStagger());
+            if (!BasicEnemy.LegsDisabled) {
+                if (limb == LimbType.UpperRightArm || limb == LimbType.LowerRightArm) {
+                    if (stagger > BasicEnemy.ragdollThreshold) {
+                        StartCoroutine(BasicEnemy.RagdollStagger());
+                    }
+                    else if (stagger > BasicEnemy.staggerThreshold) {
+                        parentAnimator.Play("StaggerLeftWalk");
+                    }
+                    else if (stagger > BasicEnemy.lightStaggerThreshold) {
+                        parentAnimator.Play("StaggerLeft");
+                    }
                 }
-                else if (stagger > BasicEnemy.staggerThreshold) {
-                    parentAnimator.Play("StaggerLeftWalk");
-                }
-                else if (stagger > BasicEnemy.lightStaggerThreshold) {
-                    parentAnimator.Play("StaggerLeft");
-                }
-            }
-            if (limb == LimbType.UpperLeftArm || limb == LimbType.LowerLeftArm) {
-                if (stagger > BasicEnemy.ragdollThreshold) {
-                    StartCoroutine(BasicEnemy.RagdollStagger());
-                }
-                else if (stagger > BasicEnemy.staggerThreshold) {
-                    parentAnimator.Play("StaggerRightWalk");
-                }
-                else if (stagger > BasicEnemy.lightStaggerThreshold) {
-                    parentAnimator.Play("StaggerRight");
+                if (limb == LimbType.UpperLeftArm || limb == LimbType.LowerLeftArm) {
+                    if (stagger > BasicEnemy.ragdollThreshold) {
+                        StartCoroutine(BasicEnemy.RagdollStagger());
+                    }
+                    else if (stagger > BasicEnemy.staggerThreshold) {
+                        parentAnimator.Play("StaggerRightWalk");
+                    }
+                    else if (stagger > BasicEnemy.lightStaggerThreshold) {
+                        parentAnimator.Play("StaggerRight");
+                    }
                 }
             }
 
