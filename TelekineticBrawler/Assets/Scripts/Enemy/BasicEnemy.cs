@@ -28,6 +28,7 @@ public class BasicEnemy : MonoBehaviour {
     //DISABLED LIMBS
     public bool LeftArmDisabled = false;
     public bool RightArmDisabled = false;
+    public bool LegsDisabled = false;
 
 
     void Awake() {
@@ -65,6 +66,10 @@ public class BasicEnemy : MonoBehaviour {
 
     }
 
+    public void legCheck() {
+        if (LegsDisabled) animator.Play("Crawling");
+    }
+
     private void disableRagdolls() {
         if (!isDead) {
             foreach (Rigidbody ragdoll in ragdollRigidbodies) {
@@ -73,8 +78,11 @@ public class BasicEnemy : MonoBehaviour {
             agent.enabled = true;
             animator.enabled = true;
             ragdolling = false;
-            if (hips.forward.y < 0) animator.Play("GetUpBack");
-            if (hips.forward.y > 0) animator.Play("GetUpFront");
+            if (LegsDisabled) animator.Play("Crawling");
+            else if (!LegsDisabled) {
+                if (hips.forward.y < 0) animator.Play("GetUpBack");
+                if (hips.forward.y > 0) animator.Play("GetUpFront");
+            }
             enableAttacks();
         }
 
@@ -90,16 +98,6 @@ public class BasicEnemy : MonoBehaviour {
         if (ragdolling == false) {
             agent.destination = Target.position;
             SyncAnimatorAndAgent();
-        }
-        if (ragdolling == true) {
-
-        }
-        //DEBUG BUTTONS FOR RAGDOLL TESTING
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            enableRagdolls();
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) {
-            disableRagdolls();
         }
     }
     public void SyncAnimatorAndAgent() {
@@ -136,10 +134,13 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     private void AttackPlayer() {
-        if (LeftArmDisabled && !RightArmDisabled) {
+        if (LegsDisabled) {
+            animator.Play("LeglessAttack");
+        }
+        else if (LeftArmDisabled && !RightArmDisabled) {
             animator.Play("WalkAttackRightArm");
         }
-        if (RightArmDisabled && !LeftArmDisabled) {
+        else if (RightArmDisabled && !LeftArmDisabled) {
             animator.Play("WalkAttackLeftArm");
         }
         else

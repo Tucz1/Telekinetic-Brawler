@@ -80,8 +80,17 @@ public class LimbScript : MonoBehaviour {
     }
 
     private void disableLimb() {
+
         if (limb == LimbType.LowerLeftArm || limb == LimbType.UpperLeftArm) BasicEnemy.LeftArmDisabled = true;
         if (limb == LimbType.LowerRightArm || limb == LimbType.UpperRightArm) BasicEnemy.RightArmDisabled = true;
+
+        if (limb == LimbType.LowerLeftLeg || limb == LimbType.UpperLeftLeg ||
+            limb == LimbType.UpperRightLeg || limb == LimbType.LowerRightLeg) {
+            if (!BasicEnemy.LegsDisabled) {
+                BasicEnemy.LegsDisabled = true;
+                StartCoroutine(BasicEnemy.RagdollStagger());
+            }
+        }
 
         if (limbToDismember != null) {
             var spawnPos = limbToDismember.transform.position;
