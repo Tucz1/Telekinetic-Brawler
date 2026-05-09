@@ -60,5 +60,6 @@ MonoBehaviour:
   spawnDelay: 1
   currentWave: 0
   aliveEnemies: 0
+  startingEnemies: []
   waveText: {fileID: 0}
-  fadeTime: 0
+  fadeTime: 3

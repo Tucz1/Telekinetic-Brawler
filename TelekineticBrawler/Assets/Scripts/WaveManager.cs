@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -17,17 +18,29 @@ public class WaveManager : MonoBehaviour {
     public float spawnDelay = 1f;
     [SerializeField] private int currentWave = 0;
     [SerializeField] private int aliveEnemies = 0;
-
+    [SerializeField] private BasicEnemy[] startingEnemies;
     //UI
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] float fadeTime;
     private void Awake() {
         spawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None);
+        startingEnemies = FindObjectsByType<BasicEnemy>(FindObjectsSortMode.None);
+
+        foreach (BasicEnemy enemy in startingEnemies) {
+            aliveEnemies++;
+        }
+    }
+
+    public void aggressiveEnemies() {
+        foreach (BasicEnemy enemy in startingEnemies) {
+            enemy.firstWave = false;
+            enemy.animator.SetBool("isAggressive", true);
+        }
     }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            if (aliveEnemies == 0)
+            if (aliveEnemies <= 0)
             StartWave();
         }
     }
@@ -38,6 +51,7 @@ public class WaveManager : MonoBehaviour {
             return;
         }
 
+        aliveEnemies = 0;
         waveText.text = waves[currentWave].waveText;
         StartCoroutine(fade(waveText, fadeTime));
         StartCoroutine(SpawnWaveCoroutine(waves[currentWave]));

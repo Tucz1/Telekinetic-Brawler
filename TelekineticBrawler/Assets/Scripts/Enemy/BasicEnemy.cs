@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,7 +23,10 @@ public class BasicEnemy : MonoBehaviour {
 
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
-    
+
+    //AGGRO LOGIC
+    [SerializeField] public bool firstWave = false;
+
     //HP
     [SerializeField] private float currentHealth = 100;
 
@@ -44,9 +48,13 @@ public class BasicEnemy : MonoBehaviour {
         agent.updatePosition = false;
         agent.updateRotation = true;
         disableRagdolls();
+
+        if (firstWave) animator.SetBool("isAggressive", false);
+        else animator.SetBool("isAggressive", true);
     }
 
     public void takeDamage(float damage, float stagger, WeaponData weaponData) {
+        if (firstWave) disableFirstWave();
         currentHealth -= damage;
         if (!isDead) {
             if (currentHealth <= 0) {
@@ -56,6 +64,9 @@ public class BasicEnemy : MonoBehaviour {
                 isDead = true;
             }
         }
+    }
+    private void disableFirstWave() {
+        WaveManager.aggressiveEnemies();
     }
 
     public void enableRagdolls() {
@@ -98,11 +109,12 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     void Update() {
-        if (ragdolling == false) {
-            agent.destination = Target.position;
-            SyncAnimatorAndAgent();
-        }
+            if (ragdolling == false) {
+                agent.destination = Target.position;
+                SyncAnimatorAndAgent();
+            }
     }
+
     public void SyncAnimatorAndAgent() {
 
         Vector3 worldDeltaPosition = agent.nextPosition - transform.position;
@@ -137,6 +149,7 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     private void AttackPlayer() {
+        if (firstWave) disableFirstWave();
         if (LegsDisabled) {
             animator.Play("LeglessAttack");
         }
