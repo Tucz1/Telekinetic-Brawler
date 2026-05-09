@@ -1,8 +1,10 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 [System.Serializable]
 public class Wave {
+    public string waveText;
     public int meleeCount;
     public int rangedCount;
 }
@@ -16,6 +18,9 @@ public class WaveManager : MonoBehaviour {
     [SerializeField] private int currentWave = 0;
     [SerializeField] private int aliveEnemies = 0;
 
+    //UI
+    [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] float fadeTime;
     private void Awake() {
         spawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None);
     }
@@ -32,6 +37,9 @@ public class WaveManager : MonoBehaviour {
             //ENDING HERE?
             return;
         }
+
+        waveText.text = waves[currentWave].waveText;
+        StartCoroutine(fade(waveText, fadeTime));
         StartCoroutine(SpawnWaveCoroutine(waves[currentWave]));
         currentWave++;
     }
@@ -60,5 +68,31 @@ public class WaveManager : MonoBehaviour {
 
     public void EnemyDied() {
         aliveEnemies--;
+    }
+
+    IEnumerator fade(TextMeshProUGUI text, float duration) {
+
+        float elapsedTime = 0;
+        float startValue = 0;
+
+        // Fade In
+        while (elapsedTime < duration) {
+            elapsedTime += Time.deltaTime;
+            float newAlpha = Mathf.Lerp(startValue, 1, elapsedTime / duration);
+            text.alpha = newAlpha;
+            yield return null;
+        }
+
+        //Wait at max alpha
+        yield return new WaitForSeconds(3);
+
+        //Fade Out
+        elapsedTime = 0;
+        while (elapsedTime < duration) {
+            elapsedTime += Time.deltaTime;
+            float newerAlpha = Mathf.Lerp(1, 0, elapsedTime / duration);
+            text.alpha = newerAlpha;
+            yield return null;
+        }
     }
 }

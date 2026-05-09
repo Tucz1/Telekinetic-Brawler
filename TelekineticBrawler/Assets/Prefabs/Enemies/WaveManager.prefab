@@ -48,12 +48,17 @@ MonoBehaviour:
   meleeEnemy: {fileID: 480632467442192269, guid: 89be683c04e48094eabc490cddae1143, type: 3}
   rangedEnemy: {fileID: 0}
   waves:
-  - meleeCount: 2
+  - waveText: Rip and tear
+    meleeCount: 2
     rangedCount: 0
-  - meleeCount: 4
+  - waveText: :D
+    meleeCount: 4
     rangedCount: 0
-  - meleeCount: 6
+  - waveText: One more time
+    meleeCount: 6
     rangedCount: 0
   spawnDelay: 1
   currentWave: 0
   aliveEnemies: 0
+  waveText: {fileID: 0}
+  fadeTime: 0
