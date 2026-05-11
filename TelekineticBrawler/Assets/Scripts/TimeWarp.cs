@@ -11,18 +11,26 @@ public class TimeWarp : MonoBehaviour
     [SerializeField] float slowDownAmp;
     public IEnumerator ImpactFrame()
     {
-
         while (Time.timeScale > impactTimeScale)
         {
-            Time.timeScale -= slowDownAmp * decayRate * Time.unscaledDeltaTime;
-            Time.fixedDeltaTime = Time.fixedDeltaTime / 10 * Time.timeScale;
+            Time.timeScale -= slowDownAmp * Time.unscaledDeltaTime;
+
+            Time.timeScale = Mathf.Clamp01(Time.timeScale);
+
+            Debug.Log(Time.deltaTime);
+
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
             yield return null;
         }
 
         while (Time.timeScale < idealTimeScale)
         {
             Time.timeScale += decayRate * Time.unscaledDeltaTime;
-            Time.fixedDeltaTime = Time.fixedDeltaTime / 10 * Time.timeScale;
+            Time.timeScale = Mathf.Clamp01(Time.timeScale);
+
+
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
             yield return null;
         }
 
