@@ -6,6 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Wave {
     public string waveText;
+    public string waveEndText;
     public int meleeCount;
     public int rangedCount;
 }
@@ -19,6 +20,8 @@ public class WaveManager : MonoBehaviour {
     [SerializeField] private int currentWave = 0;
     [SerializeField] private int aliveEnemies = 0;
     [SerializeField] private BasicEnemy[] startingEnemies;
+    bool firstWave = true;
+    bool roundStarted = false;
     //UI
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] float fadeTime;
@@ -39,17 +42,28 @@ public class WaveManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
-            if (aliveEnemies <= 0)
-            StartWave();
-        }
+        if (aliveEnemies <= 0 && roundStarted == false)
+                StartCoroutine(EndTextAndStartNewWave(currentWave));
     }
+    private IEnumerator EndTextAndStartNewWave(int currentWave) {
+        roundStarted = true;
 
-    private void StartWave() {
         if (currentWave >= waves.Length) {
             //ENDING HERE?
-            return;
+            yield return null;
         }
+        if (!firstWave) { 
+        waveText.text = waves[currentWave-1].waveEndText;
+        StartCoroutine(fade(waveText, fadeTime)); 
+        }
+
+        firstWave = false;
+        yield return new WaitForSeconds(fadeTime*2);
+        StartWave();
+        roundStarted = false;
+        yield return null;
+    }
+    private void StartWave() {
 
         aliveEnemies = 0;
         waveText.text = waves[currentWave].waveText;
@@ -92,19 +106,19 @@ public class WaveManager : MonoBehaviour {
         // Fade In
         while (elapsedTime < duration) {
             elapsedTime += Time.deltaTime;
-            float newAlpha = Mathf.Lerp(startValue, 1, elapsedTime / duration);
+            float newAlpha = Mathf.Lerp(startValue, 1, elapsedTime * duration);
             text.alpha = newAlpha;
             yield return null;
         }
 
         //Wait at max alpha
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(duration/2);
 
         //Fade Out
         elapsedTime = 0;
         while (elapsedTime < duration) {
             elapsedTime += Time.deltaTime;
-            float newerAlpha = Mathf.Lerp(1, 0, elapsedTime / duration);
+            float newerAlpha = Mathf.Lerp(1, 0, elapsedTime * duration);
             text.alpha = newerAlpha;
             yield return null;
         }
