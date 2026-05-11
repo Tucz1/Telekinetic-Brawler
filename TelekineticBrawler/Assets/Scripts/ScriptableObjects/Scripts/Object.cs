@@ -23,6 +23,7 @@ public class WeaponData : ScriptableObject
 	[SerializeField] protected DamageType damageType;
 
 	[SerializeField] protected float damage;
+	[SerializeField] protected int durability = 6;
 	[Range(3.5f, 4.2f)][SerializeField] protected float minThrowStrength = 3.8f;
 	[SerializeField] protected float distanceHeld = 2f;
 	[SerializeField] protected float holdHeightOffset = 2f;
@@ -46,6 +47,7 @@ public class WeaponData : ScriptableObject
 	[SerializeField] protected AudioClip hitSFX;
 
 	public float Damage => damage;
+	public int Durability => durability;
 	public float MinThrowStrength => minThrowStrength;
 	public DamageType DamageType => damageType;
 	public float DistanceHeld => distanceHeld;

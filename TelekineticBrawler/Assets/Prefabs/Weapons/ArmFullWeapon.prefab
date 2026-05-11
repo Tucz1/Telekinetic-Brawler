@@ -79,11 +79,11 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.62, y: 1.53, z: 0.16}
-  m_Center: {x: 0.2, y: -0.03, z: 0}
+  m_Size: {x: 0.13, y: 1.65, z: 0.64}
+  m_Center: {x: 0, y: 0.52, z: 0.16}
 --- !u!114 &3792648963872362657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,9 +103,11 @@ MonoBehaviour:
   weaponThrowRotation: {x: 0, y: 90, z: 0}
   weaponCollider: {fileID: 4308986269341090858}
   brokenWeapon: {fileID: 0}
+  poofFX: {fileID: 0}
+  hitBuffer: 0.4
   minDamageThreshold: 40
   impactFrameDamageThreshold: 500
-  outline: {fileID: 0}
+  outline: {fileID: 3895464471656699763}
   outlineEnableDelay: 0
   outlineDisableDelay: 0
 --- !u!114 &3895464471656699763
@@ -209,10 +211,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 67ed4ac49aada014ca53dab169125544, type: 3}
       propertyPath: m_Name
       value: Left.Forearm
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 67ed4ac49aada014ca53dab169125544, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
