@@ -25,6 +25,8 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Vector3 weaponThrowRotation;
     [SerializeField] Collider weaponCollider;
     [SerializeField] GameObject brokenWeapon;
+    [SerializeField] GameObject poofFX;
+    private int durability;
     private bool canHit;
     [SerializeField] float hitBuffer = 0.4f;
     [SerializeField] float minDamageThreshold = 40;
@@ -44,6 +46,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     TelekinesisController telekinesis;
     TimeWarp timeWarp;
+    InteractManager interactManager;
     public event Action ImpactFrame;
 
     // private Vector3 lastPos;
@@ -63,6 +66,9 @@ public class Interactable : MonoBehaviour, IInteractable
 
         telekinesis = FindFirstObjectByType<TelekinesisController>();
         timeWarp = FindAnyObjectByType<TimeWarp>();
+        interactManager = FindAnyObjectByType<InteractManager>();
+
+        durability = weaponData.Durability;
 
         canHit = true;
     }
@@ -83,7 +89,7 @@ public class Interactable : MonoBehaviour, IInteractable
                 trueVelocity = weaponRB.linearVelocity;
                 break;
         }
-        
+
         // Debug.Log($"Velocity: {trueVelocity.magnitude}");
     }
 
@@ -159,7 +165,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
         var t0 = Mathf.InverseLerp(0, telekinesis.maxThrowChargeDuration, timeHeld);
         var t1 = Mathf.Lerp(0.5f, telekinesis.maxThrowChargeDuration, t0);
-        
+
 
         Debug.Log($"Lerped Time Held: {t1}");
 
@@ -177,6 +183,15 @@ public class Interactable : MonoBehaviour, IInteractable
         telekinesis.MoveToWeapon(obj);
 
         Destroy(this.gameObject, 0.2f);
+    }
+
+    public void Poof()
+    {
+        var obj = Instantiate(poofFX);
+
+        telekinesis.MoveToWeapon(obj);
+
+        Destroy(this.gameObject, 0.1f);
     }
 
 
@@ -210,7 +225,7 @@ public class Interactable : MonoBehaviour, IInteractable
             var damage = CalculateDamage();
             var stagger = CalculateStagger(damage);
 
-            if (damage < minDamageThreshold) {Debug.Log("Did not cross damage threshold, returning..."); return;}
+            if (damage < minDamageThreshold) { Debug.Log("Did not cross damage threshold, returning..."); return; }
 
             canHit = false;
 
@@ -226,6 +241,8 @@ public class Interactable : MonoBehaviour, IInteractable
 
             StartCoroutine(telekinesis.OnHit());
             StartCoroutine(HitBuffer());
+
+            if(ReduceDurability()) return;
         }
 
         // Deal damage
@@ -243,6 +260,30 @@ public class Interactable : MonoBehaviour, IInteractable
             telekinesis.StartCoroutine(pushRoutine);
         }
 
+    }
+
+    private bool ReduceDurability()
+    {
+        durability--;
+
+        if (durability > 0) return true;
+
+        BreakWeapon();
+        return false;
+    }
+
+    private void BreakWeapon()
+    {
+        
+        interactManager.Break(this);
+        
+        if (brokenWeapon == null)
+        {
+            Poof();
+        }
+
+        // break
+        Break();
     }
 
     private IEnumerator HitBuffer()

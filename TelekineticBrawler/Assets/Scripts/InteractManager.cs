@@ -3,11 +3,6 @@ using UnityEngine.UI;
 
 public class InteractManager : MonoBehaviour
 {
-    // Source - https://stackoverflow.com/a/76617510
-    // Posted by derHugo, modified by community. See post 'Timeline' for change history
-    // Retrieved 2026-03-11, License - CC BY-SA 4.0
-
-    // store currently focused instance!
 
     [Header("UI")]
 
@@ -106,14 +101,14 @@ public class InteractManager : MonoBehaviour
             timeHeld = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) // Break
-        {
-            if (cachedInteractable == null) return;
-            Debug.Log(cachedInteractable);
-            SetInteractable(cachedInteractable);
-            currentInteractable.Break();
-            holding = false;
-        }
+        // if (Input.GetKeyDown(KeyCode.Space)) // Break
+        // {
+        //     if (cachedInteractable == null) return;
+        //     Debug.Log(cachedInteractable);
+        //     SetInteractable(cachedInteractable);
+        //     currentInteractable.Break();
+        //     holding = false;
+        // }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -124,6 +119,14 @@ public class InteractManager : MonoBehaviour
         {
             AudioFW.Play("demongrunt1");
         }
+    }
+
+    public void Break(IInteractable interactable)
+    {
+        if (interactable == null) return;
+
+        SetInteractable(interactable);
+        holding = false;
     }
 
 }
