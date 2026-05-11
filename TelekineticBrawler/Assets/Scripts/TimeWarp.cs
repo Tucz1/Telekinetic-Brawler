@@ -15,14 +15,12 @@ public class TimeWarp : MonoBehaviour
         while (Time.timeScale > impactTimeScale)
         {
             Time.timeScale -= slowDownAmp * decayRate * Time.unscaledDeltaTime;
-            Debug.Log($"TimeScale: {Time.timeScale}");
             yield return null;
         }
 
         while (Time.timeScale < idealTimeScale)
         {
             Time.timeScale += decayRate * Time.unscaledDeltaTime;
-            Debug.Log($"TimeScale: {Time.timeScale}");
             yield return null;
         }
 

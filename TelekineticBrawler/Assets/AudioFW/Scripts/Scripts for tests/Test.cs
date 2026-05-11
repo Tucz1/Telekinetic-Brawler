@@ -5,7 +5,6 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     public string C, V, X;
-    public string Q, W;
 
     Dictionary<KeyCode, string> bindings = new Dictionary<KeyCode, string>();
 
@@ -16,19 +15,13 @@ public class Test : MonoBehaviour
         bindings.Add(KeyCode.X, X);
 
     }
+
+    // Update is called once per frame
     void Update()
     {
         foreach (var kc in bindings.Keys) {
             if (Input.GetKeyDown(kc))
                 AudioFW.Play(bindings[kc]);
         }
-        if (Input.GetKeyDown(KeyCode.Q))
-            AudioFW.PlayLoop(Q);
-        if (Input.GetKeyDown(KeyCode.W))
-            AudioFW.PlayLoop(W); 
-        if (Input.GetKeyDown(KeyCode.A))
-            AudioFW.StopLoop(Q);
-        if (Input.GetKeyDown(KeyCode.S))
-            AudioFW.StopLoop(W);
     }
 }
