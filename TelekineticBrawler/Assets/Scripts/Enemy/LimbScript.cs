@@ -59,6 +59,15 @@ public class LimbScript : MonoBehaviour {
                         parentAnimator.Play("StaggerRight");
                     }
                 }
+                if (limb == LimbType.Torso || limb == LimbType.Head) {
+                    if (stagger > BasicEnemy.ragdollThreshold) {
+                        StartCoroutine(BasicEnemy.RagdollStagger());
+                    } else if (stagger > BasicEnemy.staggerThreshold) {
+                        parentAnimator.Play("StaggerBack");
+                    } else if (stagger > BasicEnemy.lightStaggerThreshold) {
+                        parentAnimator.Play("StaggerBack");
+                    }
+                }
             }
 
             if (currentHealth <= 0) {
