@@ -234,7 +234,7 @@ public class Interactable : MonoBehaviour, IInteractable
             // If damage || stagger > threshold
             // StartCoroutine(timeWarp.ImpactFrame());
 
-            if (damage > impactFrameDamageThreshold) StartCoroutine(timeWarp.ImpactFrame());
+            if (damage > impactFrameDamageThreshold && (Time.timeScale == 1)) StartCoroutine(timeWarp.ImpactFrame());
 
             limb.TakeDamage(damage, stagger, weaponData);
             scoreManager.AddPoints((int)damage + (int)stagger);
