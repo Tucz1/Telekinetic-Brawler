@@ -19,7 +19,7 @@ public class TutorialWaveManager : MonoBehaviour {
     public float spawnDelay = 1f;
     [SerializeField] private int currentWave = 0;
     [SerializeField] private int aliveEnemies = 0;
-    [SerializeField] private BasicEnemy[] startingEnemies;
+    [SerializeField] private TutorialEnemy[] startingEnemies;
     bool firstWave = true;
     bool roundStarted = false;
     //UI
@@ -27,15 +27,15 @@ public class TutorialWaveManager : MonoBehaviour {
     [SerializeField] float fadeTime;
     private void Awake() {
         spawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None);
-        startingEnemies = FindObjectsByType<BasicEnemy>(FindObjectsSortMode.None);
+        startingEnemies = FindObjectsByType<TutorialEnemy>(FindObjectsSortMode.None);
 
-        foreach (BasicEnemy enemy in startingEnemies) {
+        foreach (TutorialEnemy enemy in startingEnemies) {
             aliveEnemies++;
         }
     }
 
     public void aggressiveEnemies() {
-        foreach (BasicEnemy enemy in startingEnemies) {
+        foreach (TutorialEnemy enemy in startingEnemies) {
             enemy.firstWave = false;
             enemy.animator.SetBool("isAggressive", true);
         }

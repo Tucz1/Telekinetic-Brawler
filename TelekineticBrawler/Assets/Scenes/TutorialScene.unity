@@ -4903,6 +4903,14 @@ PrefabInstance:
       propertyPath: waveText
       value: 
       objectReference: {fileID: 507279197}
+    - target: {fileID: -6858953324713812683, guid: 3561c6cdf95a8704fa7c902cf01d4f87, type: 3}
+      propertyPath: waves.Array.data[2].waveText
+      value: Hold E to charge throw
+      objectReference: {fileID: 0}
+    - target: {fileID: -6858953324713812683, guid: 3561c6cdf95a8704fa7c902cf01d4f87, type: 3}
+      propertyPath: waves.Array.data[3].waveText
+      value: Enter the portal and begin your mission
+      objectReference: {fileID: 0}
     - target: {fileID: 6797402367511356053, guid: 3561c6cdf95a8704fa7c902cf01d4f87, type: 3}
       propertyPath: m_LocalPosition.x
       value: -18.23988
@@ -9408,6 +9416,10 @@ PrefabInstance:
     - target: {fileID: 3334430013138524560, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172763372535652747, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384738, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_LocalPosition.x

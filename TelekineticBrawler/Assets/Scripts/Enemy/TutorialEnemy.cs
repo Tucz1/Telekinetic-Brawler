@@ -50,6 +50,9 @@ public class TutorialEnemy : MonoBehaviour {
         disableRagdolls();
 
         if (firstWave) animator.SetBool("isAggressive", false);
+        foreach (EnemyAttack enemyAttack in enemyAttacks) {
+            enemyAttack.disableAttacks();
+        }
     }
 
     public void takeDamage(float damage, float stagger, WeaponData weaponData) {
@@ -68,7 +71,7 @@ public class TutorialEnemy : MonoBehaviour {
     }
 
     public void enableRagdolls() {
-        disableAttacks();
+        //disableAttacks();
         agent.enabled = false;
         animator.enabled = false;
         foreach (Rigidbody ragdoll in ragdollRigidbodies) {
@@ -95,7 +98,7 @@ public class TutorialEnemy : MonoBehaviour {
                 if (hips.forward.y < 0) animator.Play("GetUpBack");
                 if (hips.forward.y > 0) animator.Play("GetUpFront");
             }
-            enableAttacks();
+            //enableAttacks();
         }
 
     }
@@ -160,17 +163,17 @@ public class TutorialEnemy : MonoBehaviour {
         else
             animator.Play("WalkAttack");
     }
-    public void disableAttacks() {
-        foreach (EnemyAttack ea in enemyAttacks) {
-            ea.enabled = false;
-        }
-    }
+    //public void disableAttacks() {
+    //    foreach (EnemyAttack ea in enemyAttacks) {
+    //        ea.enabled = false;
+    //    }
+    //}
 
-    public void enableAttacks() {
-        foreach (EnemyAttack ea in enemyAttacks) {
-            ea.enabled = true;
-        }
-    }
+    //public void enableAttacks() {
+    //    foreach (EnemyAttack ea in enemyAttacks) {
+    //        ea.enabled = true;
+    //    }
+    //}
 
     public IEnumerator RagdollStagger() {
         agent.updateRotation = false;

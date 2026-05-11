@@ -2561,9 +2561,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
   uiText: {fileID: 7043027016449268204}
+  uiPtsText: {fileID: 5133699059151046710}
   rankText: {fileID: 2075837401986841175}
   rankTextmp: {fileID: 5465808465546780938}
   rankSlider: {fileID: 8837901512966397375}
+  inTutorial: 0
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
