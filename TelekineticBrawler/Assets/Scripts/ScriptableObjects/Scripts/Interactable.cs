@@ -25,6 +25,8 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Vector3 weaponThrowRotation;
     [SerializeField] Collider weaponCollider;
     [SerializeField] GameObject brokenWeapon;
+    private bool canHit;
+    [SerializeField] float hitBuffer = 0.4f;
     [SerializeField] float minDamageThreshold = 40;
     [SerializeField] float impactFrameDamageThreshold = 500;
 
@@ -62,6 +64,7 @@ public class Interactable : MonoBehaviour, IInteractable
         telekinesis = FindFirstObjectByType<TelekinesisController>();
         timeWarp = FindAnyObjectByType<TimeWarp>();
 
+        canHit = true;
     }
 
     void Update()
@@ -195,7 +198,7 @@ public class Interactable : MonoBehaviour, IInteractable
     {
 
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && canHit)
         {
             var limb = collision.gameObject.GetComponentInChildren<LimbScript>();
             var scoreManager = FindAnyObjectByType<ScoreManager>();
@@ -209,6 +212,8 @@ public class Interactable : MonoBehaviour, IInteractable
 
             if (damage < minDamageThreshold) {Debug.Log("Did not cross damage threshold, returning..."); return;}
 
+            canHit = false;
+
             Debug.Log($"Damage dealt: {damage} \n Stagger dealt: {stagger}");
 
             // If damage || stagger > threshold
@@ -220,6 +225,7 @@ public class Interactable : MonoBehaviour, IInteractable
             scoreManager.AddPoints((int)damage + (int)stagger);
 
             StartCoroutine(telekinesis.OnHit());
+            StartCoroutine(HitBuffer());
         }
 
         // Deal damage
@@ -237,6 +243,15 @@ public class Interactable : MonoBehaviour, IInteractable
             telekinesis.StartCoroutine(pushRoutine);
         }
 
+    }
+
+    private IEnumerator HitBuffer()
+    {
+        Debug.Log("Buffering...");
+        yield return new WaitForSeconds(hitBuffer);
+        Debug.Log("Buffer Over");
+
+        canHit = true;
     }
 
     private float CalculateDamage()
