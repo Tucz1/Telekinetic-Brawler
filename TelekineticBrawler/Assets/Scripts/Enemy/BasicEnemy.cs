@@ -47,8 +47,9 @@ public class BasicEnemy : MonoBehaviour {
         animator.applyRootMotion = true;
         agent.updatePosition = false;
         agent.updateRotation = true;
-        disableRagdolls();
 
+        if (!firstWave) StartCoroutine(RagdollStagger());
+        
         if (firstWave) animator.SetBool("isAggressive", false);
         else animator.SetBool("isAggressive", true);
     }
