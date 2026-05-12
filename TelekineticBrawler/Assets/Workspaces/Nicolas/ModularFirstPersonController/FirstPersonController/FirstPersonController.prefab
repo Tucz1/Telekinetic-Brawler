@@ -949,7 +949,7 @@ Transform:
   m_GameObject: {fileID: 1460079438885458161}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07, y: -0.13, z: -0.29}
+  m_LocalPosition: {x: -0.07, y: -0.13, z: -0.2}
   m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2427,7 +2427,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &4459864850019384740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2441,7 +2441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 4459864851310106426}
-  fov: 90
+  fov: 78
   invertCamera: 0
   cameraCanMove: 1
   mouseSensitivity: 1
@@ -2472,7 +2472,7 @@ MonoBehaviour:
   sprintBar: {fileID: 4459864850888339820}
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
-  enableJump: 0
+  enableJump: 1
   jumpKey: 32
   jumpPower: 5
   enableCrouch: 0
@@ -2503,7 +2503,7 @@ MonoBehaviour:
   handMaxRoll: 25
   environmentLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 512
   nodeOne: {fileID: 0}
   wallCheck: {fileID: 430126577173641419}
   maxThrowChargeDuration: 2
@@ -2561,9 +2561,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
   uiText: {fileID: 7043027016449268204}
+  uiPtsText: {fileID: 5133699059151046710}
   rankText: {fileID: 2075837401986841175}
   rankTextmp: {fileID: 5465808465546780938}
   rankSlider: {fileID: 8837901512966397375}
+  inTutorial: 0
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2833,7 +2835,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 78
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

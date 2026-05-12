@@ -65,8 +65,6 @@ public class TelekinesisController : MonoBehaviour
 
         lastPlayerPos = player.position;
 
-        screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
-
     }
 
     void Update()
@@ -80,7 +78,12 @@ public class TelekinesisController : MonoBehaviour
         // }
 
         if (pauseMenu.ispaused) return;
-        if (!attachedItem) return;
+        if (!attachedItem) 
+        {
+            screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
+            nodeOne.position = mainCam.ScreenToWorldPoint(screenCenter + (Vector3.forward * 2));
+            return;
+        }
 
         Debug.DrawLine(mainCam.transform.position, wallCheck.position, Color.blue);
         if (Physics.Linecast(mainCam.transform.position, wallCheck.position, environmentLayer))

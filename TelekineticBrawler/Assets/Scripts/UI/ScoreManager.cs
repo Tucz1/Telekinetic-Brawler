@@ -1,14 +1,17 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI uiText;
+    [SerializeField] private TextMeshProUGUI uiPtsText;
     [SerializeField] private TextMeshProUGUI rankText;
     [SerializeField] private TextMeshProUGUI rankTextmp;
 
     [SerializeField] Slider rankSlider;
+    [SerializeField] bool inTutorial;
     int score = 0;
     int rankScore = 0;
     int rankLevel = 0;
@@ -35,8 +38,19 @@ public class ScoreManager : MonoBehaviour
     float delaySpeed = 0.01f;
 
     Coroutine currentCoroutineScore;
-    Coroutine currentCoroutineRank;
 
+    private void Awake() {
+        //scene 0 = main menu, scene 1 = tutorial, if in tutorial disable score UI
+        if (SceneManager.GetActiveScene().buildIndex == 1) inTutorial = true;
+        if (inTutorial) {
+            uiText.alpha = 0f;
+            uiPtsText.alpha = 0f;
+            rankText.alpha = 0f;
+            rankTextmp.alpha = 0f;
+            var slider = GameObject.Find("Slider").GetComponent<Slider>();
+            slider.gameObject.SetActive(false);
+        }
+    }
     IEnumerator CountUp() {
         while (uiScore < score) {
             uiScore++;

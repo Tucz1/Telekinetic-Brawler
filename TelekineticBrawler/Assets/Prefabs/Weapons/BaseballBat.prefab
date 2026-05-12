@@ -76,6 +76,8 @@ MonoBehaviour:
   weaponThrowRotation: {x: 90, y: 0, z: 0}
   weaponCollider: {fileID: 2573220859616632267}
   brokenWeapon: {fileID: 3620620506417721964, guid: a98ab7d619cae2b42872ac836239338b, type: 3}
+  poofFX: {fileID: 0}
+  hitBuffer: 0.4
   minDamageThreshold: 40
   impactFrameDamageThreshold: 500
   outline: {fileID: 2389422998626980645}
@@ -137,7 +139,6 @@ GameObject:
   - component: {fileID: 3027151501540163397}
   - component: {fileID: 6508542394508137590}
   - component: {fileID: 5211791130366587763}
-  - component: {fileID: 3779053267033296880}
   m_Layer: 2
   m_Name: Baseballbat
   m_TagString: Untagged
@@ -218,27 +219,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3779053267033296880
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3219958570157617033}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.44, y: 0.44, z: 3.68}
-  m_Center: {x: 0, y: 0, z: 0.9}
 --- !u!1 &5401944451924259785
 GameObject:
   m_ObjectHideFlags: 0
