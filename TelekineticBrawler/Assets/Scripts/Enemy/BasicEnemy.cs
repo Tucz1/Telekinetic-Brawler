@@ -49,10 +49,14 @@ public class BasicEnemy : MonoBehaviour {
         agent.updateRotation = true;
 
         if (!firstWave) StartCoroutine(RagdollStagger());
-        
-        if (firstWave) animator.SetBool("isAggressive", false);
+
+        if (firstWave) {
+            animator.SetBool("isAggressive", false);
+            disableRagdolls();
+        } 
         else animator.SetBool("isAggressive", true);
-    }
+        } 
+    
 
     public void takeDamage(float damage, float stagger, WeaponData weaponData) {
         if (firstWave) disableFirstWave();
@@ -91,6 +95,7 @@ public class BasicEnemy : MonoBehaviour {
                 ragdoll.isKinematic = true;
             }
             agent.enabled = true;
+            agent.Warp(animator.rootPosition);
             animator.enabled = true;
             ragdolling = false;
             if (LegsDisabled) animator.Play("Crawling");
@@ -143,9 +148,16 @@ public class BasicEnemy : MonoBehaviour {
             transform.position = Vector3.Lerp(animator.rootPosition, agent.nextPosition, smooth);
         }
     }
-    private void OnTriggerEnter(Collider collision) {
+    //private void OnTriggerEnter(Collider collision) {
+    //    if (collision.gameObject.name == "FirstPersonController" && !isDead) {
+    //        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
+    //        AttackPlayer();
+    //    }
+    //}
+    private void OnTriggerStay(Collider collision) {
         if (collision.gameObject.name == "FirstPersonController" && !isDead) {
-            AttackPlayer();
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
+                AttackPlayer();
         }
     }
 
