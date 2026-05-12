@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Cane
   damageType: 0
   damage: 10
+  durability: 6
   minThrowStrength: 4.2
-  distanceHeld: 1.5
+  distanceHeld: 2.5
   holdHeightOffset: 12
   baseFollowSpeed: 3
   weight: 8

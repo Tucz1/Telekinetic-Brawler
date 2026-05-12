@@ -9,22 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f400aad0e78e4ba4e8a4652b8eeec497, type: 3}
-  m_Name: UpperArm
-  m_EditorClassIdentifier: Assembly-CSharp::Morningstar
+  m_Script: {fileID: 11500000, guid: 304099242c507814f892172fd7824a8d, type: 3}
+  m_Name: HeavyFurniture
+  m_EditorClassIdentifier: Assembly-CSharp::HeavyFurniture
   damageType: 0
-  damage: 15
+  damage: 22
   durability: 6
-  minThrowStrength: 4
-  distanceHeld: 3
+  minThrowStrength: 3.8
+  distanceHeld: 3.5
   holdHeightOffset: 2
-  baseFollowSpeed: 3
-  weight: 7
+  baseFollowSpeed: 1.5
+  weight: 3.5
   baseRotationSpeed: 10
   maxRotationSpeed: 20
   maxDistance: 5
   deadzone: 0.1
-  maxRoll: 90
+  maxRoll: 30
   rollSensitivity: 10
   rollSmoothSpeed: 7
   hitSFX: {fileID: 0}

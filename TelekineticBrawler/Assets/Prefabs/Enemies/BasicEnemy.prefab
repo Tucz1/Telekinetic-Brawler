@@ -72,6 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
   animator: {fileID: 0}
   Target: {fileID: 0}
+  WaveManager: {fileID: 0}
   isPointingUp: 0
   ragdollRigidbodies: []
   enemyAttacks: []
@@ -83,9 +84,11 @@ MonoBehaviour:
   isDead: 0
   deathDespawnTime: 5
   hips: {fileID: 1050377577980370852}
+  firstWave: 0
   currentHealth: 1250
   LeftArmDisabled: 0
   RightArmDisabled: 0
+  LegsDisabled: 0
 --- !u!195 &8418435732142131208
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -758,9 +761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d280e3c521b66b94382bd495023bb69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  Target: {fileID: 0}
   damage: 10
   ScoreManager: {fileID: 0}
+  cc: {fileID: 0}
+  tutorialEnemy: {fileID: 0}
 --- !u!54 &3377016311907681601
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1054,6 +1058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 8
   childLimb: {fileID: 8368727022873388835}
   limbToDismember: {fileID: 5332063166981648000}
@@ -1285,6 +1290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 6
   childLimb: {fileID: 3133712735689572410}
   limbToDismember: {fileID: 6684949546912361672}
@@ -1373,9 +1379,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d280e3c521b66b94382bd495023bb69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  Target: {fileID: 0}
   damage: 10
   ScoreManager: {fileID: 0}
+  cc: {fileID: 0}
+  tutorialEnemy: {fileID: 0}
 --- !u!54 &5154312796325086205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1670,6 +1677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 0
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 0}
@@ -1896,6 +1904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 9
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 9076903204106735562}
@@ -2021,10 +2030,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 4
   childLimb: {fileID: 5814502227694107137}
   limbToDismember: {fileID: 4551525708648250642}
-  limbToSpawn: {fileID: 1730563975972360691, guid: c12cf057f6bfdc44bbb1a21e344108eb, type: 3}
+  limbToSpawn: {fileID: 4334292200889646623, guid: 16874b94292d1d142b36e427755678f4, type: 3}
   maxHealth: 500
   parentAnimator: {fileID: 0}
   currentHealth: 0
@@ -2146,6 +2156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 3
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 1434945279956885999}
@@ -2271,6 +2282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 5
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 2600385213127024082}
@@ -2396,6 +2408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 7
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 3187566602313332083}
@@ -2521,10 +2534,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 2
   childLimb: {fileID: 1490888472517145568}
   limbToDismember: {fileID: 1012339811108711790}
-  limbToSpawn: {fileID: 1730563975972360691, guid: c12cf057f6bfdc44bbb1a21e344108eb, type: 3}
+  limbToSpawn: {fileID: 4334292200889646623, guid: 16874b94292d1d142b36e427755678f4, type: 3}
   maxHealth: 500
   parentAnimator: {fileID: 0}
   currentHealth: 0
@@ -2699,6 +2713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 1
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 0}

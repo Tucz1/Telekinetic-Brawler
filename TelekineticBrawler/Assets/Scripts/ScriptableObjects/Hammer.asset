@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hammer
   damageType: 0
   damage: 25
+  durability: 6
   minThrowStrength: 4
-  distanceHeld: 2
+  distanceHeld: 3
   holdHeightOffset: 2
   baseFollowSpeed: 2
   weight: 5
