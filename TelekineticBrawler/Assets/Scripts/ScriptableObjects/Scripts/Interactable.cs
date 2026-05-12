@@ -49,7 +49,6 @@ public class Interactable : MonoBehaviour, IInteractable
     InteractManager interactManager;
     public event Action ImpactFrame;
 
-    // private Vector3 lastPos;
     private Vector3 currentVelocity;
     private Vector3 trueVelocity;
     private Vector3 lastVelocity;
@@ -78,6 +77,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     void Update()
     {
+
         currentVelocity = weaponTransform.position;
 
         if (lastVelocity == null) return;
@@ -101,21 +101,9 @@ public class Interactable : MonoBehaviour, IInteractable
         if ((weaponTransform != null) && IsHeld) { lastVelocity = currentVelocity; }
     }
 
-    // void Start()
-    // {
-    //     lastPos = transform.position;
-    // }
 
-    // void FixedUpdate()
-    // {
-    //     if (lastPos != transform.position)
-    //     {
-    //         currentSpeed = transform.position - lastPos;
-    //         currentSpeed /= Time.deltaTime;
-    //         lastPos = transform.position;
-    //     }
-    //     print(currentSpeed.magnitude);
-    // }
+        
+        
 
     public bool IsLooking
     {
@@ -146,6 +134,15 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Interacted with {name}", this);
         IsHeld = true;
         outline.enabled = false;
+        
+
+        weaponRB.isKinematic = true;
+
+        weaponRoot.position = weaponTransform.position;
+        weaponTransform.localPosition = Vector3.zero;
+
+        // weaponRB.isKinematic = false;
+
         telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponCollider, weaponThrowRotation);
     }
 
@@ -229,7 +226,7 @@ public class Interactable : MonoBehaviour, IInteractable
             // If damage || stagger > threshold
             // StartCoroutine(timeWarp.ImpactFrame());
 
-            if (damage > impactFrameDamageThreshold && (Time.timeScale == 1)) StartCoroutine(timeWarp.ImpactFrame());
+            if (damage > impactFrameDamageThreshold /* && (Time.timeScale == 1)*/) StartCoroutine(timeWarp.ImpactFrame());
 
             limb.TakeDamage(damage, stagger, weaponData);
             scoreManager.AddPoints((int)damage + (int)stagger);

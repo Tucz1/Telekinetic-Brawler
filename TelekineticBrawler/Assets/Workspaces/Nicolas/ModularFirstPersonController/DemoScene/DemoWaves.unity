@@ -2064,6 +2064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
   limb: 0
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 0}
@@ -7149,6 +7150,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2033517012555254360, guid: 650143694b0acfd40bfea8fc69f1780e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000000055027947
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033517012555254360, guid: 650143694b0acfd40bfea8fc69f1780e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.320006
+      objectReference: {fileID: 0}
     - target: {fileID: 5239656035188135626, guid: 650143694b0acfd40bfea8fc69f1780e, type: 3}
       propertyPath: m_Name
       value: Saloon

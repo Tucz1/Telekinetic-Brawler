@@ -44,7 +44,7 @@ public class TelekinesisController : MonoBehaviour
     TetherBundle tether;
     PauseMenu pauseMenu;
     public bool isThrowing;
-    [SerializeField] private bool hitEnemy;
+    private bool hitEnemy;
     [SerializeField] private WaitForSeconds staggerWaitForSeconds = new WaitForSeconds(0.08f);
     // Interactable interactable;
 
@@ -78,7 +78,7 @@ public class TelekinesisController : MonoBehaviour
         // }
 
         if (pauseMenu.ispaused) return;
-        if (!attachedItem) 
+        if (!attachedItem)
         {
             screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f);
             nodeOne.position = mainCam.ScreenToWorldPoint(screenCenter + (Vector3.forward * 2));
@@ -150,7 +150,7 @@ public class TelekinesisController : MonoBehaviour
         Quaternion targetRotation = Quaternion.identity;
 
         var upVector = Vector3.Cross(direction, mainCam.transform.right);
-        
+
         targetRotation =
         distance > weaponData.Deadzone ? Quaternion.LookRotation(direction, upVector)
                                        : Quaternion.LookRotation(mainCam.transform.forward);
@@ -165,10 +165,10 @@ public class TelekinesisController : MonoBehaviour
 
         if (!isThrowing)
         {
-        weaponRoot.rotation = Quaternion.Slerp(
-            weaponRoot.rotation,
-            targetRotation,
-            rotationSpeed * Time.deltaTime);
+            weaponRoot.rotation = Quaternion.Slerp(
+                weaponRoot.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime);
         }
         else
         {
@@ -246,23 +246,21 @@ public class TelekinesisController : MonoBehaviour
         Debug.Log($"Collider: {_weaponMeshCollider}");
         // Debug.LogError("pause");
 
-        nodeOne.position = Vector3.up * weaponData.HoldHeightOffset;
+        hitEnemy = false;
+
 
         lastTargetPos = weaponRoot.position;
 
-
-        weaponRB.isKinematic = true;
+        // weaponRB.isKinematic = true;
         weaponRB.interpolation = RigidbodyInterpolation.None;
-        weaponLogic.localPosition = Vector3.zero;
         weaponLogic.localRotation = Quaternion.identity;
-
         StartCoroutine(CreateNextFrame(weaponLogic, _weaponMeshCollider));
 
         handAnimator.Play("Pull In_Hand2");
 
         attachedItem = true;
-
     }
+
 
     IEnumerator CreateNextFrame(Transform a, Collider b)
     {
