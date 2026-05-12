@@ -12,6 +12,7 @@ public class tutorialWave {
 }
 
 public class TutorialWaveManager : MonoBehaviour {
+    [SerializeField] private GameObject spawnEffect;
     [SerializeField] private EnemySpawner[] spawners;
     [SerializeField] private GameObject meleeEnemy;
     [SerializeField] private GameObject rangedEnemy;
@@ -90,6 +91,7 @@ public class TutorialWaveManager : MonoBehaviour {
         int random = Random.Range(0, spawners.Length);
         EnemySpawner selectedSpawner = spawners[random];
 
+        Instantiate(spawnEffect, selectedSpawner.transform.position + (Vector3.up*3), Quaternion.identity);
         Instantiate(enemyPrefab, selectedSpawner.transform.position, Quaternion.identity);
         aliveEnemies++;
     }

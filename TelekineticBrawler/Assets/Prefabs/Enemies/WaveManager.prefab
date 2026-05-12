@@ -44,17 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49496da6121a0b4cbaf10aac050a5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
+  spawnEffect: {fileID: 3412326577647175102, guid: 20a26888170842c49bd5ee3054f39ed8, type: 3}
   spawners: []
   meleeEnemy: {fileID: 480632467442192269, guid: 89be683c04e48094eabc490cddae1143, type: 3}
   rangedEnemy: {fileID: 0}
   waves:
   - waveText: Rip and tear
+    waveEndText: 
     meleeCount: 2
     rangedCount: 0
   - waveText: :D
+    waveEndText: 
     meleeCount: 4
     rangedCount: 0
   - waveText: One more time
+    waveEndText: 
     meleeCount: 6
     rangedCount: 0
   spawnDelay: 1
