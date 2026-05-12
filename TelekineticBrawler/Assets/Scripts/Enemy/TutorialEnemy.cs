@@ -82,7 +82,7 @@ public class TutorialEnemy : MonoBehaviour {
     }
 
     public void legCheck() {
-        if (LegsDisabled) animator.Play("Crawling");
+        if (LegsDisabled) animator.Play("CrawlIdle");
     }
 
     private void disableRagdolls() {
@@ -93,7 +93,7 @@ public class TutorialEnemy : MonoBehaviour {
             agent.enabled = true;
             animator.enabled = true;
             ragdolling = false;
-            if (LegsDisabled) animator.Play("Crawling");
+            if (LegsDisabled) animator.Play("CrawlIdle");
             else if (!LegsDisabled) {
                 if (hips.forward.y < 0) animator.Play("GetUpBack");
                 if (hips.forward.y > 0) animator.Play("GetUpFront");

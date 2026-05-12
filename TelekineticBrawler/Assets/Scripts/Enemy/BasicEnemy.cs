@@ -152,14 +152,13 @@ public class BasicEnemy : MonoBehaviour {
         if (firstWave) disableFirstWave();
         if (LegsDisabled) {
             animator.Play("LeglessAttack");
-        }
-        else if (LeftArmDisabled && !RightArmDisabled) {
+        } else if (LeftArmDisabled && !RightArmDisabled) {
             animator.Play("WalkAttackRightArm");
-        }
-        else if (RightArmDisabled && !LeftArmDisabled) {
+        } else if (RightArmDisabled && !LeftArmDisabled) {
             animator.Play("WalkAttackLeftArm");
-        }
-        else
+        } else if (RightArmDisabled && LeftArmDisabled) {
+            animator.Play("WeTestThingsHere");
+        } else
             animator.Play("WalkAttack");
     }
     public void disableAttacks() {

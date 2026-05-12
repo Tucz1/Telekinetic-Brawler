@@ -68,7 +68,7 @@ public class LimbScript : MonoBehaviour {
                             StartCoroutine(BasicEnemy.RagdollStagger());
                         }
                         else if (stagger > BasicEnemy.staggerThreshold) {
-                            parentAnimator.Play("StaggerBack");
+                            parentAnimator.Play("StaggerBackSteps");
                         }
                         else if (stagger > BasicEnemy.lightStaggerThreshold) {
                             parentAnimator.Play("StaggerBack");
