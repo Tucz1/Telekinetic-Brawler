@@ -26,6 +26,8 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] Collider weaponCollider;
     [SerializeField] GameObject brokenWeapon;
     [SerializeField] GameObject poofFX;
+
+    [SerializeField] FXManager FXManager;
     private int durability;
     private bool canHit;
     [SerializeField] float hitBuffer = 0.4f;
@@ -66,6 +68,7 @@ public class Interactable : MonoBehaviour, IInteractable
         telekinesis = FindFirstObjectByType<TelekinesisController>();
         timeWarp = FindAnyObjectByType<TimeWarp>();
         interactManager = FindAnyObjectByType<InteractManager>();
+        FXManager = FindAnyObjectByType<FXManager>();
 
         canHit = true;
     }
@@ -228,6 +231,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
             if (damage > impactFrameDamageThreshold /* && (Time.timeScale == 1)*/) StartCoroutine(timeWarp.ImpactFrame());
 
+            FXManager.spawnFX(collision.transform.position);
             limb.TakeDamage(damage, stagger, weaponData);
             scoreManager.AddPoints((int)damage + (int)stagger);
 
