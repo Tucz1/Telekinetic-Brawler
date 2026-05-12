@@ -68,9 +68,12 @@ public class Interactable : MonoBehaviour, IInteractable
         timeWarp = FindAnyObjectByType<TimeWarp>();
         interactManager = FindAnyObjectByType<InteractManager>();
 
-        durability = weaponData.Durability;
-
         canHit = true;
+    }
+
+    void Start()
+    {
+        durability = weaponData.Durability;
     }
 
     void Update()
@@ -176,23 +179,15 @@ public class Interactable : MonoBehaviour, IInteractable
         telekinesis.ThrowItem(force);
     }
 
-    public void Break()
-    {
-        var obj = Instantiate(brokenWeapon);
 
-        telekinesis.MoveToWeapon(obj);
+    // public void Poof()
+    // {
+    //     var obj = Instantiate(poofFX);
 
-        Destroy(this.gameObject, 0.2f);
-    }
+    //     telekinesis.MoveToWeapon(obj);
 
-    public void Poof()
-    {
-        var obj = Instantiate(poofFX);
-
-        telekinesis.MoveToWeapon(obj);
-
-        Destroy(this.gameObject, 0.1f);
-    }
+    //     Destroy(this.gameObject, 0.1f);
+    // }
 
 
     // This routine simply has an initial delay and then
@@ -242,7 +237,7 @@ public class Interactable : MonoBehaviour, IInteractable
             StartCoroutine(telekinesis.OnHit());
             StartCoroutine(HitBuffer());
 
-            if(ReduceDurability()) return;
+            ReduceDurability();
         }
 
         // Deal damage
@@ -262,28 +257,44 @@ public class Interactable : MonoBehaviour, IInteractable
 
     }
 
-    private bool ReduceDurability()
+    private void ReduceDurability()
     {
         durability--;
 
-        if (durability > 0) return true;
+        if (durability > 0) return;
 
         BreakWeapon();
-        return false;
     }
 
     private void BreakWeapon()
     {
-        
-        interactManager.Break(this);
-        
-        if (brokenWeapon == null)
+        if(IsHeld)
         {
-            Poof();
+            interactManager.BreakFromHand();
+            return;
         }
 
         // break
         Break();
+    }
+
+    public void Break()
+    {
+        if (brokenWeapon == null)
+        {
+            var obj1 = Instantiate(poofFX);
+
+            telekinesis.MoveToWeapon(obj1);
+
+            Destroy(this.gameObject, 0.1f);
+            return;
+        }
+
+        var obj2 = Instantiate(brokenWeapon);
+
+        telekinesis.MoveToWeapon(obj2);
+
+        Destroy(this.gameObject, 0.2f);
     }
 
     private IEnumerator HitBuffer()

@@ -121,11 +121,12 @@ public class InteractManager : MonoBehaviour
         }
     }
 
-    public void Break(IInteractable interactable)
+    public void BreakFromHand()
     {
-        if (interactable == null) return;
 
-        SetInteractable(interactable);
+        SetInteractable(cachedInteractable);
+        currentInteractable.Break();
+
         holding = false;
     }
 
