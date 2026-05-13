@@ -605,6 +605,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8684860957557035514, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7268727566392447946}
+    - targetCorrespondingSourceObject: {fileID: 8684860957557035514, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7954430616874609552}
     - targetCorrespondingSourceObject: {fileID: -3042490560721640448, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 299643214782523123}
@@ -1585,7 +1588,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1689,6 +1692,22 @@ MonoBehaviour:
   damageCooldownTimer: 0
   dismembered: 0
   damageMultiplierToMain: 2
+--- !u!114 &7954430616874609552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040362759196652244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d280e3c521b66b94382bd495023bb69f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
+  damage: 10
+  ScoreManager: {fileID: 0}
+  cc: {fileID: 0}
+  tutorialEnemy: {fileID: 0}
 --- !u!1 &5089020076858350623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8929495615816580913, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}

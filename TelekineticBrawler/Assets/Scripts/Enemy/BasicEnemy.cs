@@ -148,15 +148,11 @@ public class BasicEnemy : MonoBehaviour {
             transform.position = Vector3.Lerp(animator.rootPosition, agent.nextPosition, smooth);
         }
     }
-    //private void OnTriggerEnter(Collider collision) {
-    //    if (collision.gameObject.name == "FirstPersonController" && !isDead) {
-    //        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
-    //        AttackPlayer();
-    //    }
-    //}
+
     private void OnTriggerStay(Collider collision) {
         if (collision.gameObject.name == "FirstPersonController" && !isDead) {
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walking"))
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walking") ||
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Crawling"))
                 AttackPlayer();
         }
     }

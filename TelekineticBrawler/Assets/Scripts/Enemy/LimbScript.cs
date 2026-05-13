@@ -141,10 +141,19 @@ public class LimbScript : MonoBehaviour {
     private void disableLimb() {
         //BASIC ENEMY
         if (BasicEnemy != null) {
-            if (limb == LimbType.LowerLeftArm || limb == LimbType.UpperLeftArm) BasicEnemy.LeftArmDisabled = true;
-            if (limb == LimbType.LowerRightArm || limb == LimbType.UpperRightArm) BasicEnemy.RightArmDisabled = true;
+            if (limb == LimbType.LowerLeftArm || limb == LimbType.UpperLeftArm) {
+                BasicEnemy.LeftArmDisabled = true;
+                EnemyAttack ea = GetComponentInChildren<EnemyAttack>();
+                ea.disableAttacks();
+            }
 
-            if (limb == LimbType.LowerLeftLeg || limb == LimbType.UpperLeftLeg ||
+            if (limb == LimbType.LowerRightArm || limb == LimbType.UpperRightArm) {
+                BasicEnemy.RightArmDisabled = true;
+                EnemyAttack ea = GetComponentInChildren<EnemyAttack>();
+                ea.disableAttacks();
+            }
+
+                if (limb == LimbType.LowerLeftLeg || limb == LimbType.UpperLeftLeg ||
                 limb == LimbType.UpperRightLeg || limb == LimbType.LowerRightLeg) {
                 if (!BasicEnemy.LegsDisabled) {
                     BasicEnemy.LegsDisabled = true;

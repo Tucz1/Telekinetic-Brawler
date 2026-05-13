@@ -57,6 +57,7 @@ MonoBehaviour:
   weaponCollider: {fileID: 7016292670013101058}
   brokenWeapon: {fileID: 0}
   poofFX: {fileID: 0}
+  FXManager: {fileID: 0}
   hitBuffer: 0.4
   minDamageThreshold: 40
   impactFrameDamageThreshold: 500
@@ -171,7 +172,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3576892db2d6cbf47b4a56173843235a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.281
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3576892db2d6cbf47b4a56173843235a, type: 3}
       propertyPath: m_LocalPosition.y
