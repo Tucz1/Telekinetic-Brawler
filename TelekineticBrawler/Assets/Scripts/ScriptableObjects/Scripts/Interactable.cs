@@ -231,7 +231,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
             if (damage > impactFrameDamageThreshold /* && (Time.timeScale == 1)*/) StartCoroutine(timeWarp.ImpactFrame());
 
-            FXManager.spawnFX(collision.transform.position);
+            if (FXManager != null) FXManager.spawnFX(collision.transform.position);
             limb.TakeDamage(damage, stagger, weaponData);
             scoreManager.AddPoints((int)damage + (int)stagger);
 
