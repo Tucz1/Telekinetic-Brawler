@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class BasicEnemy : MonoBehaviour {
     NavMeshAgent agent;
+    FXManager fxManager;
     public Animator animator;
     public Transform Target;
     public WaveManager WaveManager;
@@ -23,6 +24,8 @@ public class BasicEnemy : MonoBehaviour {
 
     private Vector2 Velocity;
     private Vector2 SmoothDeltaPosition;
+
+
 
     //AGGRO LOGIC
     [SerializeField] public bool firstWave = false;
@@ -43,6 +46,7 @@ public class BasicEnemy : MonoBehaviour {
         enemyAttacks = GetComponentsInChildren<EnemyAttack>();
         Target = FindAnyObjectByType<FirstPersonController>().transform;
         WaveManager = FindAnyObjectByType<WaveManager>();
+        fxManager = FindAnyObjectByType<FXManager>();
 
         animator.applyRootMotion = true;
         agent.updatePosition = false;
@@ -152,7 +156,8 @@ public class BasicEnemy : MonoBehaviour {
     private void OnTriggerStay(Collider collision) {
         if (collision.gameObject.name == "FirstPersonController" && !isDead) {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walking") ||
-                animator.GetCurrentAnimatorStateInfo(0).IsName("Crawling"))
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Crawling")||
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
                 AttackPlayer();
         }
     }
@@ -193,7 +198,12 @@ public class BasicEnemy : MonoBehaviour {
         yield return null;
     }
     IEnumerator RemoveBody() {
-        yield return new WaitForSeconds(deathDespawnTime);
+        
+        
+        yield return new WaitForSeconds(2);
+        var fxspawnPos = new Vector3(hips.position.x, animator.rootPosition.y, hips.position.z);
+        fxManager.SpawnEnemyDespawnFX(fxspawnPos);
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 

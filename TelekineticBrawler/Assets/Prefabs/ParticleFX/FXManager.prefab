@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FXManager
   HitFX: {fileID: 4722105042759375661, guid: ac843cf73b20cad478c5409de98c928e, type: 3}
+  EnemyDespawnFX: {fileID: 6424543212623537546, guid: b29611bc3e569d94d86f6353d2d975e7, type: 3}

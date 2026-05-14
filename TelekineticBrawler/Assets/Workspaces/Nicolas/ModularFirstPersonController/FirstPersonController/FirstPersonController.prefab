@@ -2512,7 +2512,6 @@ MonoBehaviour:
   canInfluence: 0
   attachedItem: 0
   isThrowing: 0
-  hitEnemy: 0
 --- !u!114 &7600314773936693552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2541,12 +2540,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TetherBundle
   playerAnchor: {fileID: 4057597762275556928}
   tetherPrefab: {fileID: 0}
-  tetherCount: 8
+  tetherCount: 9
   attachRadius: 2
   lagAmount: 0.4
   wobbleAmplitude: 0.004
   wobbleSpeed: 0.4
-  segments: 16
+  segments: 2
   curveHeight: 0.25
 --- !u!114 &6957749539761266885
 MonoBehaviour:

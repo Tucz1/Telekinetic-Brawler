@@ -12,11 +12,15 @@ public class Wave {
 }
 
 public class WaveManager : MonoBehaviour {
+    [SerializeField] private GameObject exit;
+
     [SerializeField] private GameObject spawnEffect;
     [SerializeField] private EnemySpawner[] spawners;
+    private int prevRandom = -1;
     [SerializeField] private GameObject meleeEnemy;
     [SerializeField] private GameObject rangedEnemy;
     [SerializeField] private Wave[] waves;
+
     public float spawnDelay = 1f;
     [SerializeField] private int currentWave = 0;
     [SerializeField] private int aliveEnemies = 0;
@@ -24,6 +28,8 @@ public class WaveManager : MonoBehaviour {
     bool firstWave = true;
     bool roundStarted = false;
     //UI
+    public string EndingText;
+
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] float fadeTime;
     private void Awake() {
@@ -49,10 +55,6 @@ public class WaveManager : MonoBehaviour {
     private IEnumerator EndTextAndStartNewWave(int currentWave) {
         roundStarted = true;
 
-        if (currentWave >= waves.Length) {
-            //ENDING HERE?
-            yield return null;
-        }
         if (!firstWave) { 
         waveText.text = waves[currentWave-1].waveEndText;
         StartCoroutine(fade(waveText, fadeTime)); 
@@ -60,9 +62,16 @@ public class WaveManager : MonoBehaviour {
 
         firstWave = false;
         yield return new WaitForSeconds(fadeTime*2);
-        StartWave();
-        roundStarted = false;
-        yield return null;
+
+        if (currentWave >= waves.Length) {
+            StartCoroutine(endingSequence());
+            yield return null;
+        }
+        else {
+            StartWave();
+            roundStarted = false;
+            yield return null;
+        }
     }
     private void StartWave() {
 
@@ -89,17 +98,32 @@ public class WaveManager : MonoBehaviour {
 
     private void SpawnEnemy(GameObject enemyPrefab) {
         int random = Random.Range(0, spawners.Length);
-        EnemySpawner selectedSpawner = spawners[random];
 
-        Instantiate(spawnEffect, selectedSpawner.transform.position + (Vector3.up * 3), Quaternion.identity);
-        Instantiate(enemyPrefab, selectedSpawner.transform.position, Quaternion.identity);
-        aliveEnemies++;
+        EnemySpawner selectedSpawner = spawners[random];
+        if (random != prevRandom) {
+            Instantiate(spawnEffect, selectedSpawner.transform.position + (Vector3.up * 3), Quaternion.identity);
+            Instantiate(enemyPrefab, selectedSpawner.transform.position, Quaternion.identity);
+            aliveEnemies++;
+            prevRandom = random;
+        }
+        else { 
+            SpawnEnemy(enemyPrefab);
+        }
     }
 
     public void EnemyDied() {
         aliveEnemies--;
     }
 
+    IEnumerator endingSequence() {
+        exit.SetActive(true);
+        waveText.text = EndingText;
+        StartCoroutine(fadeInOnly(waveText, fadeTime));
+        while (true) {
+            SpawnEnemy(meleeEnemy);
+            yield return new WaitForSeconds(spawnDelay*2);
+        }
+    }
     IEnumerator fade(TextMeshProUGUI text, float duration) {
 
         float elapsedTime = 0;
@@ -122,6 +146,19 @@ public class WaveManager : MonoBehaviour {
             elapsedTime += Time.deltaTime;
             float newerAlpha = Mathf.Lerp(1, 0, elapsedTime * duration);
             text.alpha = newerAlpha;
+            yield return null;
+        }
+    }
+    IEnumerator fadeInOnly(TextMeshProUGUI text, float duration) {
+
+        float elapsedTime = 0;
+        float startValue = 0;
+
+        // Fade In
+        while (elapsedTime < duration) {
+            elapsedTime += Time.deltaTime;
+            float newAlpha = Mathf.Lerp(startValue, 1, elapsedTime * duration);
+            text.alpha = newAlpha;
             yield return null;
         }
     }
