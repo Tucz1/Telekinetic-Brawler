@@ -290,7 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2285341109093808722}
   - component: {fileID: 932663708724846548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hammer_broken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
