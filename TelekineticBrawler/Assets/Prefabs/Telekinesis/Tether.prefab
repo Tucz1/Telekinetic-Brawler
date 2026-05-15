@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3381403652197956806}
   - component: {fileID: 5875811229997692671}
+  - component: {fileID: 2734733576698031807}
   m_Layer: 0
   m_Name: Tether
   m_TagString: Untagged
@@ -160,3 +161,16 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &2734733576698031807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135536280444319165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74ab0f06a1688a40917739a6bbacc5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  rend: {fileID: 0}

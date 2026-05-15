@@ -2540,7 +2540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TetherBundle
   playerAnchor: {fileID: 4057597762275556928}
   tetherPrefab: {fileID: 0}
-  tetherCount: 9
+  tetherCount: 5
   attachRadius: 2
   lagAmount: 0.4
   wobbleAmplitude: 0.004

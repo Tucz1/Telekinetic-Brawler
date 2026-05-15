@@ -9363,6 +9363,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4039912227206882950, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: segments
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039912227206882950, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: lagAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039912227206882950, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: tetherPrefab
       value: 
       objectReference: {fileID: 209766085}
