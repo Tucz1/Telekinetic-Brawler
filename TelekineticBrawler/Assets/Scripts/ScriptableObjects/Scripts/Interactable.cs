@@ -105,8 +105,8 @@ public class Interactable : MonoBehaviour, IInteractable
     }
 
 
-        
-        
+
+
 
     public bool IsLooking
     {
@@ -137,7 +137,7 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Interacted with {name}", this);
         IsHeld = true;
         outline.enabled = false;
-        
+
 
         weaponRB.isKinematic = true;
 
@@ -167,7 +167,7 @@ public class Interactable : MonoBehaviour, IInteractable
         IsHeld = false;
 
         var t0 = Mathf.InverseLerp(0, telekinesis.maxThrowChargeDuration, timeHeld);
-        var t1 = Mathf.Lerp(0.5f, telekinesis.maxThrowChargeDuration, t0);
+        var t1 = Mathf.Lerp(0.5f, telekinesis.maxThrowChargeDuration + 1, t0);
 
 
         Debug.Log($"Lerped Time Held: {t1}");
@@ -269,7 +269,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     private void BreakWeapon()
     {
-        if(IsHeld)
+        if (IsHeld)
         {
             interactManager.BreakFromHand();
             return;

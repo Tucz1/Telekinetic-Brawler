@@ -9418,6 +9418,10 @@ PrefabInstance:
       propertyPath: nodeOne
       value: 
       objectReference: {fileID: 765796783}
+    - target: {fileID: 4560406830805021049, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: maxThrowChargeDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5900467623223925128, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

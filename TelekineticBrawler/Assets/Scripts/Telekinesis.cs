@@ -286,7 +286,7 @@ public class TelekinesisController : MonoBehaviour
         weaponRB.isKinematic = false;
 
         // weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
-        weaponRB.AddForce(transform.forward * force, ForceMode.Impulse);
+        weaponRB.AddForce(mainCam.transform.forward * force, ForceMode.Impulse);
 
         handAnimator.Play("Push Out_Hand2");
 
