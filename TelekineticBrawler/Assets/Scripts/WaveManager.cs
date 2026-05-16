@@ -16,6 +16,8 @@ public class WaveManager : MonoBehaviour {
 
     [SerializeField] private GameObject spawnEffect;
     [SerializeField] private EnemySpawner[] spawners;
+    [SerializeField] private FlyingEnemySpawner[] flyingEnemySpawners;
+
     private int prevRandom = -1;
     [SerializeField] private GameObject meleeEnemy;
     [SerializeField] private GameObject rangedEnemy;
@@ -36,6 +38,7 @@ public class WaveManager : MonoBehaviour {
     [SerializeField] float fadeTime;
     private void Awake() {
         spawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None);
+        flyingEnemySpawners = FindObjectsByType<FlyingEnemySpawner>(FindObjectsSortMode.None);
         startingEnemies = FindObjectsByType<BasicEnemy>(FindObjectsSortMode.None);
         flyingEnemies = FindObjectsByType<FlyingEnemy>(FindObjectsSortMode.None);
 
@@ -106,17 +109,33 @@ public class WaveManager : MonoBehaviour {
     }
 
     private void SpawnEnemy(GameObject enemyPrefab) {
-        int random = Random.Range(0, spawners.Length);
+        if (enemyPrefab.name == "BasicEnemy") {
+            int random = Random.Range(0, spawners.Length);
 
-        EnemySpawner selectedSpawner = spawners[random];
-        if (random != prevRandom) {
-            Instantiate(spawnEffect, selectedSpawner.transform.position + (Vector3.up * 3), Quaternion.identity);
-            Instantiate(enemyPrefab, selectedSpawner.transform.position, Quaternion.identity);
-            aliveEnemies++;
-            prevRandom = random;
+            EnemySpawner selectedSpawner = spawners[random];
+            if (random != prevRandom) {
+                Instantiate(spawnEffect, selectedSpawner.transform.position + (Vector3.up * 3), Quaternion.identity);
+                Instantiate(enemyPrefab, selectedSpawner.transform.position, Quaternion.identity);
+                aliveEnemies++;
+                prevRandom = random;
+            }
+            else {
+                SpawnEnemy(enemyPrefab);
+            }
         }
-        else { 
-            SpawnEnemy(enemyPrefab);
+        if (enemyPrefab.name == "FlyingEnemy") {
+            int random = Random.Range(0, flyingEnemySpawners.Length);
+
+            FlyingEnemySpawner selectedFlyingEnemySpawner = flyingEnemySpawners[random];
+            if (random != prevRandom) {
+                Instantiate(spawnEffect, selectedFlyingEnemySpawner.transform.position + (Vector3.up * 3), Quaternion.identity);
+                Instantiate(enemyPrefab, selectedFlyingEnemySpawner.transform.position, Quaternion.identity);
+                aliveEnemies++;
+                prevRandom = random;
+            }
+            else {
+                SpawnEnemy(enemyPrefab);
+            }
         }
     }
 

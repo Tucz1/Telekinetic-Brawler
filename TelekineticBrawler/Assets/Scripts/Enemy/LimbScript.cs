@@ -125,12 +125,18 @@ public class LimbScript : MonoBehaviour {
                 }
 
             if (currentHealth <= 0) {
+                //Disable colliders
+                var collider = GetComponent<Collider>();
+                collider.enabled = false;
+                CapsuleCollider[] childColliders = GetComponentsInChildren<CapsuleCollider>();
+                foreach (CapsuleCollider col in childColliders) {
+                    col.enabled = false;
+                }
+
                 if (FlyingEnemy == null) {
                     if (childLimb != null)
                         disableChildOnly();
                     disableLimb();
-
-                    disableLimb(); // only this one spawns
                 }
             }
         }

@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
   animator: {fileID: 0}
+  player: {fileID: 0}
   Target: {fileID: 0}
   WaveManager: {fileID: 0}
   isPointingUp: 0
@@ -742,7 +743,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -768,6 +769,7 @@ MonoBehaviour:
   ScoreManager: {fileID: 0}
   cc: {fileID: 0}
   tutorialEnemy: {fileID: 0}
+  player: {fileID: 0}
 --- !u!54 &3377016311907681601
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -864,7 +866,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1062,6 +1064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 8
   childLimb: {fileID: 8368727022873388835}
   limbToDismember: {fileID: 5332063166981648000}
@@ -1096,7 +1099,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1294,6 +1297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 6
   childLimb: {fileID: 3133712735689572410}
   limbToDismember: {fileID: 6684949546912361672}
@@ -1360,7 +1364,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -1386,6 +1390,7 @@ MonoBehaviour:
   ScoreManager: {fileID: 0}
   cc: {fileID: 0}
   tutorialEnemy: {fileID: 0}
+  player: {fileID: 0}
 --- !u!54 &5154312796325086205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1482,7 +1487,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1681,6 +1686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 0
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 0}
@@ -1708,6 +1714,7 @@ MonoBehaviour:
   ScoreManager: {fileID: 0}
   cc: {fileID: 0}
   tutorialEnemy: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &5089020076858350623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8929495615816580913, guid: 518adb55ad97de048a95e59f00a0181c, type: 3}
@@ -1799,7 +1806,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1924,6 +1931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 9
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 9076903204106735562}
@@ -2050,6 +2058,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 4
   childLimb: {fileID: 5814502227694107137}
   limbToDismember: {fileID: 4551525708648250642}
@@ -2176,6 +2185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 3
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 1434945279956885999}
@@ -2302,6 +2312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 5
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 2600385213127024082}
@@ -2428,6 +2439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 7
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 3187566602313332083}
@@ -2554,6 +2566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 2
   childLimb: {fileID: 1490888472517145568}
   limbToDismember: {fileID: 1012339811108711790}
@@ -2656,7 +2669,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -2690,7 +2703,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.31, y: 0.18, z: 0.29}
+  m_Size: {x: 0.48, y: 0.4, z: 0.37}
   m_Center: {x: 0, y: -0.05, z: -0.19}
 --- !u!54 &4321224484848690450
 Rigidbody:
@@ -2733,6 +2746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LimbScript
   BasicEnemy: {fileID: 0}
   TutorialEnemy: {fileID: 0}
+  FlyingEnemy: {fileID: 0}
   limb: 1
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 0}
@@ -2762,7 +2776,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
