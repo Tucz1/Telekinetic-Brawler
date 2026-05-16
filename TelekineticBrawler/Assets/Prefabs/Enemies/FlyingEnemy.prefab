@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6416214573681634995}
   - component: {fileID: 4034300501381847360}
-  - component: {fileID: 5886351186342415300}
+  - component: {fileID: 5881112367090367156}
   m_Layer: 7
   m_Name: FlyingEnemy
   m_TagString: Enemy
@@ -55,33 +55,36 @@ MonoBehaviour:
   WaveManager: {fileID: 0}
   TutorialWaveManager: {fileID: 0}
   FXManager: {fileID: 0}
+  animator: {fileID: 0}
+  Player: {fileID: 0}
   floatSpeed: 2
   floatHeight: 1
   projectilePrefab: {fileID: 4345587441990796871, guid: de44b0e58564fca4d882a9585141c0a7, type: 3}
   firePoint: {fileID: 5509271902406115294}
   shootInterval: 2
   projectileSpeed: 6
---- !u!65 &5886351186342415300
-BoxCollider:
+--- !u!95 &5881112367090367156
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2524415282461454647}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 1.52, z: 0}
+  m_Avatar: {fileID: 9000000, guid: aa1646b186ba04748be8820701d21b51, type: 3}
+  m_Controller: {fileID: 9100000, guid: 31374959b467c4e47b64285c377211a3, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6720647366807504155
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +196,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.2, y: 1.84, z: 1}
-  m_Center: {x: 0, y: 1.54, z: 0.15}
+  m_Center: {x: 0, y: 1, z: 0.15}
 --- !u!54 &2640673141651569145
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -468,6 +471,10 @@ PrefabInstance:
     - target: {fileID: 5490329580245269303, guid: aa1646b186ba04748be8820701d21b51, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: aa1646b186ba04748be8820701d21b51, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: aa1646b186ba04748be8820701d21b51, type: 3}
       propertyPath: m_Controller

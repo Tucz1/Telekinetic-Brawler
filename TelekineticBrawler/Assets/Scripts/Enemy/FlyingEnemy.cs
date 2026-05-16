@@ -56,20 +56,23 @@ public class FlyingEnemy : MonoBehaviour
     }
 
     void ShootAtPlayer() {
-        if (player == null) return;
 
         shootTimer += Time.deltaTime;
 
         if (shootTimer >= shootInterval) {
             shootTimer = 0f;
+            animator.Play("Attack");
+        }
+    }
 
-            Vector3 direction = (player.position - firePoint.position).normalized;
+    //Animator event uses this
+    void shootFireball() {
+        Vector3 direction = (player.position - firePoint.position).normalized;
 
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-            Rigidbody rb = projectile.GetComponent<Rigidbody>();
-            if (rb != null) {
-                rb.linearVelocity = direction * projectileSpeed;
-            }
+        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        if (rb != null) {
+            rb.linearVelocity = direction * projectileSpeed;
         }
     }
     public void takeDamage(float damage, float stagger, WeaponData weaponData) {
