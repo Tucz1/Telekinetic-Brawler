@@ -25,6 +25,8 @@ public class WaveManager : MonoBehaviour {
     [SerializeField] private int currentWave = 0;
     [SerializeField] private int aliveEnemies = 0;
     [SerializeField] private BasicEnemy[] startingEnemies;
+    [SerializeField] private FlyingEnemy[] flyingEnemies;
+
     bool firstWave = true;
     bool roundStarted = false;
     //UI
@@ -35,8 +37,12 @@ public class WaveManager : MonoBehaviour {
     private void Awake() {
         spawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None);
         startingEnemies = FindObjectsByType<BasicEnemy>(FindObjectsSortMode.None);
+        flyingEnemies = FindObjectsByType<FlyingEnemy>(FindObjectsSortMode.None);
 
         foreach (BasicEnemy enemy in startingEnemies) {
+            aliveEnemies++;
+        }
+        foreach(FlyingEnemy enemy in flyingEnemies) {
             aliveEnemies++;
         }
     }
@@ -45,6 +51,9 @@ public class WaveManager : MonoBehaviour {
         foreach (BasicEnemy enemy in startingEnemies) {
             enemy.firstWave = false;
             enemy.animator.SetBool("isAggressive", true);
+        }
+        foreach (FlyingEnemy enemy in flyingEnemies) {
+            enemy.firstWave = false;
         }
     }
 

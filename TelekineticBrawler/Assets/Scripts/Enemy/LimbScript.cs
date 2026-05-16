@@ -3,6 +3,8 @@ using UnityEngine;
 public class LimbScript : MonoBehaviour {
     [SerializeField] private BasicEnemy BasicEnemy;
     [SerializeField] private TutorialEnemy TutorialEnemy;
+    [SerializeField] private FlyingEnemy FlyingEnemy;
+
     public LimbType limb;
 
     //Manually set child limb
@@ -21,6 +23,7 @@ public class LimbScript : MonoBehaviour {
     private void Awake() {
         BasicEnemy = GetComponentInParent<BasicEnemy>();
         TutorialEnemy = GetComponentInParent<TutorialEnemy>();
+        FlyingEnemy = GetComponentInParent<FlyingEnemy>();
         currentHealth = maxHealth;
         parentAnimator = GetComponentInParent<Animator>();
     }
@@ -117,13 +120,19 @@ public class LimbScript : MonoBehaviour {
                     }
                 }
             }
+            //FLYING ENEMY
+            if(FlyingEnemy != null) {
+                FlyingEnemy.takeDamage(damageToMain, stagger, weaponData);
+                }
 
             if (currentHealth <= 0) {
-                if (childLimb != null)
-                    disableChildOnly();
+                if (FlyingEnemy == null) {
+                    if (childLimb != null)
+                        disableChildOnly();
                     disableLimb();
 
-                disableLimb(); // only this one spawns
+                    disableLimb(); // only this one spawns
+                }
             }
         }
     }

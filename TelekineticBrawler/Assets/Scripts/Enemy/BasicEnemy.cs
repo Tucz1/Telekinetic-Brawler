@@ -158,6 +158,7 @@ public class BasicEnemy : MonoBehaviour {
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Walking") ||
                 animator.GetCurrentAnimatorStateInfo(0).IsName("Crawling")||
                 animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+
                 AttackPlayer();
         }
     }
