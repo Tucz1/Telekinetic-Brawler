@@ -107,6 +107,7 @@ public class ScoreManager : MonoBehaviour
         if (rankScore >= 250) { 
             rankLevel++;
             rankScore = 0;
+            rankTimer = rankDecayTime;
         }
         currentCoroutineScore = StartCoroutine(CountUp());
 
