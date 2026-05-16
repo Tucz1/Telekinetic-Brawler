@@ -76,6 +76,9 @@ MonoBehaviour:
   weaponThrowRotation: {x: 90, y: 0, z: 0}
   weaponCollider: {fileID: 3975352079217892754}
   brokenWeapon: {fileID: 8525010868669530674, guid: d1962b2b667f31c4f861880be2a8c389, type: 3}
+  poofFX: {fileID: 0}
+  FXManager: {fileID: 0}
+  hitBuffer: 0.4
   minDamageThreshold: 40
   impactFrameDamageThreshold: 500
   outline: {fileID: 6575476207166871090}
@@ -169,7 +172,6 @@ GameObject:
   - component: {fileID: 6119307093194047816}
   - component: {fileID: 6266602555621019966}
   - component: {fileID: 4119222430632082133}
-  - component: {fileID: 986850112014147355}
   m_Layer: 2
   m_Name: Pitchfork
   m_TagString: Untagged
@@ -250,24 +252,3 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &986850112014147355
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339458165984782141}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.17, y: 0.05, z: 1.36}
-  m_Center: {x: 0, y: 0, z: -0.41}

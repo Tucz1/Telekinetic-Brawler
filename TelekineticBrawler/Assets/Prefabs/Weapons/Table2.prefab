@@ -194,6 +194,7 @@ MonoBehaviour:
   weaponCollider: {fileID: 1088659421904069419}
   brokenWeapon: {fileID: 2493356079052525448, guid: 5ad81735c737a1d48af78668e2579d39, type: 3}
   poofFX: {fileID: 0}
+  FXManager: {fileID: 0}
   hitBuffer: 0.4
   minDamageThreshold: 40
   impactFrameDamageThreshold: 500
@@ -242,9 +243,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8426350171701213827}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.40186, y: 1.2030001, z: 4.64899}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1414, y: 1.1414, z: 1.1414}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5508925994090489204}
