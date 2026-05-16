@@ -12,7 +12,8 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField] private WaveManager WaveManager;
     [SerializeField] private TutorialWaveManager TutorialWaveManager;
     [SerializeField] private FXManager FXManager;
-
+    [SerializeField] private Animator animator;
+    public FirstPersonController Player;
 
 
 
@@ -31,11 +32,12 @@ public class FlyingEnemy : MonoBehaviour
     void Awake() {
         startPos = transform.position;
         currentHealth = maxhealth;
-
+        Player = FindAnyObjectByType<FirstPersonController>();
         WaveManager = FindAnyObjectByType<WaveManager>();
         TutorialWaveManager = FindAnyObjectByType<TutorialWaveManager>();
         player = FindAnyObjectByType<FirstPersonController>().transform;
         FXManager = FindAnyObjectByType<FXManager>();
+        animator = GetComponentInChildren<Animator>();
 
     }
 
@@ -71,7 +73,9 @@ public class FlyingEnemy : MonoBehaviour
         }
     }
     public void takeDamage(float damage, float stagger, WeaponData weaponData) {
+        animator.Play("Stagger");
         if (firstWave) WaveManager.aggressiveEnemies();
+        
         shootTimer = 0;
         currentHealth -= damage;
         if (!isDead) {
@@ -81,6 +85,7 @@ public class FlyingEnemy : MonoBehaviour
 
                 StartCoroutine(RemoveBody());
                 isDead = true;
+                Player.currentHP += 10;
             }
         }
     }

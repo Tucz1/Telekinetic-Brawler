@@ -7,6 +7,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private ScoreManager ScoreManager;
     [SerializeField] private CapsuleCollider cc;
     [SerializeField] private TutorialEnemy tutorialEnemy;
+    [SerializeField] private FirstPersonController player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -28,12 +29,13 @@ public class EnemyAttack : MonoBehaviour
             }
             var rb = collision.GetComponent<Rigidbody>();
             var backdirection = rb.transform.forward * -1;
-            rb.AddForce((rb.transform.up + backdirection) * 5, ForceMode.Impulse);
+            rb.AddForce((rb.transform.up) * 5, ForceMode.Impulse);
+            rb.AddForce((backdirection) * 20, ForceMode.Impulse);
 
             ScoreManager.decreaseRank();
 
-            //IMPLEMENT TAKING DAMAGE
-            Debug.Log($"You took " +damage+ " damage");
+            var col = collision.GetComponent<FirstPersonController>();
+            col.playerTakeDamage(damage);
         }
     }
     public void disableAttacks() {

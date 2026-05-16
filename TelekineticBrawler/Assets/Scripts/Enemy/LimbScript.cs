@@ -79,7 +79,6 @@ public class LimbScript : MonoBehaviour {
                     }
                 }
             }
-
             //TUTORIAL ENEMY
             if (TutorialEnemy != null) {
                 TutorialEnemy.takeDamage(damageToMain, stagger, weaponData);

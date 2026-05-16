@@ -8,14 +8,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
     using System.Net;
 #endif
 
 public class FirstPersonController : MonoBehaviour
 {
+
+    public float MaxHP = 100;
+    public float currentHP = 100;
     private Rigidbody rb;
 
     #region Camera Movement Variables
@@ -141,6 +146,7 @@ public class FirstPersonController : MonoBehaviour
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
         jointOriginalPos = joint.localPosition;
+        currentHP = MaxHP;
 
         if (!unlimitedSprint)
         {
@@ -198,6 +204,13 @@ public class FirstPersonController : MonoBehaviour
         #endregion
     }
 
+    public void playerTakeDamage(float damage) {
+        currentHP -= damage;
+        if (currentHP <= 0) {
+            //DEATH LOGIC
+            SceneManager.LoadScene(0);
+        }
+    }
     float camRotation;
 
     private void Update()
@@ -547,6 +560,9 @@ public class FirstPersonController : MonoBehaviour
     public override void OnInspectorGUI()
     {
         SerFPC.Update();
+
+        fpc.MaxHP = EditorGUILayout.FloatField(new GUIContent("Max Health", "Maximum player health."), fpc.MaxHP);
+        fpc.currentHP = EditorGUILayout.FloatField(new GUIContent("Current Health", "Current player health."), fpc.currentHP);
 
         EditorGUILayout.Space();
         GUILayout.Label("Modular First Person Controller", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });

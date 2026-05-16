@@ -7,6 +7,7 @@ public class BasicEnemy : MonoBehaviour {
     NavMeshAgent agent;
     FXManager fxManager;
     public Animator animator;
+    public FirstPersonController player;
     public Transform Target;
     public WaveManager WaveManager;
     [SerializeField] bool isPointingUp;
@@ -44,6 +45,7 @@ public class BasicEnemy : MonoBehaviour {
         animator = GetComponent<Animator>();
         ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         enemyAttacks = GetComponentsInChildren<EnemyAttack>();
+        player = FindAnyObjectByType<FirstPersonController>();
         Target = FindAnyObjectByType<FirstPersonController>().transform;
         WaveManager = FindAnyObjectByType<WaveManager>();
         fxManager = FindAnyObjectByType<FXManager>();
@@ -71,6 +73,7 @@ public class BasicEnemy : MonoBehaviour {
                 enableRagdolls();
                 WaveManager.EnemyDied();
                 isDead = true;
+                player.currentHP += 10;
             }
         }
     }
