@@ -22,6 +22,7 @@ public class FirstPersonController : MonoBehaviour
     public float MaxHP = 100;
     public float currentHP = 100;
     private Rigidbody rb;
+    private DamageTakenFlash flash;
 
     #region Camera Movement Variables
 
@@ -147,6 +148,7 @@ public class FirstPersonController : MonoBehaviour
         originalScale = transform.localScale;
         jointOriginalPos = joint.localPosition;
         currentHP = MaxHP;
+        flash = GetComponentInChildren<DamageTakenFlash>();
 
         if (!unlimitedSprint)
         {
@@ -206,6 +208,7 @@ public class FirstPersonController : MonoBehaviour
 
     public void playerTakeDamage(float damage) {
         currentHP -= damage;
+        flash.Flash();
         if (currentHP <= 0) {
             //DEATH LOGIC
             SceneManager.LoadScene(0);
