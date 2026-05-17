@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MediumFurnitureFurniture
   damageType: 0
   damage: 16
-  durability: 6
+  durability: 2
   minThrowStrength: 3.8
   distanceHeld: 3
   holdHeightOffset: 2

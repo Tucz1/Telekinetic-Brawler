@@ -37,6 +37,8 @@ public class TelekinesisController : MonoBehaviour
     Vector3 playerVelocity;
     private Vector3 lastDir;
     private float distance;
+    private Vector3 previousAxis = Vector3.up;
+    [SerializeField] float TargetVectorRotateSpeed = 180f;
 
     public bool attachedItem;
     bool facingEnvironment;
@@ -67,6 +69,12 @@ public class TelekinesisController : MonoBehaviour
 
     }
 
+    void OnDrawGizmos()
+    {
+        if (weaponData != null)
+            Gizmos.DrawWireSphere(mainCam.transform.position, weaponData.DistanceHeld);
+    }
+
     void Update()
     {
 
@@ -76,6 +84,8 @@ public class TelekinesisController : MonoBehaviour
         //     Debug.Log(weaponLogic.position);
         //     Debug.Log(nodeOne.position);
         // }
+
+
 
         if (pauseMenu.ispaused) return;
         if (!attachedItem)
@@ -143,6 +153,44 @@ public class TelekinesisController : MonoBehaviour
                 nodeOne.position,
                 weightedSpeed * Time.deltaTime
             );
+
+        // var direction = weaponRoot.position - mainCam.transform.position;
+        // var dist = Vector3.Distance(mainCam.transform.position, weaponRoot.position);
+        // var closestPoint = mainCam.transform.position + (direction * (weaponData.DistanceHeld / dist));
+
+        // weaponRoot.position = closestPoint;
+
+        if (distance < weaponData.Deadzone * 5) return;
+
+        Vector3 center = mainCam.transform.position;
+
+        float r = weaponData.DistanceHeld;
+
+        Vector3 currentDir = (weaponRoot.position - center).normalized;
+
+        Vector3 targetDir = (nodeOne.position - center).normalized;
+
+        // I CREATE THE AXIS NOW
+        Vector3 axis = Vector3.Cross(currentDir, targetDir);
+
+        // Use previously stored axis if too close to limits
+        if (axis.sqrMagnitude < 0.001f)
+        {
+            axis = previousAxis;
+        }
+        else previousAxis = axis;
+
+        // Incrimentally adjust towards the target rotation so we don't pull 
+        // mariokart wii level shortcuts out our ass
+        Quaternion delta =
+            Quaternion.AngleAxis(
+                TargetVectorRotateSpeed * Time.deltaTime,
+                axis.normalized
+            );
+
+        Vector3 newDir = delta * currentDir;
+
+        weaponRoot.position = center + newDir * r;
     }
 
     void UpdateRotation(Vector3 direction, float distance, float normalizedDistance)
