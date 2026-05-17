@@ -21,20 +21,21 @@ public class EnemyAttack : MonoBehaviour
 
 
     // Update is called once per frame
-    private void OnTriggerEnter(Collider collision) {
+    private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.name == "FirstPersonController") {
             if (tutorialEnemy != null) {
                 disableAttacks();
                 return;
             }
-            var rb = collision.GetComponent<Rigidbody>();
+
+            var rb = collision.gameObject.GetComponent<Rigidbody>();
             var backdirection = rb.transform.forward * -1;
             rb.AddForce((rb.transform.up) * 5, ForceMode.Impulse);
             rb.AddForce((backdirection) * 20, ForceMode.Impulse);
 
             ScoreManager.decreaseRank();
 
-            var col = collision.GetComponent<FirstPersonController>();
+            var col = collision.gameObject.GetComponent<FirstPersonController>();
             col.playerTakeDamage(damage);
         }
     }

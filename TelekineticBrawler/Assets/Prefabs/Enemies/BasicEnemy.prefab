@@ -1593,7 +1593,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1697,7 +1697,7 @@ MonoBehaviour:
   damageCooldown: 0
   damageCooldownTimer: 0
   dismembered: 0
-  damageMultiplierToMain: 2
+  damageMultiplierToMain: 1.5
 --- !u!114 &7954430616874609552
 MonoBehaviour:
   m_ObjectHideFlags: 0

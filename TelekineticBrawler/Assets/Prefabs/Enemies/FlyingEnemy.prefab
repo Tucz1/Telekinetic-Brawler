@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd42748cb7466e47b2e8d99b76fb514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyingEnemy
-  maxhealth: 800
-  currentHealth: 800
+  maxhealth: 600
+  currentHealth: 600
   isDead: 0
   firstWave: 0
   WaveManager: {fileID: 0}
