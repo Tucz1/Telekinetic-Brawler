@@ -80,7 +80,7 @@ public class BasicEnemy : MonoBehaviour {
                 enableRagdolls();
                 WaveManager.EnemyDied();
                 isDead = true;
-                player.currentHP += 10;
+                player.playerHealDamage(10);
             }
         }
     }

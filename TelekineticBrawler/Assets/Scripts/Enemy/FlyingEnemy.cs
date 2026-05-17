@@ -88,7 +88,8 @@ public class FlyingEnemy : MonoBehaviour
 
                 StartCoroutine(RemoveBody());
                 isDead = true;
-                Player.currentHP += 10;
+                Player.playerHealDamage(10);
+
             }
         }
     }

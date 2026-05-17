@@ -24,6 +24,10 @@ public class FirstPersonController : MonoBehaviour
     public Slider healthSlider;
     private Rigidbody rb;
     private DamageTakenFlash flash;
+    public Image loseBlackout;
+    private bool isDead = false;
+
+
 
     #region Camera Movement Variables
 
@@ -209,17 +213,49 @@ public class FirstPersonController : MonoBehaviour
 
     public void playerTakeDamage(float damage) {
         currentHP -= damage;
+        healthSlider.value = Mathf.InverseLerp(0, MaxHP, currentHP);
         flash.Flash();
-        if (currentHP <= 0) {
+        if (currentHP <= 0 && isDead == false) {
             //DEATH LOGIC
-            SceneManager.LoadScene(0);
+            isDead = true;
+            StartCoroutine(PlayerLost());
         }
     }
+    public void playerHealDamage(float damage) {
+        currentHP += damage;
+        if (currentHP > MaxHP) currentHP = MaxHP;
+        healthSlider.value = Mathf.InverseLerp(0, MaxHP, currentHP);
+    }
+    IEnumerator PlayerLost() {
+        float duration = 2f;
+        float timer = 0f;
+        Time.timeScale = 0;
+        cameraCanMove = false;
+
+        while (timer < duration) {
+            timer += Time.unscaledDeltaTime;
+            Debug.Log(timer);
+            float alpha = Mathf.Lerp(0, 1, timer / duration);
+
+            Color color = loseBlackout.color;
+            color.a = alpha;
+
+            loseBlackout.color = color;
+            yield return null;
+        }
+        lockCursor = false;
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+        yield return null;
+    }
+
+    
     float camRotation;
 
     private void Update()
     {
-        healthSlider.value = Mathf.InverseLerp(0, MaxHP, currentHP);
+
         #region Camera
 
         // Control camera movement
@@ -566,9 +602,11 @@ public class FirstPersonController : MonoBehaviour
     {
         SerFPC.Update();
 
-        fpc.MaxHP = EditorGUILayout.FloatField(new GUIContent("Max Health", "Maximum player health."), fpc.MaxHP);
-        fpc.currentHP = EditorGUILayout.FloatField(new GUIContent("Current Health", "Current player health."), fpc.currentHP);
-        fpc.healthSlider = (Slider)EditorGUILayout.ObjectField(new GUIContent("Health Slider", "UI slider displaying current health."),fpc.healthSlider,typeof(Slider),true);
+        fpc.MaxHP = EditorGUILayout.FloatField(new GUIContent("Max Health", "Maximum player health"), fpc.MaxHP);
+        fpc.currentHP = EditorGUILayout.FloatField(new GUIContent("Current Health", "Current player health"), fpc.currentHP);
+        fpc.healthSlider = (Slider)EditorGUILayout.ObjectField(new GUIContent("Health Slider", "UI slider displaying current health"),fpc.healthSlider,typeof(Slider),true);
+        fpc.loseBlackout = (Image)EditorGUILayout.ObjectField(new GUIContent("Blackout Image", "Image to fade when player dies"), fpc.loseBlackout, typeof(Image), true);
+
 
         EditorGUILayout.Space();
         GUILayout.Label("Modular First Person Controller", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });
