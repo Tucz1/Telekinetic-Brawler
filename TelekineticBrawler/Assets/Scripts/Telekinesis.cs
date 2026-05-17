@@ -367,19 +367,14 @@ public class TelekinesisController : MonoBehaviour
         attachedItem = false;
         tether.ClearTethers();
 
-        //weaponRB.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
-
-
-        obj.transform.position = weaponRoot.position;
+        obj.transform.position = weaponRB.transform.position;
         obj.transform.rotation = weaponLogic.rotation;
 
         Rigidbody[] partRBs = obj.GetComponentsInChildren<Rigidbody>();
 
         foreach (Rigidbody part in partRBs)
         {
-            // Debug.Log("Adding force");
             part.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
-            //Debug.Log(lastDir);
         }
 
         weaponRoot.gameObject.SetActive(false);
