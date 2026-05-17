@@ -125,6 +125,8 @@ public class LimbScript : MonoBehaviour {
                 }
 
             if (currentHealth <= 0) {
+
+                AudioFW.Play("Dismemberments", transform.position);
                 //Disable colliders
                 var collider = GetComponent<Collider>();
                 collider.enabled = false;

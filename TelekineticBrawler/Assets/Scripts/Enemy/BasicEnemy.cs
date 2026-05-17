@@ -65,6 +65,13 @@ public class BasicEnemy : MonoBehaviour {
     
 
     public void takeDamage(float damage, float stagger, WeaponData weaponData) {
+        
+        var rAudio = Random.Range(0, 100);
+        if (rAudio < 5) {
+            AudioFW.Play("DemongruntMeme", transform.position);
+        }
+        else AudioFW.Play("DemonGrunts", transform.position);
+
         if (firstWave) disableFirstWave();
         currentHealth -= damage;
         if (!isDead) {
@@ -167,6 +174,7 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     private void AttackPlayer() {
+        AudioFW.Play("DemonAttackGrowls");
         if (firstWave) disableFirstWave();
         if (LegsDisabled) {
             animator.Play("LeglessAttack");
@@ -205,6 +213,8 @@ public class BasicEnemy : MonoBehaviour {
         
         
         yield return new WaitForSeconds(2);
+        AudioFW.Play("DemonDeaths", hips.position);
+        AudioFW.Play("Despawn", hips.position);
         var fxspawnPos = new Vector3(hips.position.x, animator.rootPosition.y, hips.position.z);
         fxManager.SpawnEnemyDespawnFX(fxspawnPos);
         yield return new WaitForSeconds(1);
