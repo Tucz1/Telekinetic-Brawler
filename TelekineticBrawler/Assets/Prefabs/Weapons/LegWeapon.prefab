@@ -103,7 +103,7 @@ MonoBehaviour:
   weaponThrowRotation: {x: 0, y: 0, z: 0}
   weaponCollider: {fileID: 2526612122740611856}
   brokenWeapon: {fileID: 0}
-  poofFX: {fileID: 0}
+  poofFX: {fileID: 7301230207589400746, guid: c956835bbe8d9334e98ce6f789305dcd, type: 3}
   FXManager: {fileID: 0}
   hitBuffer: 0.4
   minDamageThreshold: 40
