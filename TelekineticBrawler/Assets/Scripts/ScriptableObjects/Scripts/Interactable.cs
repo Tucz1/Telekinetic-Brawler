@@ -55,9 +55,6 @@ public class Interactable : MonoBehaviour, IInteractable
     private Vector3 trueVelocity;
     private Vector3 lastVelocity;
 
-    IEnumerator pushRoutine = null;
-    bool isPushing;
-
 
 
     private void Awake()
@@ -241,21 +238,6 @@ public class Interactable : MonoBehaviour, IInteractable
             ReduceDurability();
         }
 
-        // Deal damage
-
-
-
-        // Take damage
-
-
-        if (collision.gameObject.CompareTag("Environment") && IsHeld && !isPushing)
-        {
-            isPushing = true;
-            telekinesis.canInfluence = false;
-            pushRoutine = telekinesis.PushBack();
-            telekinesis.StartCoroutine(pushRoutine);
-        }
-
     }
 
     private void ReduceDurability()
@@ -339,22 +321,5 @@ public class Interactable : MonoBehaviour, IInteractable
         return stagger;
     }
 
-    // void OnCollisionStay(Collision collision)
-    // {
-
-    // }
-
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Environment"))
-        {
-            if (pushRoutine != null)
-            {
-                isPushing = false;
-                telekinesis.canInfluence = true;
-                telekinesis.StopCoroutine(pushRoutine);
-            }
-        }
-    }
 }
 

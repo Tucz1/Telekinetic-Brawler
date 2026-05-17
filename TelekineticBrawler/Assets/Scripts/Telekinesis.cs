@@ -42,23 +42,18 @@ public class TelekinesisController : MonoBehaviour
 
     public bool attachedItem;
     bool facingEnvironment;
-    bool blocked;
     TetherBundle tether;
     PauseMenu pauseMenu;
     public bool isThrowing;
     private bool hitEnemy;
     [SerializeField] private WaitForSeconds staggerWaitForSeconds = new WaitForSeconds(0.08f);
-    // Interactable interactable;
 
     void Awake()
     {
 
         tether = GetComponent<TetherBundle>();
         pauseMenu = FindAnyObjectByType<PauseMenu>();
-        // interactable = FindAnyObjectByType<Interactable>();
 
-        // interactable.Held += AttachItem;
-        // interactable.Dropped += RemoveItem;
     }
 
     void Start()
@@ -95,10 +90,8 @@ public class TelekinesisController : MonoBehaviour
             return;
         }
 
-        Debug.DrawLine(mainCam.transform.position, wallCheck.position, Color.blue);
         if (Physics.Linecast(mainCam.transform.position, wallCheck.position, environmentLayer))
         {
-            // Debug.Log("Blocked");
             facingEnvironment = true;
         }
         else facingEnvironment = false;
@@ -138,7 +131,24 @@ public class TelekinesisController : MonoBehaviour
         // Vector3 screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 2f);
         wallCheck.position = mainCam.ScreenToWorldPoint(screenCenter + (Vector3.forward * weaponData.DistanceHeld));
 
-        if (!facingEnvironment && !blocked) nodeOne.position = mainCam.ScreenToWorldPoint(screenCenter + (Vector3.forward * weaponData.DistanceHeld));
+        if (!facingEnvironment)
+        {
+            nodeOne.position = mainCam.ScreenToWorldPoint(screenCenter + (Vector3.forward * weaponData.DistanceHeld));
+            return;
+        }
+
+        RaycastHit hit;
+
+        Vector3 origin = mainCam.transform.position;
+        Vector3 direction = (wallCheck.transform.position - origin).normalized;
+        float distance = Vector3.Distance(origin, wallCheck.transform.position);
+
+        Debug.DrawRay(origin, direction * distance, Color.cyan);
+
+        if (Physics.Raycast(origin, direction, out hit, distance, environmentLayer))
+        {
+            nodeOne.position = hit.point;
+        }
     }
 
 
@@ -147,12 +157,11 @@ public class TelekinesisController : MonoBehaviour
         float weightedSpeed = !hitEnemy ? weaponData.BaseFollowSpeed + distance * weaponData.Weight :
                                         (weaponData.BaseFollowSpeed + distance * weaponData.Weight) / 10f;
 
-        if ((!blocked && !facingEnvironment) || !facingEnvironment)
-            weaponRoot.position = Vector3.MoveTowards(
-                weaponRoot.position,
-                nodeOne.position,
-                weightedSpeed * Time.deltaTime
-            );
+        weaponRoot.position = Vector3.MoveTowards(
+            weaponRoot.position,
+            nodeOne.position,
+            weightedSpeed * Time.deltaTime
+        );
 
         // var direction = weaponRoot.position - mainCam.transform.position;
         // var dist = Vector3.Distance(mainCam.transform.position, weaponRoot.position);
@@ -347,45 +356,6 @@ public class TelekinesisController : MonoBehaviour
         hitEnemy = true;
         yield return staggerWaitForSeconds;
         hitEnemy = false;
-    }
-
-    void ReversePosition(float distance)
-    {
-        float weightedSpeed = weaponData.BaseFollowSpeed + distance * weaponData.Weight;
-
-        weaponRoot.position = Vector3.MoveTowards(
-            weaponRoot.position,
-            nodeOne.position,
-            -weightedSpeed * Time.deltaTime
-        );
-    }
-
-    public IEnumerator PushBack()
-    {
-        while (true)
-        {
-            // Debug.Log("Pushing back");
-            if ((weaponRoot != null) && facingEnvironment) ReversePosition(distance);
-            yield return null;
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Environment"))
-        {
-            Debug.Log("On");
-            blocked = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Environment"))
-        {
-            Debug.Log("Off");
-            blocked = false;
-        }
     }
 
     public void MoveToWeapon(GameObject obj)
