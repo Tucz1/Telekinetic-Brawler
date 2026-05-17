@@ -21,6 +21,7 @@ public class FirstPersonController : MonoBehaviour
 
     public float MaxHP = 100;
     public float currentHP = 100;
+    public Slider healthSlider;
     private Rigidbody rb;
     private DamageTakenFlash flash;
 
@@ -218,10 +219,11 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        healthSlider.value = Mathf.InverseLerp(0, MaxHP, currentHP);
         #region Camera
 
         // Control camera movement
-        if(cameraCanMove)
+        if (cameraCanMove)
         {
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
@@ -566,6 +568,7 @@ public class FirstPersonController : MonoBehaviour
 
         fpc.MaxHP = EditorGUILayout.FloatField(new GUIContent("Max Health", "Maximum player health."), fpc.MaxHP);
         fpc.currentHP = EditorGUILayout.FloatField(new GUIContent("Current Health", "Current player health."), fpc.currentHP);
+        fpc.healthSlider = (Slider)EditorGUILayout.ObjectField(new GUIContent("Health Slider", "UI slider displaying current health."),fpc.healthSlider,typeof(Slider),true);
 
         EditorGUILayout.Space();
         GUILayout.Label("Modular First Person Controller", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });
