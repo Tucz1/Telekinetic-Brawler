@@ -94,6 +94,7 @@ public class FlyingEnemy : MonoBehaviour
     }
 
     IEnumerator RemoveBody() {
+        AudioFW.Play("Despawn", transform.position);
         FXManager.SpawnEnemyDespawnFX(transform.position);
         Destroy(gameObject);
         yield return null;
