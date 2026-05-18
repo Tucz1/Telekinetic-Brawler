@@ -144,6 +144,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Awake()
     {
+        ScoreContainer.score = 0;
         rb = GetComponent<Rigidbody>();
 
         crosshairObject = GetComponentInChildren<Image>();
@@ -230,6 +231,7 @@ public class FirstPersonController : MonoBehaviour
         float duration = 2f;
         float timer = 0f;
         cameraCanMove = false;
+        ScoreContainer.state = 2;
 
         while (timer < duration) {
             timer += Time.unscaledDeltaTime;
@@ -244,7 +246,7 @@ public class FirstPersonController : MonoBehaviour
         }
         lockCursor = false;
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(3);
         Time.timeScale = 1;
         yield return null;
     }
@@ -254,6 +256,9 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        var value = ScoreContainer.score;
+        Debug.Log(value);
+
 
         #region Camera
 

@@ -47,6 +47,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void ReturnToMainMenu() {
         Time.timeScale = 1f;
+        ScoreContainer.state = 0;
         SceneManager.LoadScene(0);
     }
     public void Update() {

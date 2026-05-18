@@ -35,6 +35,8 @@ public class WaveManager : MonoBehaviour {
     public string EndingText;
 
     [SerializeField] private TextMeshProUGUI waveText;
+    [SerializeField] private TextMeshProUGUI aliveEnemiesText;
+
     [SerializeField] float fadeTime;
     private void Awake() {
         spawners = FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None);
@@ -61,6 +63,7 @@ public class WaveManager : MonoBehaviour {
     }
 
     private void Update() {
+        aliveEnemiesText.text = aliveEnemies.ToString();
         if (aliveEnemies <= 0 && roundStarted == false)
                 StartCoroutine(EndTextAndStartNewWave(currentWave));
     }

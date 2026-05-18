@@ -25,5 +25,6 @@ public class EnemyProjectile : MonoBehaviour {
             col.playerTakeDamage(damage);
             Destroy(gameObject);
         }
+        else { Destroy(gameObject); }
     }
 }

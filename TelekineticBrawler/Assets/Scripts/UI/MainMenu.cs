@@ -11,9 +11,15 @@ public class MainMenu : MonoBehaviour
     public void PlayGame() {
         SceneManager.LoadScene(1);
     }
-public void SettingsMenu() {
+    public void SkipTutorial() {
+        SceneManager.LoadScene(2);
+    }
+    public void SettingsMenu() {
         MainMenuUI.SetActive(false);
         SettingsUI.SetActive(true);
+    }
+public void Leaderboard() {
+        SceneManager.LoadScene(3);
     }
 public void ExitToMainMenu() {
         SceneManager.LoadScene(0);
