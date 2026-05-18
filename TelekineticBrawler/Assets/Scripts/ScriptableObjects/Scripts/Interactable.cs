@@ -123,36 +123,31 @@ public class Interactable : MonoBehaviour, IInteractable
 
     private IEnumerator IncrementEmission(bool up)
     {
-        switch(up)
+        Debug.Log("Starting coroutine");
+        float timer = 0;
+        Debug.Log($"Timer value: {timer}");
+        if (up)
         {
-            case true:
-
-            float timer1 = 0;
-            while (timer1 < emissionTime)
+            while (timer < emissionTime)
             {
-                timer1 += Time.deltaTime;
-                emissionValue = Mathf.Lerp(emissionValue, 100, timer1 / emissionTime);
+                timer += Time.deltaTime;
+                emissionValue = Mathf.Lerp(emissionValue, 100, timer / emissionTime);
                 handMaterial.SetFloat("_EmissionIntensity", emissionValue);
 
                 yield return null;
             }
-            break;
-
-        case false:
-
-            float timer2 = 0;
-            while (timer2 < emissionTime)
-            {
-                timer2 += Time.deltaTime;
-                emissionValue = Mathf.Lerp(emissionValue, 0, timer2 / emissionTime);
-                handMaterial.SetFloat("_EmissionIntensity", emissionValue);
-
-                yield return null;
-            }
-            break;
         }
+        else
+        {
+            while (timer < emissionTime)
+            {
+                timer += Time.deltaTime;
+                emissionValue = Mathf.Lerp(emissionValue, 0, timer / emissionTime);
+                handMaterial.SetFloat("_EmissionIntensity", emissionValue);
 
-            
+                yield return null;
+            }
+        }    
     }
 
 
@@ -304,12 +299,13 @@ public class Interactable : MonoBehaviour, IInteractable
 
         if (durability > 0) return;
 
+        StartCoroutine(IncrementEmission(false));
+
         BreakWeapon();
     }
 
     private void BreakWeapon()
     {
-        StartCoroutine(IncrementEmission(false));
         if (IsHeld)
         {
             interactManager.BreakFromHand();
@@ -322,6 +318,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void Break()
     {
+
         if (brokenWeapon == null)
         {
             var obj1 = Instantiate(poofFX);

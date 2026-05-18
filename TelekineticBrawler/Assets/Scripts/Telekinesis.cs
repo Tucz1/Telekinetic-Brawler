@@ -376,6 +376,8 @@ public class TelekinesisController : MonoBehaviour
         {
             part.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
         }
+        
+        handAnimator.Play("Drop_Hand2");
 
         weaponRoot.gameObject.SetActive(false);
     }

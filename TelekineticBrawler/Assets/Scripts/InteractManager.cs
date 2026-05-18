@@ -83,32 +83,29 @@ public class InteractManager : MonoBehaviour
             holding = false;
         }
 
-        if (Input.GetKey(KeyCode.E)) // Throw
+        if (Input.GetKey(KeyCode.E) && holding) // Throw
         {
             if (cachedInteractable == null) return;
             telekinesis.isThrowing = true;
             timeHeld += Time.deltaTime;
-            holding = false;
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E) && holding)
         {
             if (cachedInteractable == null) return;
             Debug.Log($"Throwing item held for: {timeHeld}");
             Debug.Log(cachedInteractable);
             SetInteractable(cachedInteractable);
             telekinesis.isThrowing = false;
+            holding = false;
             currentInteractable.Throw(timeHeld);
             timeHeld = 0;
         }
 
-        // if (Input.GetKeyDown(KeyCode.Space)) // Break
-        // {
-        //     if (cachedInteractable == null) return;
-        //     Debug.Log(cachedInteractable);
-        //     SetInteractable(cachedInteractable);
-        //     currentInteractable.Break();
-        //     holding = false;
-        // }
+        if (Input.GetKeyDown(KeyCode.Space)) // Break
+        {
+            Debug.Log($"Current interactable: {currentInteractable}");
+            Debug.Log($"Cached interactable: {cachedInteractable}");
+        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -124,10 +121,13 @@ public class InteractManager : MonoBehaviour
     public void BreakFromHand()
     {
 
+        if (cachedInteractable == null) return;
+
         SetInteractable(cachedInteractable);
         currentInteractable.Break();
 
         holding = false;
+        if (telekinesis.isThrowing) { telekinesis.isThrowing = false; timeHeld = 0; }
     }
 
 }
