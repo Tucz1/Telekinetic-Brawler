@@ -213,7 +213,7 @@ public class FirstPersonController : MonoBehaviour
 
     public void playerTakeDamage(float damage) {
         currentHP -= damage;
-        healthSlider.value = Mathf.InverseLerp(0, MaxHP, currentHP);
+         if (healthSlider != null) healthSlider.value = Mathf.InverseLerp(0, MaxHP, currentHP);
         flash.Flash();
         if (currentHP <= 0 && isDead == false) {
             //DEATH LOGIC
@@ -229,13 +229,12 @@ public class FirstPersonController : MonoBehaviour
     IEnumerator PlayerLost() {
         float duration = 2f;
         float timer = 0f;
-        Time.timeScale = 0;
         cameraCanMove = false;
 
         while (timer < duration) {
             timer += Time.unscaledDeltaTime;
-            Debug.Log(timer);
             float alpha = Mathf.Lerp(0, 1, timer / duration);
+            Time.timeScale = Mathf.Lerp(1, 0, timer / duration);
 
             Color color = loseBlackout.color;
             color.a = alpha;
