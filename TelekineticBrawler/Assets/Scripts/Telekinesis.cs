@@ -11,7 +11,7 @@ public class TelekinesisController : MonoBehaviour
     [HideInInspector] public Transform weaponRoot;
     private Transform weaponLogic;
     public Camera mainCam;
-    [SerializeField] Animator handAnimator;
+    public Animator handAnimator;
     [SerializeField] Transform handRotation;
     [SerializeField] float handMaxRoll;
 
@@ -376,8 +376,6 @@ public class TelekinesisController : MonoBehaviour
         {
             part.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
         }
-        
-        handAnimator.Play("Drop_Hand2");
 
         weaponRoot.gameObject.SetActive(false);
     }

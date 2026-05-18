@@ -46,7 +46,7 @@ public class InteractManager : MonoBehaviour
         // in general I'd use vars .. no need to have class fields for those
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out var hit, maxDistance) && !holding)
+        if (Physics.Raycast(ray, out var hit, maxDistance) && !holding && !telekinesis.isThrowing)
         {
             if (hit.collider.TryGetComponent<IInteractable>(out var interactable))
             {
@@ -95,16 +95,10 @@ public class InteractManager : MonoBehaviour
             Debug.Log($"Throwing item held for: {timeHeld}");
             Debug.Log(cachedInteractable);
             SetInteractable(cachedInteractable);
-            telekinesis.isThrowing = false;
-            holding = false;
             currentInteractable.Throw(timeHeld);
             timeHeld = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space)) // Break
-        {
-            Debug.Log($"Current interactable: {currentInteractable}");
-            Debug.Log($"Cached interactable: {cachedInteractable}");
+            telekinesis.isThrowing = false;
+            holding = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -126,8 +120,8 @@ public class InteractManager : MonoBehaviour
         SetInteractable(cachedInteractable);
         currentInteractable.Break();
 
-        holding = false;
         if (telekinesis.isThrowing) { telekinesis.isThrowing = false; timeHeld = 0; }
+        holding = false;
     }
 
 }

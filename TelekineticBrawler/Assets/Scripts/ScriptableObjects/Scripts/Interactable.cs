@@ -299,7 +299,6 @@ public class Interactable : MonoBehaviour, IInteractable
 
         if (durability > 0) return;
 
-        StartCoroutine(IncrementEmission(false));
 
         BreakWeapon();
     }
@@ -318,6 +317,8 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void Break()
     {
+        StartCoroutine(IncrementEmission(false));
+        telekinesis.handAnimator.Play("Idle_Hand2");
 
         if (brokenWeapon == null)
         {
@@ -325,7 +326,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
             telekinesis.MoveToWeapon(obj1);
 
-            Destroy(this.gameObject, 0.1f);
+            Destroy(this.gameObject, 5f);
             return;
         }
 
@@ -333,7 +334,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
         telekinesis.MoveToWeapon(obj2);
 
-        Destroy(this.gameObject, 0.2f);
+        Destroy(this.gameObject, 5f);
     }
 
     private IEnumerator HitBuffer()
