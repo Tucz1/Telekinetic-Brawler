@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseballBat
   damageType: 0
   damage: 15
-  durability: 6
+  durability: 3
   minThrowStrength: 4.2
   distanceHeld: 2.5
   holdHeightOffset: 2

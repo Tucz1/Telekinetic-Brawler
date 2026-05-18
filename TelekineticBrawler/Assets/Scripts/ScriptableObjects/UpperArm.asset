@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Morningstar
   damageType: 0
   damage: 15
-  durability: 6
+  durability: 3
   minThrowStrength: 4
   distanceHeld: 3
   holdHeightOffset: 2

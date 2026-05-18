@@ -45,6 +45,9 @@ public class Interactable : MonoBehaviour, IInteractable
     // backing field for the IsLooking property
     private bool isLooking;
     public bool IsHeld { get; set; }
+    private float emissionValue;
+    private float emissionTime = 1;
+    private Material handMaterial;
 
     TelekinesisController telekinesis;
     TimeWarp timeWarp;
@@ -66,6 +69,7 @@ public class Interactable : MonoBehaviour, IInteractable
         timeWarp = FindAnyObjectByType<TimeWarp>();
         interactManager = FindAnyObjectByType<InteractManager>();
         FXManager = FindAnyObjectByType<FXManager>();
+        handMaterial = GameObject.FindGameObjectWithTag("Hand").GetComponent<SkinnedMeshRenderer>().materials[0];
 
         canHit = true;
     }
@@ -99,6 +103,56 @@ public class Interactable : MonoBehaviour, IInteractable
     private void LateUpdate()
     {
         if ((weaponTransform != null) && IsHeld) { lastVelocity = currentVelocity; }
+    }
+
+    // private void IncrementEmission()
+    // {
+    //     if (IsHeld)
+    //     {
+    //         emissionValue += emissionIncrease;
+    //         handMaterial.SetFloat("_EmissionIntensity", emissionValue);
+    //         Debug.Log(emissionValue);
+    //     }
+    //     else if (!IsHeld)
+    //     {
+    //         emissionValue -= emissionIncrease;
+    //         handMaterial.SetFloat("_EmissionIntensity", emissionValue);
+    //     }
+
+    // }
+
+    private IEnumerator IncrementEmission(bool up)
+    {
+        switch(up)
+        {
+            case true:
+
+            float timer1 = 0;
+            while (timer1 < emissionTime)
+            {
+                timer1 += Time.deltaTime;
+                emissionValue = Mathf.Lerp(emissionValue, 100, timer1 / emissionTime);
+                handMaterial.SetFloat("_EmissionIntensity", emissionValue);
+
+                yield return null;
+            }
+            break;
+
+        case false:
+
+            float timer2 = 0;
+            while (timer2 < emissionTime)
+            {
+                timer2 += Time.deltaTime;
+                emissionValue = Mathf.Lerp(emissionValue, 0, timer2 / emissionTime);
+                handMaterial.SetFloat("_EmissionIntensity", emissionValue);
+
+                yield return null;
+            }
+            break;
+        }
+
+            
     }
 
 
@@ -144,6 +198,8 @@ public class Interactable : MonoBehaviour, IInteractable
         // weaponRB.isKinematic = false;
 
         telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponCollider, weaponThrowRotation);
+
+        StartCoroutine(IncrementEmission(true));
     }
 
     public void Drop()
@@ -152,6 +208,7 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Dropped item {name}", this);
         IsHeld = false;
         telekinesis.DropItem();
+        StartCoroutine(IncrementEmission(false));
     }
 
     public void Throw(float _timeHeld)
@@ -174,6 +231,7 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log($"Force: {force}");
 
         telekinesis.ThrowItem(force);
+        StartCoroutine(IncrementEmission(false));
     }
 
 
@@ -251,6 +309,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     private void BreakWeapon()
     {
+        StartCoroutine(IncrementEmission(false));
         if (IsHeld)
         {
             interactManager.BreakFromHand();

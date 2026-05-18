@@ -2733,10 +2733,10 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -2784,8 +2784,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHP: 100
   currentHP: 100
-  healthSlider: {fileID: 0}
-  loseBlackout: {fileID: 0}
+  healthSlider: {fileID: 275129612183753963}
+  loseBlackout: {fileID: 2277649850403525206}
   playerCamera: {fileID: 4459864851310106426}
   fov: 78
   invertCamera: 0
@@ -4705,7 +4705,7 @@ GameObject:
   - component: {fileID: 104845940806249868}
   m_Layer: 10
   m_Name: Hand
-  m_TagString: Untagged
+  m_TagString: Hand
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4750,7 +4750,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 7a3e926a8ab8be24794d9ed7b2ad5f5c, type: 3}
+  - {fileID: 2100000, guid: c45c1b22019f16d4ab8f3ec97bfb9c5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
