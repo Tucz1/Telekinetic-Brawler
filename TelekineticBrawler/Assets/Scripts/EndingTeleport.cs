@@ -18,7 +18,7 @@ public class EndingTeleport : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == "FirstPersonController")
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }
 }
