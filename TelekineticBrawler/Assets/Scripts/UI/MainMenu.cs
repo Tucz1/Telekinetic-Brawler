@@ -5,6 +5,7 @@ public class MainMenu : MonoBehaviour
 {
    [SerializeField] GameObject MainMenuUI;
    [SerializeField] GameObject SettingsUI;
+   [SerializeField] GameObject CreditsUI;
 
 
     //MAIN MENU
@@ -17,6 +18,16 @@ public class MainMenu : MonoBehaviour
     public void SettingsMenu() {
         MainMenuUI.SetActive(false);
         SettingsUI.SetActive(true);
+    }
+    public void CreditsMenu()
+    {
+        MainMenuUI.SetActive(false);
+        CreditsUI.SetActive(true);
+    }
+    public void HideCreditsMenu()
+    {
+        CreditsUI.SetActive(false);
+        MainMenuUI.SetActive(true);
     }
 public void Leaderboard() {
         SceneManager.LoadScene(3);
