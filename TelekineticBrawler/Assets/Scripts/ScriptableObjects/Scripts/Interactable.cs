@@ -11,7 +11,6 @@ public interface IInteractable
     void Interact();
     void Drop();
     void Throw(float timeHeld);
-    void Break();
 }
 
 
@@ -21,7 +20,7 @@ public class Interactable : MonoBehaviour, IInteractable
     [SerializeField] WeaponData weaponData;
     [SerializeField] Rigidbody weaponRB;
     [SerializeField] Transform weaponRoot;
-    [SerializeField] Transform weaponTransform;
+    [SerializeField] Transform weaponLogic;
     [SerializeField] Vector3 weaponThrowRotation;
     [SerializeField] Collider weaponCollider;
     [SerializeField] GameObject brokenWeapon;
@@ -57,6 +56,7 @@ public class Interactable : MonoBehaviour, IInteractable
     private Vector3 currentVelocity;
     private Vector3 trueVelocity;
     private Vector3 lastVelocity;
+    ScoreManager scoreManager;
 
 
 
@@ -69,6 +69,7 @@ public class Interactable : MonoBehaviour, IInteractable
         timeWarp = FindAnyObjectByType<TimeWarp>();
         interactManager = FindAnyObjectByType<InteractManager>();
         FXManager = FindAnyObjectByType<FXManager>();
+        scoreManager = FindAnyObjectByType<ScoreManager>();
         handMaterial = GameObject.FindGameObjectWithTag("Hand").GetComponent<SkinnedMeshRenderer>().materials[0];
 
         canHit = true;
@@ -82,7 +83,7 @@ public class Interactable : MonoBehaviour, IInteractable
     void Update()
     {
 
-        currentVelocity = weaponTransform.position;
+        currentVelocity = weaponLogic.position;
 
         if (lastVelocity == null) return;
 
@@ -102,7 +103,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     private void LateUpdate()
     {
-        if ((weaponTransform != null) && IsHeld) { lastVelocity = currentVelocity; }
+        if ((weaponLogic != null) && IsHeld) { lastVelocity = currentVelocity; }
     }
 
     // private void IncrementEmission()
@@ -187,12 +188,12 @@ public class Interactable : MonoBehaviour, IInteractable
 
         weaponRB.isKinematic = true;
 
-        weaponRoot.position = weaponTransform.position;
-        weaponTransform.localPosition = Vector3.zero;
+        weaponRoot.position = weaponLogic.position;
+        weaponLogic.localPosition = Vector3.zero;
 
         // weaponRB.isKinematic = false;
 
-        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponTransform, weaponCollider, weaponThrowRotation);
+        telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponLogic, weaponCollider, weaponThrowRotation);
 
         StartCoroutine(IncrementEmission(true));
     }
@@ -261,7 +262,6 @@ public class Interactable : MonoBehaviour, IInteractable
         if (collision.gameObject.CompareTag("Enemy") && canHit)
         {
             var limb = collision.gameObject.GetComponentInChildren<LimbScript>();
-            var scoreManager = FindAnyObjectByType<ScoreManager>();
 
             if (limb == null) { /* Debug.LogError($"Limb script not found {collision.gameObject}"); */ return; }
 
@@ -270,7 +270,7 @@ public class Interactable : MonoBehaviour, IInteractable
             var damage = CalculateDamage();
             var stagger = CalculateStagger(damage);
 
-            if (damage < minDamageThreshold) { Debug.Log("Did not cross damage threshold, returning..."); return; }
+            if (damage < minDamageThreshold) { /* Debug.Log("Did not cross damage threshold, returning..."); */ return; }
 
             canHit = false;
 
@@ -307,34 +307,69 @@ public class Interactable : MonoBehaviour, IInteractable
     {
         if (IsHeld)
         {
-            interactManager.BreakFromHand();
+            interactManager.RemoveFromHand();
+            BreakHeld();
             return;
         }
 
-        // break
-        Break();
+        BreakUnheld();
     }
 
-    public void Break()
+    public void BreakHeld()
     {
-        StartCoroutine(IncrementEmission(false));
-        telekinesis.handAnimator.Play("Idle_Hand2");
+        GameObject obj;
 
-        if (brokenWeapon == null)
+        obj = Instantiate(brokenWeapon == null ? poofFX : brokenWeapon);
+
+        telekinesis.ClearTelekinesis();
+
+        weaponRB.isKinematic = false;
+
+        obj.transform.position = weaponRB.transform.position;
+        obj.transform.rotation = weaponLogic.rotation;
+
+        Rigidbody[] partRBs = obj.GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody part in partRBs)
         {
-            var obj1 = Instantiate(poofFX);
-
-            telekinesis.MoveToWeapon(obj1);
-
-            Destroy(this.gameObject, 5f);
-            return;
+            part.AddForce(telekinesis.lastDir * weaponData.Weight, ForceMode.Impulse);
         }
 
-        var obj2 = Instantiate(brokenWeapon);
+        weaponRoot.gameObject.GetComponentInChildren<Collider>().enabled = false;
+        weaponRoot.gameObject.GetComponentInChildren<Outline>().enabled = false;
 
-        telekinesis.MoveToWeapon(obj2);
+        var meshes = weaponRoot.gameObject.GetComponentsInChildren<MeshRenderer>();
+        foreach (var meshRenderer in meshes)
+        {
+            meshRenderer.enabled = false;
+        }
 
-        Destroy(this.gameObject, 5f);
+        StartCoroutine(IncrementEmission(false));
+        telekinesis.handAnimator.Play("Idle_Hand2");
+        Destroy(this.gameObject, 3f);
+    }
+
+    public void BreakUnheld()
+    {
+        GameObject obj;
+
+        obj = Instantiate(brokenWeapon == null ? poofFX : brokenWeapon);
+
+        weaponRB.isKinematic = false;
+
+        obj.transform.position = weaponRB.transform.position;
+        obj.transform.rotation = weaponLogic.rotation;
+
+        weaponRoot.gameObject.GetComponentInChildren<Collider>().enabled = false;
+        weaponRoot.gameObject.GetComponentInChildren<Outline>().enabled = false;
+
+        var meshes = weaponRoot.gameObject.GetComponentsInChildren<MeshRenderer>();
+        foreach (var meshRenderer in meshes)
+        {
+            meshRenderer.enabled = false;
+        }
+
+        Destroy(this.gameObject, 3f);
     }
 
     private IEnumerator HitBuffer()

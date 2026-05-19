@@ -131,11 +131,12 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 049be5649539eed44aacb50a69083fcc, type: 2}
   weaponRB: {fileID: 6080977156383884026}
   weaponRoot: {fileID: 264822702254626478}
-  weaponTransform: {fileID: 2321184275311333250}
+  weaponLogic: {fileID: 2321184275311333250}
   weaponThrowRotation: {x: 0, y: 0, z: 0}
   weaponCollider: {fileID: 5269802440552203359}
   brokenWeapon: {fileID: 5355086627330912465, guid: a9ca30be3aaaf2f4a8f2e85a374b1f53, type: 3}
   poofFX: {fileID: 0}
+  FXManager: {fileID: 0}
   hitBuffer: 0.4
   minDamageThreshold: 40
   impactFrameDamageThreshold: 500

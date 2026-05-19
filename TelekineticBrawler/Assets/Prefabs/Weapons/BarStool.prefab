@@ -223,7 +223,7 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 92414a91f9dc32346993fef0b7501c81, type: 2}
   weaponRB: {fileID: 1989258881440156766}
   weaponRoot: {fileID: 2541113840382134360}
-  weaponTransform: {fileID: 7039825608414684401}
+  weaponLogic: {fileID: 7039825608414684401}
   weaponThrowRotation: {x: 0, y: 0, z: 0}
   weaponCollider: {fileID: 3506196191939075796}
   brokenWeapon: {fileID: 7051532131025974690, guid: 6e6305e73265c10458bb67fe58bfe37c, type: 3}

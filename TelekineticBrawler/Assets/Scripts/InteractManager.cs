@@ -112,13 +112,12 @@ public class InteractManager : MonoBehaviour
         }
     }
 
-    public void BreakFromHand()
+    public void RemoveFromHand()
     {
 
         if (cachedInteractable == null) return;
 
         SetInteractable(cachedInteractable);
-        currentInteractable.Break();
 
         if (telekinesis.isThrowing) { telekinesis.isThrowing = false; timeHeld = 0; }
         holding = false;
