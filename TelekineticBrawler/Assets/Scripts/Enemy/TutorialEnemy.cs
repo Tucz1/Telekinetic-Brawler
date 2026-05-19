@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 public class TutorialEnemy : MonoBehaviour {
     NavMeshAgent agent;
@@ -18,7 +19,7 @@ public class TutorialEnemy : MonoBehaviour {
     [SerializeField] private int ragdollTime;
     [SerializeField] private bool isDead = false;
     [SerializeField] private float deathDespawnTime = 10f;
-
+    [SerializeField] private FXManager fxManager;
     [SerializeField] private Transform hips;
 
     private Vector2 Velocity;
@@ -43,6 +44,7 @@ public class TutorialEnemy : MonoBehaviour {
         enemyAttacks = GetComponentsInChildren<EnemyAttack>();
         Target = FindAnyObjectByType<FirstPersonController>().transform;
         TutorialWaveManager = FindAnyObjectByType<TutorialWaveManager>();
+        fxManager = FindAnyObjectByType<FXManager>();
 
         animator.applyRootMotion = true;
         agent.updatePosition = false;
@@ -56,6 +58,12 @@ public class TutorialEnemy : MonoBehaviour {
     }
 
     public void takeDamage(float damage, float stagger, WeaponData weaponData) {
+
+        var rAudio = Random.Range(0, 100);
+        if (rAudio < 5) {
+            AudioFW.Play("DemongruntMeme", transform.position);
+        } else AudioFW.Play("DemonGrunts", transform.position);
+
         currentHealth -= damage;
         if (!isDead) {
             if (currentHealth <= 0) {
@@ -186,7 +194,12 @@ public class TutorialEnemy : MonoBehaviour {
         yield return null;
     }
     IEnumerator RemoveBody() {
-        yield return new WaitForSeconds(deathDespawnTime);
+        yield return new WaitForSeconds(2);
+        AudioFW.Play("DemonDeaths", hips.position);
+        AudioFW.Play("Despawn", hips.position);
+        var fxspawnPos = new Vector3(hips.position.x, animator.rootPosition.y, hips.position.z);
+        fxManager.SpawnEnemyDespawnFX(fxspawnPos);
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 

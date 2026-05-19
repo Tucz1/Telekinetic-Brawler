@@ -47,8 +47,7 @@ public class ScoreManager : MonoBehaviour
             uiPtsText.alpha = 0f;
             rankText.alpha = 0f;
             rankTextmp.alpha = 0f;
-            var slider = GameObject.Find("Slider").GetComponent<Slider>();
-            slider.gameObject.SetActive(false);
+            rankSlider.gameObject.SetActive(false);
         }
     }
     IEnumerator CountUp() {
