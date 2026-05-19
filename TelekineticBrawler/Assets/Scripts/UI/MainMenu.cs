@@ -1,19 +1,31 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : SimpleMusicFader
 {
    [SerializeField] GameObject MainMenuUI;
    [SerializeField] GameObject SettingsUI;
    [SerializeField] GameObject CreditsUI;
 
+   [Header("Music")]
+   [SerializeField] AudioSource audioSource;
+   [SerializeField] float fadeTime;
+   [SerializeField] Animator animator;
+
+    void Start()
+    {
+        StartCoroutine(FadeMusicStartScene(audioSource, fadeTime));
+    }
+
 
     //MAIN MENU
     public void PlayGame() {
-        SceneManager.LoadScene(1);
+        animator.Play("FadeOut");
+        StartCoroutine(FadeMusicEndScene(audioSource, fadeDuration, 1));
     }
     public void SkipTutorial() {
-        SceneManager.LoadScene(2);
+        animator.Play("FadeOut");
+        StartCoroutine(FadeMusicEndScene(audioSource, fadeDuration, 2));
     }
     public void SettingsMenu() {
         MainMenuUI.SetActive(false);

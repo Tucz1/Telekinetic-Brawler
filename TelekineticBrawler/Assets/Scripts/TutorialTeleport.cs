@@ -23,7 +23,7 @@ public class TutorialTeleport : SimpleMusicFader
 
     public void FadeMusic()
     {
-        StartCoroutine(FadeMusicEndScene(audioSource, fadeDuration));
+        StartCoroutine(FadeMusic(audioSource, fadeDuration));
     }
 
     public void LoadScene()

@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class SimpleMusicFader : MonoBehaviour {
 
-    public float fadeDuration = 2;
+    public float fadeDuration = 0.5f;
 
     public void FadefromTo(AudioSource from, AudioSource to, float duration) {
         StartCoroutine(FadeMusicfromTo(from, to, duration));
     }
-    public IEnumerator FadeMusicEndScene(AudioSource source, float fadeTime)
+    public IEnumerator FadeMusic(AudioSource source, float fadeTime)
     {
         float startVol = source.volume;
         float timer = 0;
@@ -23,6 +23,21 @@ public class SimpleMusicFader : MonoBehaviour {
         }
         source.Stop();
     }
+
+    public IEnumerator FadeMusicEndScene(AudioSource source, float fadeTime, int scene)
+    {
+        float startVol = source.volume;
+        float timer = 0;
+        while (timer <= fadeTime) {
+            float t = timer / fadeTime;
+            source.volume = Mathf.Lerp(startVol, 0, t);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        source.Stop();
+        SceneManager.LoadScene(scene);
+    }
+
     public IEnumerator FadeMusicStartScene(AudioSource source, float fadeTime)
     {
         float startVol = source.volume;

@@ -66,7 +66,7 @@ public class InteractManager : MonoBehaviour
         }
 
         // if currently focusing an IInteractable and click -> interact
-        if (currentInteractable != null && Input.GetKeyDown(KeyCode.F)) // Pickup
+        if (currentInteractable != null && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Mouse0))) // Pickup
         {
             currentInteractable.Interact();
             cachedInteractable = currentInteractable;
@@ -83,13 +83,13 @@ public class InteractManager : MonoBehaviour
             holding = false;
         }
 
-        if (Input.GetKey(KeyCode.E) && holding) // Throw
+        if ((Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Mouse1)) && holding) // Throw
         {
             if (cachedInteractable == null) return;
             telekinesis.isThrowing = true;
             timeHeld += Time.deltaTime;
         }
-        if (Input.GetKeyUp(KeyCode.E) && holding)
+        if ((Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.Mouse1)) && holding)
         {
             if (cachedInteractable == null) return;
             // Debug.Log($"Throwing item held for: {timeHeld}");
@@ -99,16 +99,6 @@ public class InteractManager : MonoBehaviour
             timeHeld = 0;
             telekinesis.isThrowing = false;
             holding = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            StartCoroutine(timeWarp.ImpactFrame());
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            AudioFW.Play("demongrunt1");
         }
     }
 
