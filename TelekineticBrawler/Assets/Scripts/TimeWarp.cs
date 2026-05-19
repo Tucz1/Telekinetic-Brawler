@@ -17,7 +17,7 @@ public class TimeWarp : MonoBehaviour
 
             Time.timeScale = Mathf.Clamp01(Time.timeScale);
 
-            Debug.Log(Time.deltaTime);
+            // Debug.Log(Time.deltaTime);
 
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
 

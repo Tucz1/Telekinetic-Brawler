@@ -23,7 +23,7 @@ public class TelekinesisController : MonoBehaviour
     private WeaponData weaponData;
     private Rigidbody weaponRB;
     private Vector3 weaponThrowRotation;
-    [Range(0f, 3f)] public float maxThrowChargeDuration = 2f;
+    [Range(0f, 3f)] public float maxThrowChargeDuration;
 
     private Vector3 lastTargetPos;
 
@@ -300,7 +300,7 @@ public class TelekinesisController : MonoBehaviour
         weaponLogic = _weaponLogic;
         weaponThrowRotation = _weaponThrowRotation;
 
-        Debug.Log($"Collider: {_weaponMeshCollider}");
+        // Debug.Log($"Collider: {_weaponMeshCollider}");
         // Debug.LogError("pause");
 
         hitEnemy = false;

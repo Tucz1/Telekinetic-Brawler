@@ -2991,7 +2991,7 @@ MonoBehaviour:
     m_Bits: 512
   nodeOne: {fileID: 0}
   wallCheck: {fileID: 430126577173641419}
-  maxThrowChargeDuration: 2
+  maxThrowChargeDuration: 1
   player: {fileID: 4459864850019384738}
   movementInfluence: 1
   canInfluence: 0

@@ -10,6 +10,6 @@ public class DestroyAfterDelay : MonoBehaviour
 
     void OnDestroy()
     {
-        Debug.Log($"Destroying {this.gameObject}");
+        // Debug.Log($"Destroying {this.gameObject}");
     }
 }

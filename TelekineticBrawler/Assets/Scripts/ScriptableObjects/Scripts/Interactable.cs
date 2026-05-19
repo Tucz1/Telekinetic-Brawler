@@ -123,9 +123,9 @@ public class Interactable : MonoBehaviour, IInteractable
 
     private IEnumerator IncrementEmission(bool up)
     {
-        Debug.Log("Starting coroutine");
+        // Debug.Log("Starting coroutine");
         float timer = 0;
-        Debug.Log($"Timer value: {timer}");
+        // Debug.Log($"Timer value: {timer}");
         if (up)
         {
             while (timer < emissionTime)
@@ -180,7 +180,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log($"Interacted with {name}", this);
+        Debug.Log($"Interacted with {gameObject.name}", gameObject);
         IsHeld = true;
         outline.enabled = false;
 
@@ -212,18 +212,18 @@ public class Interactable : MonoBehaviour, IInteractable
 
         var force = weaponData.MinThrowStrength;
         var timeHeld = _timeHeld; // If the player holds for 2 seconds, the timeheld becomes 3. This is for the exponent, and it is as high as we let the player charge
-        Debug.Log($"Threw item {name}", this);
+        // Debug.Log($"Threw item {name}", this);
         IsHeld = false;
 
         var t0 = Mathf.InverseLerp(0, telekinesis.maxThrowChargeDuration, timeHeld);
         var t1 = Mathf.Lerp(0.5f, telekinesis.maxThrowChargeDuration + 1, t0);
 
 
-        Debug.Log($"Lerped Time Held: {t1}");
+        // Debug.Log($"Lerped Time Held: {t1}");
 
         force = Mathf.Pow(force, t1);
 
-        Debug.Log($"Force: {force}");
+        // Debug.Log($"Force: {force}");
 
         telekinesis.ThrowItem(force);
         StartCoroutine(IncrementEmission(false));
@@ -263,9 +263,9 @@ public class Interactable : MonoBehaviour, IInteractable
             var limb = collision.gameObject.GetComponentInChildren<LimbScript>();
             var scoreManager = FindAnyObjectByType<ScoreManager>();
 
-            if (limb == null) { Debug.LogError($"Limb script not found {collision.gameObject}"); return; }
+            if (limb == null) { /* Debug.LogError($"Limb script not found {collision.gameObject}"); */ return; }
 
-            Debug.Log($"Weapon damage type: {weaponData.DamageType}");
+            // Debug.Log($"Weapon damage type: {weaponData.DamageType}");
 
             var damage = CalculateDamage();
             var stagger = CalculateStagger(damage);
@@ -339,9 +339,9 @@ public class Interactable : MonoBehaviour, IInteractable
 
     private IEnumerator HitBuffer()
     {
-        Debug.Log("Buffering...");
+        // Debug.Log("Buffering...");
         yield return new WaitForSeconds(hitBuffer);
-        Debug.Log("Buffer Over");
+        // Debug.Log("Buffer Over");
 
         canHit = true;
     }

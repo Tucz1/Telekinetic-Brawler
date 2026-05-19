@@ -256,8 +256,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
-        var value = ScoreContainer.score;
-        Debug.Log(value);
+        // var value = ScoreContainer.score;
+        // Debug.Log(value);
 
 
         #region Camera

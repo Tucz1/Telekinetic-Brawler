@@ -71,7 +71,7 @@ public class InteractManager : MonoBehaviour
             currentInteractable.Interact();
             cachedInteractable = currentInteractable;
             holding = true;
-            Debug.Log(cachedInteractable);
+            // Debug.Log(cachedInteractable);
         }
 
         if (Input.GetKeyDown(KeyCode.G)) // Drop
@@ -92,8 +92,8 @@ public class InteractManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.E) && holding)
         {
             if (cachedInteractable == null) return;
-            Debug.Log($"Throwing item held for: {timeHeld}");
-            Debug.Log(cachedInteractable);
+            // Debug.Log($"Throwing item held for: {timeHeld}");
+            // Debug.Log(cachedInteractable);
             SetInteractable(cachedInteractable);
             currentInteractable.Throw(timeHeld);
             timeHeld = 0;
