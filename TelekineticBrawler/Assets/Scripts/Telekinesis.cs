@@ -35,7 +35,7 @@ public class TelekinesisController : MonoBehaviour
     Vector3 screenCenter;
     Vector3 lastPlayerPos;
     Vector3 playerVelocity;
-    private Vector3 lastDir;
+    public Vector3 lastDir;
     private float distance;
     private Vector3 previousAxis = Vector3.up;
     [SerializeField] float TargetVectorRotateSpeed = 180f;
@@ -358,25 +358,9 @@ public class TelekinesisController : MonoBehaviour
         hitEnemy = false;
     }
 
-    public void MoveToWeapon(GameObject obj)
+    public void ClearTelekinesis()
     {
-        // if (weaponRoot || weaponLogic == null) return;
-
-        weaponRB.isKinematic = false;
-
         attachedItem = false;
         tether.ClearTethers();
-
-        obj.transform.position = weaponRB.transform.position;
-        obj.transform.rotation = weaponLogic.rotation;
-
-        Rigidbody[] partRBs = obj.GetComponentsInChildren<Rigidbody>();
-
-        foreach (Rigidbody part in partRBs)
-        {
-            part.AddForce(lastDir * weaponData.Weight, ForceMode.Impulse);
-        }
-
-        weaponRoot.gameObject.SetActive(false);
     }
 }
