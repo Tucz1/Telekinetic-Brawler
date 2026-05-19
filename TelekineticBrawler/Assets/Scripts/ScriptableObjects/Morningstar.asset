@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Morningstar
   m_EditorClassIdentifier: Assembly-CSharp::Morningstar
   damageType: 0
+  materialType: 1
   damage: 20
   durability: 8
   minThrowStrength: 4
@@ -27,4 +28,3 @@ MonoBehaviour:
   maxRoll: 90
   rollSensitivity: 13
   rollSmoothSpeed: 7
-  hitSFX: {fileID: 0}
