@@ -17,6 +17,10 @@ public class HighscoreTable : MonoBehaviour {
     [SerializeField] private GameObject MainMenuButton;
     [SerializeField] private GameObject YourScoreContainer;
     [SerializeField] private TextMeshProUGUI yourScore;
+    
+    [SerializeField] private GameObject winImage;
+    [SerializeField] private GameObject loseImage;
+
 
 
     private void Awake() {
@@ -25,18 +29,21 @@ public class HighscoreTable : MonoBehaviour {
             submitButton.SetActive(false);
             inputFieldObject.SetActive(false);
             YourScoreContainer.SetActive(false);
+            loseImage.SetActive(true);
         }
         //IF PLAYER WINS
         if (ScoreContainer.state == 1) {
             submitButton.SetActive(true);
             inputFieldObject.SetActive(true);
             YourScoreContainer.SetActive(true);
+            winImage.SetActive(true);
         }
         //IF PLAYER LOSES
         if (ScoreContainer.state == 2) {
             submitButton.SetActive(true);
             inputFieldObject.SetActive(true);
             YourScoreContainer.SetActive(true);
+            loseImage.SetActive(true);
         }
 
         yourScore.text = ScoreContainer.score.ToString();
@@ -75,9 +82,9 @@ public class HighscoreTable : MonoBehaviour {
                 }
             }
         }
-        if (highscores.highscoreEntryList.Count > 10) {
-            for (int h = highscores.highscoreEntryList.Count; h > 10; h--) {
-                highscores.highscoreEntryList.RemoveAt(10);
+        if (highscores.highscoreEntryList.Count > 5) {
+            for (int h = highscores.highscoreEntryList.Count; h > 5; h--) {
+                highscores.highscoreEntryList.RemoveAt(5);
             }
         }
 
@@ -162,9 +169,9 @@ public class HighscoreTable : MonoBehaviour {
         // Sort descending
         highscores.highscoreEntryList.Sort((a, b) => b.score.CompareTo(a.score));
 
-        // Keep top 10
-        if (highscores.highscoreEntryList.Count > 10) {
-            highscores.highscoreEntryList.RemoveRange(10, highscores.highscoreEntryList.Count - 10);
+        // Keep top 5
+        if (highscores.highscoreEntryList.Count > 5) {
+            highscores.highscoreEntryList.RemoveRange(5, highscores.highscoreEntryList.Count - 5);
         }
 
         string json = JsonUtility.ToJson(highscores);
