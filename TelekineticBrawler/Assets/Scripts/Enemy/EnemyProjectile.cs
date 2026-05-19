@@ -10,10 +10,10 @@ public class EnemyProjectile : MonoBehaviour {
         ScoreManager = FindAnyObjectByType<ScoreManager>();
     }
 
-    void OnTriggerEnter(Collider collision) {
+    void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.name == "FirstPersonController") {
 
-            var rb = collision.GetComponent<Rigidbody>();
+            var rb = collision.gameObject.GetComponent<Rigidbody>();
             var backdirection = rb.transform.forward * -1;
             rb.AddForce((rb.transform.up) * 5, ForceMode.Impulse);
             rb.AddForce((backdirection) * 20, ForceMode.Impulse);
@@ -21,7 +21,7 @@ public class EnemyProjectile : MonoBehaviour {
 
             ScoreManager.decreaseRank();
 
-            var col = collision.GetComponent<FirstPersonController>();
+            var col = collision.gameObject.GetComponent<FirstPersonController>();
             col.playerTakeDamage(damage);
             Destroy(gameObject);
         }
