@@ -3007,7 +3007,7 @@ PrefabInstance:
       objectReference: {fileID: 1645880541}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: EndingText
-      value: Find the exit :D
+      value: The horde knows, I must make my escape.
       objectReference: {fileID: 0}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: aliveEnemiesText
@@ -3015,35 +3015,55 @@ PrefabInstance:
       objectReference: {fileID: 1247999568}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: waves.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: waves.Array.data[0].waveText
-      value: Wave1
+      value: The townsfolk will be avenged
       objectReference: {fileID: 0}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: waves.Array.data[1].waveText
-      value: Wave2
+      value: One by one, limb by limb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
+      propertyPath: waves.Array.data[2].waveText
+      value: Just a few more
       objectReference: {fileID: 0}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: waves.Array.data[0].meleeCount
-      value: 20
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: waves.Array.data[1].meleeCount
-      value: 3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
+      propertyPath: waves.Array.data[2].meleeCount
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: waves.Array.data[0].rangedCount
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: waves.Array.data[0].waveEndText
-      value: Wave1GZ
+      value: Leave none alive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
+      propertyPath: waves.Array.data[1].rangedCount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: waves.Array.data[1].waveEndText
-      value: Wave2GZ
+      value: They shall know fear
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
+      propertyPath: waves.Array.data[2].rangedCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977233029197657578, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
+      propertyPath: waves.Array.data[2].waveEndText
+      value: I've earned my respite
       objectReference: {fileID: 0}
     - target: {fileID: 6797402367511356053, guid: 31cfe3dbbcc203e4b8c26a0552f52287, type: 3}
       propertyPath: m_LocalPosition.x

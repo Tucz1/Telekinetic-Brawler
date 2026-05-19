@@ -20,6 +20,8 @@ public class EndingTeleport : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             ScoreContainer.state = 1;
+            var finalscore = ScoreContainer.score * 1.2;
+            ScoreContainer.score = (int)finalscore;
             SceneManager.LoadScene(3);
         }
     }
