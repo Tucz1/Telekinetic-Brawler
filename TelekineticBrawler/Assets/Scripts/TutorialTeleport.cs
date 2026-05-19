@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class TutorialTeleport : SimpleMusicFader
 {
     [SerializeField] PlayableDirector director;
-    [SerializeField] SimpleMusicFader musicFader;
     [SerializeField] AudioSource audioSource;
     [SerializeField] float fadeTime;
 
@@ -24,7 +23,7 @@ public class TutorialTeleport : SimpleMusicFader
 
     public void FadeMusic()
     {
-        StartCoroutine(FadeMusicEndScene(audioSource, fadeDuration, 1));
+        StartCoroutine(FadeMusicEndScene(audioSource, fadeDuration));
     }
 
     public void LoadScene()

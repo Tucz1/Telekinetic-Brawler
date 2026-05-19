@@ -11,7 +11,7 @@ public class SimpleMusicFader : MonoBehaviour {
     public void FadefromTo(AudioSource from, AudioSource to, float duration) {
         StartCoroutine(FadeMusicfromTo(from, to, duration));
     }
-    public IEnumerator FadeMusicEndScene(AudioSource source, float fadeTime, int sceneToLoad)
+    public IEnumerator FadeMusicEndScene(AudioSource source, float fadeTime)
     {
         float startVol = source.volume;
         float timer = 0;
