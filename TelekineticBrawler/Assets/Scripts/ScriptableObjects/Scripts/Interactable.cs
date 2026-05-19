@@ -57,6 +57,8 @@ public class Interactable : MonoBehaviour, IInteractable
     private Vector3 trueVelocity;
     private Vector3 lastVelocity;
     ScoreManager scoreManager;
+    private bool isIFrames;
+    private float iFrameDuration = 0.1f;
 
 
 
@@ -148,7 +150,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
                 yield return null;
             }
-        }    
+        }
     }
 
 
@@ -181,6 +183,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        StartCoroutine(IFrames());
         Debug.Log($"Interacted with {gameObject.name}", gameObject);
         IsHeld = true;
         outline.enabled = false;
@@ -196,6 +199,19 @@ public class Interactable : MonoBehaviour, IInteractable
         telekinesis.AttachItem(this, weaponData, weaponRB, weaponRoot, weaponLogic, weaponCollider, weaponThrowRotation);
 
         StartCoroutine(IncrementEmission(true));
+    }
+
+    private IEnumerator IFrames()
+    {
+        isIFrames = true;
+        float timer = 0f;
+
+        while (timer > iFrameDuration)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        isIFrames = false;
     }
 
     public void Drop()
@@ -259,7 +275,7 @@ public class Interactable : MonoBehaviour, IInteractable
     {
 
 
-        if (collision.gameObject.CompareTag("Enemy") && canHit)
+        if (collision.gameObject.CompareTag("Enemy") && canHit && !isIFrames)
         {
             var limb = collision.gameObject.GetComponentInChildren<LimbScript>();
 
@@ -346,6 +362,26 @@ public class Interactable : MonoBehaviour, IInteractable
 
         StartCoroutine(IncrementEmission(false));
         telekinesis.handAnimator.Play("Idle_Hand2");
+
+        switch (weaponData.MaterialType)
+        {
+            case MaterialType.Wood:
+                AudioFW.Play("WoodBreak", obj.transform.position);
+                break;
+
+            case MaterialType.Metal:
+                AudioFW.Play("MetalBreak", obj.transform.position);
+                break;
+
+            case MaterialType.Glass:
+                AudioFW.Play("GlassBreak", obj.transform.position);
+                break;
+
+            case MaterialType.Limb:
+                AudioFW.Play("LimbBreak", obj.transform.position);
+                break;
+        }
+
         Destroy(this.gameObject, 3f);
     }
 
@@ -367,6 +403,21 @@ public class Interactable : MonoBehaviour, IInteractable
         foreach (var meshRenderer in meshes)
         {
             meshRenderer.enabled = false;
+        }
+
+        switch (weaponData.MaterialType)
+        {
+            case MaterialType.Wood:
+                AudioFW.Play("WoodBreak", obj.transform.position);
+                break;
+
+            case MaterialType.Metal:
+                AudioFW.Play("MetalBreak", obj.transform.position);
+                break;
+
+            case MaterialType.Glass:
+                AudioFW.Play("GlassBreak", obj.transform.position);
+                break;
         }
 
         Destroy(this.gameObject, 3f);

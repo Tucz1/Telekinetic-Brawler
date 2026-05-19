@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: LightFurniture
   m_EditorClassIdentifier: Assembly-CSharp::LightFurniture
   damageType: 0
+  materialType: 2
   damage: 10
   durability: 1
   minThrowStrength: 3.8
@@ -27,4 +28,3 @@ MonoBehaviour:
   maxRoll: 30
   rollSensitivity: 10
   rollSmoothSpeed: 7
-  hitSFX: {fileID: 0}

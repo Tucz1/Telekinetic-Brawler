@@ -7,6 +7,14 @@ public enum DamageType
 	Piercing
 }
 
+public enum MaterialType
+{
+	Wood,
+	Metal,
+	Glass,
+	Limb
+}
+
 public struct AbilityInfo
 {
 	// public data
@@ -21,6 +29,7 @@ public class WeaponData : ScriptableObject
 {
 	[Header("WeaponType")]
 	[SerializeField] protected DamageType damageType;
+	[SerializeField] protected MaterialType materialType;
 
 	[SerializeField] protected float damage;
 	[SerializeField] protected int durability = 6;
@@ -43,8 +52,6 @@ public class WeaponData : ScriptableObject
 	[SerializeField] protected float rollSensitivity = 10f;
 	[SerializeField] protected float rollSmoothSpeed = 7f;
 
-	[Header("SFX")]
-	[SerializeField] protected AudioClip hitSFX;
 
 	public float Damage => damage;
 	public int Durability => durability;
@@ -61,7 +68,7 @@ public class WeaponData : ScriptableObject
 	public float MaxRoll => maxRoll;
 	public float RollSensitivity => rollSensitivity;
 	public float RollSmoothSpeed => rollSmoothSpeed;
-	public AudioClip HitSFX => hitSFX;
+	public MaterialType MaterialType => materialType;
 
 
 

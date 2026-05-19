@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Hammer
   m_EditorClassIdentifier: Assembly-CSharp::Hammer
   damageType: 0
+  materialType: 1
   damage: 25
   durability: 18
   minThrowStrength: 4
@@ -27,4 +28,3 @@ MonoBehaviour:
   maxRoll: 90
   rollSensitivity: 10
   rollSmoothSpeed: 7
-  hitSFX: {fileID: 0}

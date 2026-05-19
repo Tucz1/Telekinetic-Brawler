@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Machete
   m_EditorClassIdentifier: Assembly-CSharp::Machete
   damageType: 1
+  materialType: 1
   damage: 20
+  durability: 6
   minThrowStrength: 4
   distanceHeld: 3
   holdHeightOffset: 2
@@ -26,4 +28,3 @@ MonoBehaviour:
   maxRoll: 90
   rollSensitivity: 10
   rollSmoothSpeed: 7
-  hitSFX: {fileID: 0}
