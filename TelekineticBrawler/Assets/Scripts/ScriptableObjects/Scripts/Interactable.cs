@@ -291,6 +291,7 @@ public class Interactable : MonoBehaviour, IInteractable
             canHit = false;
 
             Debug.Log($"Damage dealt: {damage} \n Stagger dealt: {stagger}");
+            Debug.Log(gameObject.name, gameObject);
 
             // If damage || stagger > threshold
             // StartCoroutine(timeWarp.ImpactFrame());

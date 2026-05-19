@@ -19,6 +19,7 @@ public class WaveManager : MonoBehaviour {
     [SerializeField] private FlyingEnemySpawner[] flyingEnemySpawners;
 
     private int prevRandom = -1;
+    private int prevRandomRanged = -1;
     [SerializeField] private GameObject meleeEnemy;
     [SerializeField] private GameObject rangedEnemy;
     [SerializeField] private Wave[] waves;
@@ -127,14 +128,14 @@ public class WaveManager : MonoBehaviour {
             }
         }
         if (enemyPrefab.name == "FlyingEnemy") {
-            int random = Random.Range(0, flyingEnemySpawners.Length);
+            int randomRanged = Random.Range(0, flyingEnemySpawners.Length);
 
-            FlyingEnemySpawner selectedFlyingEnemySpawner = flyingEnemySpawners[random];
-            if (random != prevRandom) {
+            FlyingEnemySpawner selectedFlyingEnemySpawner = flyingEnemySpawners[randomRanged];
+            if (randomRanged != prevRandomRanged) {
                 Instantiate(spawnEffect, selectedFlyingEnemySpawner.transform.position + (Vector3.up * 3), Quaternion.identity);
                 Instantiate(enemyPrefab, selectedFlyingEnemySpawner.transform.position, Quaternion.identity);
                 aliveEnemies++;
-                prevRandom = random;
+                prevRandomRanged = randomRanged;
             }
             else {
                 SpawnEnemy(enemyPrefab);
