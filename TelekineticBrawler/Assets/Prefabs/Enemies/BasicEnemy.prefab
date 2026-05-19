@@ -78,15 +78,15 @@ MonoBehaviour:
   ragdollRigidbodies: []
   enemyAttacks: []
   ragdolling: 0
-  lightStaggerThreshold: 50
-  staggerThreshold: 175
-  ragdollThreshold: 250
-  ragdollTime: 2
+  lightStaggerThreshold: 30
+  staggerThreshold: 150
+  ragdollThreshold: 280
+  ragdollTime: 3
   isDead: 0
   deathDespawnTime: 5
   hips: {fileID: 1050377577980370852}
   firstWave: 0
-  currentHealth: 1250
+  currentHealth: 1000
   LeftArmDisabled: 0
   RightArmDisabled: 0
   LegsDisabled: 0
@@ -1069,7 +1069,7 @@ MonoBehaviour:
   childLimb: {fileID: 8368727022873388835}
   limbToDismember: {fileID: 5332063166981648000}
   limbToSpawn: {fileID: 0}
-  maxHealth: 500
+  maxHealth: 400
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -1302,7 +1302,7 @@ MonoBehaviour:
   childLimb: {fileID: 3133712735689572410}
   limbToDismember: {fileID: 6684949546912361672}
   limbToSpawn: {fileID: 0}
-  maxHealth: 500
+  maxHealth: 400
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -1936,7 +1936,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 9076903204106735562}
   limbToSpawn: {fileID: 4436016078791618480, guid: f4e37f9b72b4f5d4587e0261d4bcc076, type: 3}
-  maxHealth: 250
+  maxHealth: 200
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2063,7 +2063,7 @@ MonoBehaviour:
   childLimb: {fileID: 5814502227694107137}
   limbToDismember: {fileID: 4551525708648250642}
   limbToSpawn: {fileID: 4334292200889646623, guid: 16874b94292d1d142b36e427755678f4, type: 3}
-  maxHealth: 500
+  maxHealth: 400
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2190,7 +2190,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 1434945279956885999}
   limbToSpawn: {fileID: 6217993041202771287, guid: c8651a99d06b9bc4b82b1c6b5f6b87c5, type: 3}
-  maxHealth: 250
+  maxHealth: 150
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 2600385213127024082}
   limbToSpawn: {fileID: 6217993041202771287, guid: c8651a99d06b9bc4b82b1c6b5f6b87c5, type: 3}
-  maxHealth: 250
+  maxHealth: 150
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2444,7 +2444,7 @@ MonoBehaviour:
   childLimb: {fileID: 0}
   limbToDismember: {fileID: 3187566602313332083}
   limbToSpawn: {fileID: 4436016078791618480, guid: f4e37f9b72b4f5d4587e0261d4bcc076, type: 3}
-  maxHealth: 250
+  maxHealth: 200
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
@@ -2571,7 +2571,7 @@ MonoBehaviour:
   childLimb: {fileID: 1490888472517145568}
   limbToDismember: {fileID: 1012339811108711790}
   limbToSpawn: {fileID: 4334292200889646623, guid: 16874b94292d1d142b36e427755678f4, type: 3}
-  maxHealth: 500
+  maxHealth: 400
   parentAnimator: {fileID: 0}
   currentHealth: 0
   damageCooldown: 0
