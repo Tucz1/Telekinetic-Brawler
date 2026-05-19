@@ -18,7 +18,9 @@ public class EndingTeleport : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == "FirstPersonController")
         {
-            SceneManager.LoadScene(0);
+            Cursor.lockState = CursorLockMode.None;
+            ScoreContainer.state = 1;
+            SceneManager.LoadScene(3);
         }
     }
 }

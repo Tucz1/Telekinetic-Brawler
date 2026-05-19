@@ -52,13 +52,19 @@ public class ScoreManager : MonoBehaviour
         }
     }
     IEnumerator CountUp() {
-        while (uiScore < score) {
-            uiScore++;
-            uiText.text = uiScore.ToString();
+        float duration = 1f; 
+        float start = uiScore;
+        float elapsed = 0f;
 
-            yield return new WaitForSeconds(delaySpeed);
+        while (elapsed < duration) {
+            elapsed += Time.deltaTime;
+            uiScore = Mathf.RoundToInt(Mathf.Lerp(start, score, elapsed / duration));
+            uiText.text = uiScore.ToString();
+            yield return null;
         }
-        currentCoroutineScore = null;
+
+        uiScore = score;
+        uiText.text = uiScore.ToString();
     }
     private void checkRank() {
         if (rankLevel <= 0) {
@@ -103,6 +109,7 @@ public class ScoreManager : MonoBehaviour
 
         uiScore = score;
         score += (int)Mathf.Round(points * scoreMultiplier);
+        ScoreContainer.score = score;
         rankScore += points;
         if (rankScore >= 250) { 
             rankLevel++;

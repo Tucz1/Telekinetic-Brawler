@@ -46,7 +46,7 @@ public class InteractManager : MonoBehaviour
         // in general I'd use vars .. no need to have class fields for those
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out var hit, maxDistance) && !holding)
+        if (Physics.Raycast(ray, out var hit, maxDistance) && !holding && !telekinesis.isThrowing)
         {
             if (hit.collider.TryGetComponent<IInteractable>(out var interactable))
             {
@@ -71,7 +71,7 @@ public class InteractManager : MonoBehaviour
             currentInteractable.Interact();
             cachedInteractable = currentInteractable;
             holding = true;
-            Debug.Log(cachedInteractable);
+            // Debug.Log(cachedInteractable);
         }
 
         if (Input.GetKeyDown(KeyCode.G)) // Drop
@@ -83,32 +83,23 @@ public class InteractManager : MonoBehaviour
             holding = false;
         }
 
-        if (Input.GetKey(KeyCode.E)) // Throw
+        if (Input.GetKey(KeyCode.E) && holding) // Throw
         {
             if (cachedInteractable == null) return;
             telekinesis.isThrowing = true;
             timeHeld += Time.deltaTime;
-            holding = false;
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E) && holding)
         {
             if (cachedInteractable == null) return;
-            Debug.Log($"Throwing item held for: {timeHeld}");
-            Debug.Log(cachedInteractable);
+            // Debug.Log($"Throwing item held for: {timeHeld}");
+            // Debug.Log(cachedInteractable);
             SetInteractable(cachedInteractable);
-            telekinesis.isThrowing = false;
             currentInteractable.Throw(timeHeld);
             timeHeld = 0;
+            telekinesis.isThrowing = false;
+            holding = false;
         }
-
-        // if (Input.GetKeyDown(KeyCode.Space)) // Break
-        // {
-        //     if (cachedInteractable == null) return;
-        //     Debug.Log(cachedInteractable);
-        //     SetInteractable(cachedInteractable);
-        //     currentInteractable.Break();
-        //     holding = false;
-        // }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -124,9 +115,12 @@ public class InteractManager : MonoBehaviour
     public void BreakFromHand()
     {
 
+        if (cachedInteractable == null) return;
+
         SetInteractable(cachedInteractable);
         currentInteractable.Break();
 
+        if (telekinesis.isThrowing) { telekinesis.isThrowing = false; timeHeld = 0; }
         holding = false;
     }
 

@@ -1,24 +1,20 @@
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class TutorialTeleport : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] PlayableDirector director;
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.name == "FirstPersonController")
         {
-            SceneManager.LoadScene(2);
+            director.Play();
         }
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(2);
     }
 }

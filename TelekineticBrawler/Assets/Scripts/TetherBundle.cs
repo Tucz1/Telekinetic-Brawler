@@ -48,11 +48,11 @@ public class TetherBundle : MonoBehaviour
 
     public void CreateTethers(Transform _targetObject, Collider _targetCollider)
     {
-        Debug.Log($"player anchor: {playerAnchor}");
+        // Debug.Log($"player anchor: {playerAnchor}");
         targetObject = _targetObject;
-        Debug.Log($"target object: {targetObject}");
+        // Debug.Log($"target object: {targetObject}");
         targetCollider = _targetCollider;
-        Debug.Log($"target collider: {targetCollider}");
+        // Debug.Log($"target collider: {targetCollider}");
         // Debug.LogError("Pausing");
 
         for (int i = 0; i < tetherCount; i++)
