@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c25b7da249c0b48b7556b1357f896b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  weaponData: {fileID: 11400000, guid: 92414a91f9dc32346993fef0b7501c81, type: 2}
+  weaponData: {fileID: 11400000, guid: 554d0fe55dbff0042a92341d7e1fe582, type: 2}
   weaponRB: {fileID: 2958265899943363131}
   weaponRoot: {fileID: 220726338550668163}
   weaponLogic: {fileID: 7274014300520439017}

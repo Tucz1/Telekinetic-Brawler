@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7307307db6254fa4ebb642e2f95a20b0, type: 3}
+  m_Name: Chandelier
+  m_EditorClassIdentifier: Assembly-CSharp::MediumFurnitureFurniture
+  damageType: 0
+  damage: 16
+  durability: 2
+  minThrowStrength: 3.8
+  distanceHeld: 3
+  holdHeightOffset: 2
+  baseFollowSpeed: 2
+  weight: 4.5
+  baseRotationSpeed: 10
+  maxRotationSpeed: 20
+  maxDistance: 5
+  deadzone: 0.1
+  maxRoll: 30
+  rollSensitivity: 10
+  rollSmoothSpeed: 7
+  hitSFX: {fileID: 0}

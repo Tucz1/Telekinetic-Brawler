@@ -29,6 +29,7 @@ public class LimbScript : MonoBehaviour {
     }
 
     public void TakeDamage(float damage, float stagger, WeaponData weaponData) {
+        AudioFW.Play("Impacts", transform.position);
         if (damageCooldownTimer >= damageCooldown) {
             damageCooldownTimer = 0f;
             currentHealth -= damage;

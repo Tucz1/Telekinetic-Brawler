@@ -317,7 +317,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 4bb9bcb1d0f719b4eab3b7dbdab83999, type: 3}
+  m_Resource: {fileID: 8300000, guid: faf175f1db52e9b4282d9a636f4209db, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -691,8 +691,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioFWRandomizer
   randomClips:
-  - {fileID: 8300000, guid: d106e0d66601c0b4fa9fd56be27a4bb3, type: 3}
-  - {fileID: 8300000, guid: 6cd844377781f37468df53ea796e183c, type: 3}
+  - {fileID: 8300000, guid: 9beb00a7e648ca54db3b161bbdb07013, type: 3}
+  - {fileID: 8300000, guid: 7a31e73a5d952fe44b66ff492c1eca7b, type: 3}
 --- !u!1 &1513957791948234699
 GameObject:
   m_ObjectHideFlags: 0
