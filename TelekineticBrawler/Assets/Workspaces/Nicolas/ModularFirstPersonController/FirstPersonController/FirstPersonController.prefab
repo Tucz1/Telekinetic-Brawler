@@ -726,7 +726,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 8738145747818573321}
+  m_TargetGraphic: {fileID: 9206936728708496381}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1804,7 +1804,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7396842408771776908}
+  m_TargetGraphic: {fileID: 3555338872955163585}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2995,6 +2995,7 @@ MonoBehaviour:
   player: {fileID: 4459864850019384738}
   movementInfluence: 1
   canInfluence: 0
+  lastDir: {x: 0, y: 0, z: 0}
   TargetVectorRotateSpeed: 180
   attachedItem: 0
   isThrowing: 0
@@ -4953,7 +4954,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 8790353741572010064}
+  m_TargetGraphic: {fileID: 9203807344306483625}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
