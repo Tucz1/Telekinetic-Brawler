@@ -2775,6 +2775,7 @@ GameObject:
   - component: {fileID: 7600314773936693552}
   - component: {fileID: 4039912227206882950}
   - component: {fileID: 6957749539761266885}
+  - component: {fileID: 7893975384469106703}
   m_Layer: 3
   m_Name: FirstPersonController
   m_TagString: Player
@@ -3052,6 +3053,18 @@ MonoBehaviour:
   rankTextmp: {fileID: 5465808465546780938}
   rankSlider: {fileID: 8837901512966397375}
   inTutorial: 0
+--- !u!114 &7893975384469106703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4459864850019384750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1796e17c3764ea542aeb7ad1795bedbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VSyncLimiter
 --- !u!1 &4459864850190357393
 GameObject:
   m_ObjectHideFlags: 0
